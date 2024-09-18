@@ -4,20 +4,20 @@ date: 2023-02-13 23:07:00 +0900
 categories: [Issue]
 tags: [Issue, Chrome, Not Modified, HTTP Status Code]
 ---
-## 문제 상황
+문제 상황
 ---
 > 사용자에게 특정 이미지 목록들을 제공하는 사이드 프로젝트 개발 중 서빙하는 이미지 목록의 사이즈가 크고 변경이(`Insert` , `Update` , `Delete`) 드물고 읽기 작업이 많은 기능 특성상 캐싱 필요
 <br><br>따라서 로컬 캐시를 설정 후 `Cache-Control`, `Etag` 값을 통해 캐싱 데이터가 만료되는 상황에 `Etag`를 통한 검증으로 `HttpStatus Not-Modified`를 반환 받는 로직을  구현
 <br><br>해당 글은 크롬 브라우저에서 캐시 만료로 인한 재검증상황에서 `Etag`값이 같음에도 불구하고 `304` 아닌 `200` 반환하는 상황에 대한 정리
 
-## 상황 발생 환경 및 스택
+상황 발생 환경 및 스택
 ---
 - 크롬 브라우저 버전 - 96 version (21년 12월)
 - `spring boot 2.7.1`, `jdk` 11
 - `curl` - 브라우저 환경이 아닌 터미널에서 curl로 직접 요청해 상황을 확인
 - `wireshark` - 서버와 주고받는 패킷을 캡쳐해 응답값 및 요청 헤더를 확인
 
-## 문제 원인
+문제 원인
 ---
 [1269602 - chromium - An open-source project to help move the web forward. - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=1269602)
 
@@ -29,14 +29,14 @@ tags: [Issue, Chrome, Not Modified, HTTP Status Code]
 
 ![issue - image](/assets/img/post/chrome-not-returning/issue-image.webp)
 
-## 업데이트 후 현재 크롬에서는?
+업데이트 후 현재 크롬에서는?
 
 위와 같은 문제가 생기고 크롬업데이트 후 최신버전에서는 정상 동작함을 확인
 
 ![304-return](/assets/img/post/chrome-not-returning/304-return.webp)
 
 
-## 상황 재연
+상황 재연
 ---
 ### 서버 API 코드
 
