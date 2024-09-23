@@ -99,7 +99,7 @@ tags: [Issue, Swap Memory, Log]
 3. 샘플데이터처리 실패시(메시지 큐에서 나온 실제 메시지가 아닌) basicreject를 하고있음 - **큐메시지가 아닌데 reject을 하면안됨**
   - 메모리체크에서 최초 요청시에는 exception catch 후 알림 후 대기
 
-# 해결 성공
+## 해결 성공
 
 1. *메모리 세팅이 되었는지 체크(*`ManagementFactory.*getPlatformMBeanServer`)를 통해 total, free 스왑이 0이라면(= 세팅이 안되었다) 스킵*
 2. ec2 종료 스크립트의 종료코드 체크
