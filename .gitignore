@@ -1,0 +1,28 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Claude
+.claude/
+
+# IDE
+.idea/
+.vscode/
+
+# Jekyll
+_site/
+.jekyll-cache/
+.sass-cache/
+
+# Dependencies
+node_modules/
+package-lock.json
+Gemfile.lock
+
+# Test
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
