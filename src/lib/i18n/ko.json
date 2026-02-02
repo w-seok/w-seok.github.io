@@ -1,0 +1,22 @@
+{
+  "header": {
+    "greeting": "안녕하세요",
+    "title": "Software Engineer",
+    "subtitle": "복잡한 세계에서 명료함을 추구합니다"
+  },
+  "sections": {
+    "about": "소개",
+    "experience": "경력",
+    "skills": "기술 스택",
+    "projects": "프로젝트",
+    "education": "학력",
+    "activities": "활동"
+  },
+  "common": {
+    "readMore": "더보기",
+    "collapse": "접기",
+    "present": "현재",
+    "toggleTheme": "테마 전환",
+    "toggleLanguage": "언어 전환"
+  }
+}

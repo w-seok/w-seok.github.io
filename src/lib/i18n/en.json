@@ -1,0 +1,22 @@
+{
+  "header": {
+    "greeting": "Hello",
+    "title": "Software Engineer",
+    "subtitle": "Pursuing clarity in an intricate world"
+  },
+  "sections": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "education": "Education",
+    "activities": "Activities"
+  },
+  "common": {
+    "readMore": "Read more",
+    "collapse": "Collapse",
+    "present": "Present",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Change language"
+  }
+}

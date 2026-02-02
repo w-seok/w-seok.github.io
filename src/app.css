@@ -1,0 +1,391 @@
+/**
+ * @file 전역 CSS 스타일
+ * @description Toss/Daangn 디자인 시스템 기반 - 반응형 여백 시스템
+ */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		/* ===== Spacing Scale (4px Grid) ===== */
+		--space-1: 0.25rem;   /* 4px */
+		--space-2: 0.5rem;    /* 8px */
+		--space-3: 0.75rem;   /* 12px */
+		--space-4: 1rem;      /* 16px */
+		--space-5: 1.25rem;   /* 20px */
+		--space-6: 1.5rem;    /* 24px */
+		--space-8: 2rem;      /* 32px */
+		--space-10: 2.5rem;   /* 40px */
+		--space-12: 3rem;     /* 48px */
+		--space-14: 3.5rem;   /* 56px */
+		--space-16: 4rem;     /* 64px */
+		--space-20: 5rem;     /* 80px */
+		--space-24: 6rem;     /* 96px */
+		--space-28: 7rem;     /* 112px */
+
+		/* ===== Responsive Layout Variables (Mobile First) ===== */
+		/* 이 변수들은 미디어 쿼리에서 재정의됨 */
+		--container-padding: var(--space-4);      /* 16px - xs */
+		--container-max-width: 100%;
+		--section-gap: var(--space-12);           /* 48px */
+		--section-padding: var(--space-10);       /* 40px */
+
+		/* ===== Primitive Tokens - Toss Gray Scale (Blue tint) ===== */
+		--gray-50: #f9fafb;
+		--gray-100: #f2f4f6;
+		--gray-200: #e5e8eb;
+		--gray-300: #d1d6db;
+		--gray-400: #b0b8c1;
+		--gray-500: #8b95a1;
+		--gray-600: #6b7684;
+		--gray-700: #4e5968;
+		--gray-800: #333d4b;
+		--gray-900: #191f28;
+
+		/* ===== Semantic Tokens - Light Mode ===== */
+		--color-primary: var(--gray-900);
+		--color-secondary: var(--gray-700);
+		--color-muted: var(--gray-500);
+		--color-accent: #0064ff;
+		--color-accent-hover: #0052d9;
+		--color-background: #ffffff;
+		--color-surface: var(--gray-50);
+		--color-surface-elevated: #ffffff;
+		--color-border: var(--gray-200);
+		--color-border-hover: var(--gray-300);
+
+		/* ===== Z-Index Scale ===== */
+		--z-base: 0;
+		--z-dropdown: 10;
+		--z-sticky: 20;
+		--z-fixed: 30;
+		--z-modal-backdrop: 50;
+		--z-modal: 60;
+		--z-toast: 80;
+
+		/* ===== Transitions ===== */
+		--duration-instant: 50ms;
+		--duration-fast: 150ms;
+		--duration-normal: 250ms;
+		--duration-slow: 350ms;
+		--ease-out: cubic-bezier(0, 0, 0.2, 1);
+		--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	/* ===== Responsive Breakpoints ===== */
+	/* sm: 360px+ (현대 모바일) */
+	@media (min-width: 360px) {
+		:root {
+			--container-padding: var(--space-5);    /* 20px */
+			--section-gap: var(--space-14);         /* 56px */
+		}
+	}
+
+	/* md: 768px+ (태블릿) */
+	@media (min-width: 768px) {
+		:root {
+			--container-padding: var(--space-8);    /* 32px */
+			--container-max-width: 720px;
+			--section-gap: var(--space-16);         /* 64px */
+			--section-padding: var(--space-12);     /* 48px */
+		}
+	}
+
+	/* lg: 1024px+ (소형 랩톱) */
+	@media (min-width: 1024px) {
+		:root {
+			--container-padding: var(--space-10);   /* 40px */
+			--container-max-width: 800px;
+			--section-gap: var(--space-20);         /* 80px */
+			--section-padding: var(--space-14);     /* 56px */
+		}
+	}
+
+	/* xl: 1280px+ (데스크톱) */
+	@media (min-width: 1280px) {
+		:root {
+			--container-padding: var(--space-12);   /* 48px */
+			--container-max-width: 860px;
+			--section-gap: var(--space-24);         /* 96px */
+			--section-padding: var(--space-16);     /* 64px */
+		}
+	}
+
+	/* 2xl: 1536px+ (대형 모니터) */
+	@media (min-width: 1536px) {
+		:root {
+			--container-padding: var(--space-14);   /* 56px */
+			--container-max-width: 900px;
+			--section-gap: var(--space-28);         /* 112px */
+			--section-padding: var(--space-20);     /* 80px */
+		}
+	}
+
+	/* ===== Dark Mode ===== */
+	:root.dark {
+		--color-primary: #f1f5f9;
+		--color-secondary: #94a3b8;
+		--color-muted: #64748b;
+		--color-accent: #60a5fa;
+		--color-accent-hover: #93c5fd;
+		--color-background: var(--gray-900);
+		--color-surface: var(--gray-800);
+		--color-surface-elevated: var(--gray-700);
+		--color-border: var(--gray-700);
+		--color-border-hover: var(--gray-600);
+	}
+
+	html {
+		scroll-behavior: smooth;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* 300ms 탭 딜레이 제거 */
+	* {
+		touch-action: manipulation;
+	}
+
+	body {
+		font-family: 'Plus Jakarta Sans', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+		background-color: var(--color-background);
+		color: var(--color-primary);
+		line-height: 1.7;
+		word-break: keep-all;
+		overflow-wrap: break-word;
+		transition:
+			background-color var(--duration-normal) var(--ease-out),
+			color var(--duration-normal) var(--ease-out);
+	}
+
+	::selection {
+		background-color: var(--color-accent);
+		color: white;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+}
+
+@layer components {
+	/* ===== Container - 반응형 여백 시스템 사용 ===== */
+	.section-container {
+		max-width: var(--container-max-width);
+		margin: 0 auto;
+		padding-left: var(--container-padding);
+		padding-right: var(--container-padding);
+	}
+
+	/* ===== 페이지 로딩 애니메이션 ===== */
+	.page-enter {
+		animation: page-fade-in 0.5s var(--ease-out) forwards;
+	}
+
+	@keyframes page-fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* 순차적 stagger 효과 */
+	.stagger-1 { animation-delay: 0ms; }
+	.stagger-2 { animation-delay: 80ms; }
+	.stagger-3 { animation-delay: 160ms; }
+
+	/* ===== 스크롤 애니메이션 ===== */
+	.animate-on-scroll {
+		opacity: 0;
+		transform: translateY(16px);
+		transition:
+			opacity 0.4s var(--ease-out),
+			transform 0.4s var(--ease-out);
+	}
+
+	.animate-on-scroll.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* ===== 버튼 스타일 - 44x44 터치 타겟 ===== */
+	.btn-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 44px;
+		min-width: 44px;
+		padding: var(--space-2);
+		border-radius: var(--space-2);
+		color: var(--color-secondary);
+		background: transparent;
+		transition:
+			color var(--duration-fast) var(--ease-out),
+			background-color var(--duration-fast) var(--ease-out),
+			transform 100ms var(--ease-out);
+		cursor: pointer;
+	}
+
+	.btn-icon:hover {
+		color: var(--color-primary);
+		background-color: var(--color-surface);
+	}
+
+	.btn-icon:active {
+		background-color: var(--color-border);
+		transform: scale(0.98);
+	}
+
+	/* 터치 디바이스 최적화 */
+	@media (hover: none) {
+		.btn-icon:active {
+			transform: scale(0.96);
+		}
+	}
+
+	/* ===== 카드 스타일 ===== */
+	.card {
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--space-3);
+		padding: var(--space-6);
+		transition:
+			border-color var(--duration-fast) var(--ease-out),
+			box-shadow var(--duration-fast) var(--ease-out);
+	}
+
+	.card:hover {
+		border-color: var(--color-border-hover);
+	}
+
+	/* ===== 링크 스타일 ===== */
+	.link-subtle {
+		color: var(--color-secondary);
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.link-subtle:hover {
+		color: var(--color-primary);
+	}
+
+	.link-accent {
+		color: var(--color-accent);
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.link-accent:hover {
+		color: var(--color-accent-hover);
+	}
+
+	/* ===== 드롭다운 메뉴 ===== */
+	.dropdown-menu {
+		position: absolute;
+		right: 0;
+		top: calc(100% + var(--space-2));
+		min-width: 140px;
+		padding: var(--space-1);
+		background: var(--color-surface-elevated);
+		border: 1px solid var(--color-border);
+		border-radius: var(--space-3);
+		box-shadow:
+			0 4px 12px -2px rgb(0 0 0 / 0.08),
+			0 2px 4px -1px rgb(0 0 0 / 0.04);
+		z-index: var(--z-dropdown);
+	}
+
+	.dropdown-item {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		min-height: 44px;
+		padding: var(--space-2) var(--space-3);
+		text-align: left;
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+		border-radius: var(--space-2);
+		transition:
+			color var(--duration-fast) var(--ease-out),
+			background-color var(--duration-fast) var(--ease-out);
+		cursor: pointer;
+	}
+
+	.dropdown-item:hover {
+		color: var(--color-primary);
+		background-color: var(--color-surface);
+	}
+
+	.dropdown-item.active {
+		color: var(--color-accent);
+		font-weight: 500;
+	}
+}
+
+@layer utilities {
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+/* ===== 모션 감소 설정 ===== */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.animate-on-scroll,
+	.page-enter {
+		opacity: 1;
+		transform: none;
+		animation: none;
+	}
+}
+
+/* ===== 인쇄 스타일 ===== */
+@media print {
+	body {
+		background-color: white;
+		color: black;
+	}
+
+	.no-print {
+		display: none !important;
+	}
+
+	a {
+		color: black;
+		text-decoration: underline;
+	}
+
+	a[href^='http']::after {
+		content: ' (' attr(href) ')';
+		font-size: 0.8em;
+		color: #666;
+	}
+}

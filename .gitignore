@@ -10,18 +10,18 @@
 .idea/
 .vscode/
 
-# Jekyll
-_site/
-.jekyll-cache/
-.sass-cache/
+# SvelteKit
+.svelte-kit/
+build/
 
 # Dependencies
 node_modules/
 package-lock.json
-Gemfile.lock
 
 # Test
 test-results/
+playwright-report/
+coverage/
 
 # OS
 .DS_Store

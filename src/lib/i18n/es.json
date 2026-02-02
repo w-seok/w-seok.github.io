@@ -1,0 +1,22 @@
+{
+  "header": {
+    "greeting": "Hola",
+    "title": "Ingeniero de Software",
+    "subtitle": "Buscando claridad en un mundo intrincado"
+  },
+  "sections": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "education": "Educación",
+    "activities": "Actividades"
+  },
+  "common": {
+    "readMore": "Leer más",
+    "collapse": "Colapsar",
+    "present": "Presente",
+    "toggleTheme": "Cambiar tema",
+    "toggleLanguage": "Cambiar idioma"
+  }
+}
