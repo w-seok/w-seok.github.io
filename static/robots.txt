@@ -1,6 +1,7 @@
 User-agent: *
-Allow: /
+Disallow: /
+Allow: /blog/
+
 Crawl-delay: 1
 
-Sitemap: https://w-seok.github.io/sitemap.xml
 Sitemap: https://w-seok.github.io/blog/sitemap.xml
