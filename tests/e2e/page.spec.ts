@@ -69,10 +69,10 @@ test.describe('언어 전환', () => {
 	});
 
 	test('언어 선택 드롭다운이 표시됨', async ({ page }) => {
-		const langButton = page.locator('.lang-menu-container button');
-		await expect(langButton).toBeVisible();
+		const langMenuContainer = page.locator('.lang-menu-container');
+		await expect(langMenuContainer).toBeVisible();
 
-		await langButton.click();
+		await langMenuContainer.hover();
 
 		await expect(page.locator('role=menuitem >> text=한국어')).toBeVisible();
 		await expect(page.locator('role=menuitem >> text=English')).toBeVisible();
@@ -83,13 +83,13 @@ test.describe('언어 전환', () => {
 		const aboutHeading = page.locator('#about-heading');
 		await expect(aboutHeading).toHaveText('소개');
 
-		const langButton = page.locator('.lang-menu-container button');
-		await langButton.click();
+		const langMenuContainer = page.locator('.lang-menu-container');
+		await langMenuContainer.hover();
 		await page.locator('role=menuitem >> text=English').click();
 
 		await expect(aboutHeading).toHaveText('About');
 
-		await langButton.click();
+		await langMenuContainer.hover();
 		await page.locator('role=menuitem >> text=Español').click();
 
 		await expect(aboutHeading).toHaveText('Sobre mí');
