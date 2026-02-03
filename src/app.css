@@ -290,7 +290,7 @@
 	/* ===== 드롭다운 메뉴 ===== */
 	.dropdown-menu {
 		position: absolute;
-		right: 0;
+		left: 0;
 		top: 100%;
 		min-width: 140px;
 		padding: var(--space-2) var(--space-1) var(--space-1);
