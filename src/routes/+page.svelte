@@ -75,8 +75,13 @@
 	<!-- 플로팅 컨트롤 (우측 상단) -->
 	<div class="floating-control no-print">
 		<div class="floating-control-inner">
-			<!-- 언어 선택 드롭다운 -->
-			<div class="relative lang-menu-container">
+			<!-- 언어 선택 드롭다운 (hover + click for mobile) -->
+			<div
+				class="relative lang-menu-container"
+				onmouseenter={() => (isLangMenuOpen = true)}
+				onmouseleave={() => (isLangMenuOpen = false)}
+				role="presentation"
+			>
 				<button
 					class="btn-icon"
 					onclick={() => (isLangMenuOpen = !isLangMenuOpen)}
