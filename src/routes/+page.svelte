@@ -5,6 +5,7 @@
 	 */
 
 	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 	import { locale, t, type Locale } from '$lib/i18n';
 	import { theme } from '$lib/stores/theme';
 
@@ -112,7 +113,11 @@
 				</button>
 
 				{#if isLangMenuOpen}
-					<div class="dropdown-menu" role="menu">
+					<div
+						class="dropdown-menu"
+						role="menu"
+						transition:fly={{ y: -8, duration: 200 }}
+					>
 						{#each languages as lang}
 							<button
 								class="dropdown-item"

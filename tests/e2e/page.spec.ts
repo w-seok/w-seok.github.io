@@ -72,6 +72,7 @@ test.describe('언어 전환', () => {
 		const langMenuContainer = page.locator('.lang-menu-container');
 		await expect(langMenuContainer).toBeVisible();
 
+		// hover로 드롭다운 표시
 		await langMenuContainer.hover();
 
 		await expect(page.locator('role=menuitem >> text=한국어')).toBeVisible();
