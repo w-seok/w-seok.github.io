@@ -118,7 +118,7 @@ describe('i18n', () => {
 			expect(get(t).header.subtitle).toBe('Pursuing clarity in an intricate world');
 
 			locale.set('es');
-			expect(get(t).header.subtitle).toBe('Buscando claridad en un mundo intrincado');
+			expect(get(t).header.subtitle).toBe('Buscando claridad en un mundo complejo');
 		});
 
 		it('모든 섹션 번역이 존재함', () => {
@@ -134,9 +134,11 @@ describe('i18n', () => {
 				expect(translation.sections.about).toBeTruthy();
 				expect(translation.sections.experience).toBeTruthy();
 				expect(translation.sections.skills).toBeTruthy();
-				expect(translation.sections.projects).toBeTruthy();
+				expect(translation.sections.opensource).toBeTruthy();
 				expect(translation.sections.education).toBeTruthy();
 				expect(translation.sections.activities).toBeTruthy();
+				expect(translation.sections.awards).toBeTruthy();
+				expect(translation.sections.certificates).toBeTruthy();
 
 				// common
 				expect(translation.common.readMore).toBeTruthy();

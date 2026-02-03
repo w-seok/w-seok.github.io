@@ -1,22 +1,221 @@
 {
-  "header": {
-    "greeting": "Hola",
-    "title": "Ingeniero de Software",
-    "subtitle": "Buscando claridad en un mundo intrincado"
-  },
-  "sections": {
-    "about": "Sobre mí",
-    "experience": "Experiencia",
-    "skills": "Habilidades",
-    "projects": "Proyectos",
-    "education": "Educación",
-    "activities": "Actividades"
-  },
-  "common": {
-    "readMore": "Leer más",
-    "collapse": "Colapsar",
-    "present": "Presente",
-    "toggleTheme": "Cambiar tema",
-    "toggleLanguage": "Cambiar idioma"
-  }
+	"header": {
+		"greeting": "Hola",
+		"title": "Ingeniero Backend",
+		"subtitle": "Buscando claridad en un mundo complejo"
+	},
+	"sections": {
+		"about": "Sobre mí",
+		"experience": "Experiencia",
+		"skills": "Habilidades",
+		"opensource": "Código Abierto",
+		"education": "Formación",
+		"activities": "Actividades",
+		"awards": "Premios",
+		"certificates": "Certificaciones"
+	},
+	"common": {
+		"readMore": "Leer más",
+		"collapse": "Colapsar",
+		"present": "Actualidad",
+		"toggleTheme": "Cambiar tema",
+		"toggleLanguage": "Cambiar idioma"
+	},
+	"resume": {
+		"about": {
+			"summary": "Ingeniero backend con 2 años de experiencia especializado en modernización de sistemas legacy y mejora de la productividad del desarrollo. Apasionado por encontrar soluciones óptimas equilibrando plazos con calidad de código. Firme creyente en las habilidades blandas como clave del éxito del proyecto, prosperando en entornos colaborativos enfocados en la resolución efectiva de problemas.",
+			"highlights": [
+				"Reducción del 70% en tamaño de imagen Docker y automatización de entornos de prueba CI/CD",
+				"Construcción de sistema procesando 1M+ solicitudes mensuales, reduciendo costos de infraestructura 20% y CDN 80%",
+				"Fundador de Tibero Support Organization, desarrollo y lanzamiento de 3 proyectos de código abierto"
+			]
+		},
+		"experience": [
+			{
+				"company": "Tmax Fintech",
+				"position": "Ingeniero Backend",
+				"period": "Feb 2024 ~ Actualidad",
+				"description": "Enfocado en optimización de servicios y construcción de infraestructura para mejorar la productividad del desarrollador.",
+				"achievements": [
+					{
+						"title": "Mejora del Entorno de Desarrollo Tibero y Contribución al Ecosistema de Código Abierto",
+						"details": [
+							"Desarrollé Tibero Docker/TestContainer, eliminando la carga de configuración de BD local por desarrollador y reduciendo costos de configuración del equipo",
+							"Logré reducción del 70% en tamaño de imagen Docker (1.5GB → 401MB) aplicando algoritmo de compresión zstd y eliminando archivos innecesarios",
+							"Integré Tibero TestContainer en pipelines CI/CD, automatizando pruebas dependientes de BD y garantizando entornos de prueba consistentes",
+							"Analicé la lógica central de Flyway y desarrollé dialect específico para Tibero para control de versiones DDL automatizado, agilizando el proceso de despliegue de esquemas",
+							"Publiqué 3 proyectos validados internamente como código abierto, contribuyendo a la expansión del ecosistema de desarrolladores Tibero"
+						]
+					}
+				]
+			},
+			{
+				"company": "Miridih",
+				"position": "Ingeniero Backend",
+				"period": "May 2023 ~ Ene 2024",
+				"description": "Lideré el desarrollo backend del servicio de dibujo con IA de MiriCanvas.",
+				"achievements": [
+					{
+						"title": "Construcción del Sistema Backend de Servicio de Generación de Imágenes IA desde Cero (0→1)",
+						"details": [
+							"Escalé desde prototipo inicial hasta sistema de producción manejando 1M+ solicitudes mensuales de generación de imágenes de forma confiable",
+							"Diseñé pipeline de procesamiento asíncrono integrando APIs de modelos de IA externos (OpenAI, Stability AI)",
+							"Lancé integración de DALL·E 3 (primera en la industria coreana), logrando un aumento del 40% en solicitudes diarias de imágenes"
+						]
+					},
+					{
+						"title": "Optimización de Costos de Infraestructura, Logrando Reducción Mensual del 20%",
+						"details": [
+							"Implementé lógica de clasificación de solicitudes por características (resolución, modelo) para optimizar utilización de recursos GPU",
+							"Apliqué reducción de instancias (g5.2xlarge → g5.xlarge) basada en análisis de carga de trabajo",
+							"Reduje tiempo de configuración de instancias spot en 40% (25min → 15min) mediante optimización de AMI y estrategia de precalentamiento"
+						]
+					},
+					{
+						"title": "Reducción de Costos CDN 80%+ con Transformación de Imágenes en Tiempo Real Lambda@Edge",
+						"details": [
+							"Implementé función Lambda para conversión en tiempo real PNG → WebP en respuesta de origen CloudFront",
+							"Logré reducción promedio del 75% en tamaño de archivo mediante conversión de formato de imagen, reduciendo costos de transferencia CDN en 80%+",
+							"Diseñé arquitectura que permite migración gradual sin modificar almacenamiento S3 existente"
+						]
+					},
+					{
+						"title": "Resolución de Problemas de Concurrencia en Servidor Admin con Bloqueo Distribuido Redis",
+						"details": [
+							"Resolví problemas de colisión de ID causados por cambios de PK AutoIncrement usando bloqueo distribuido basado en Redis",
+							"Implementé lógica de reintento automático basada en AOP garantizando manejo elegante durante conflictos de bloqueo",
+							"Eliminé problemas de pérdida de datos por conflictos de trabajo de diseñadores, mejoré control de concurrencia dentro de restricciones legacy"
+						]
+					}
+				]
+			}
+		],
+		"skills": [
+			{
+				"category": "Backend",
+				"items": [
+					"Java 21",
+					"Spring 6.1",
+					"Spring Boot 3.2",
+					"PostgreSQL 15",
+					"Tibero 7",
+					"Redis",
+					"RabbitMQ"
+				]
+			},
+			{
+				"category": "DevOps",
+				"items": [
+					"Docker",
+					"AWS (EC2, S3, ElastiCache, CloudWatch, ECS, Code Deploy)",
+					"Prometheus",
+					"Grafana",
+					"Loki",
+					"Nginx",
+					"GitHub Actions"
+				]
+			},
+			{
+				"category": "Documentación",
+				"items": ["Swagger", "Spring REST Docs"]
+			}
+		],
+		"opensource": [
+			{
+				"name": "Tibero Support Organization",
+				"period": "May 2024 ~ Actualidad",
+				"description": "Tibero es un DBMS ampliamente utilizado en empresas coreanas pero carecía de soporte del ecosistema de desarrolladores. Fundé la Organización GitHub y lideré el desarrollo y lanzamiento de 3 proyectos de código abierto.",
+				"contributions": [
+					"Flyway para Tibero: Analicé código fuente de Flyway y desarrollé dialect específico para Tibero, habilitando soporte de migración DDL automatizada",
+					"Tibero Docker: Entregué imagen ligera de 401MB con compresión zstd, estandarizando entornos de prueba basados en contenedores",
+					"Tibero TestContainer: Integré con JUnit 5 para automatizar pruebas de integración Tibero en pipelines CI/CD"
+				],
+				"links": [
+					{
+						"label": "Organización GitHub",
+						"url": "https://github.com/Tibero-Support"
+					}
+				]
+			},
+			{
+				"name": "Localización Coreana de MDN Web Docs",
+				"period": "Ago 2023 ~ Actualidad",
+				"description": "Contribuyendo a mejoras de calidad en la traducción coreana de MDN Web Docs. Participando en traducciones de documentación de estándares web más recientes y mejorando traducciones existentes.",
+				"contributions": [
+					"Traduje documentación de tecnología web no traducida (JavaScript, Web API, etc.) al coreano",
+					"Corregí errores de traducción y actualicé documentación alineada con especificaciones más recientes"
+				],
+				"links": [
+					{
+						"label": "GitHub",
+						"url": "https://github.com/mdn/translated-content"
+					},
+					{
+						"label": "PRs de Contribución",
+						"url": "https://github.com/mdn/translated-content/pulls?q=is%3Apr+author%3Atkddls23+is%3Aclosed"
+					}
+				]
+			}
+		],
+		"activities": [
+			{
+				"name": "Pirogramming",
+				"organization": "Club de Desarrollo Web",
+				"period": "Dic 2021 ~ Ago 2022",
+				"description": "Un club de desarrollo web que aprende Python y framework Django para construir servicios web",
+				"highlights": [
+					"Aprendí desarrollo web desde fundamentos hasta conceptos avanzados",
+					"Completé proyecto de equipo de 9 semanas y desplegué servicio",
+					"Como miembro del personal, creé materiales educativos y dicté charlas para nuevos miembros"
+				]
+			}
+		],
+		"awards": [
+			{
+				"name": "Concurso de Datos Turísticos de la Organización de Turismo de Corea y Kakao 2022",
+				"organization": "Ministerio de Cultura, Deportes y Turismo",
+				"result": "Gran Premio (Premio del Ministro)",
+				"date": "Oct 2022",
+				"link": "https://n.news.naver.com/mnews/article/468/0000889630?sid=103"
+			},
+			{
+				"name": "Competencia de Software KU 2022",
+				"organization": "Universidad de Konkuk",
+				"result": "Premio de Excelencia",
+				"date": "Nov 2022",
+				"link": "https://swedu.konkuk.ac.kr/noticeView.do?siteId=SWEDU&boardSeq=398&menuSeq=2602&seq=176351"
+			},
+			{
+				"name": "Hackathon de Pasantes Jóvenes de Datos Públicos",
+				"organization": "Agencia Nacional de la Sociedad de la Información",
+				"result": "Premio de Incentivo",
+				"date": "Dic 2021",
+				"link": "https://www.data.go.kr/tcs/eds/ctm/selectContestData.do?contestId=40041"
+			}
+		],
+		"certificates": [
+			{
+				"name": "AWS Certified Developer - Associate",
+				"issuer": "AWS",
+				"date": "Oct 2023",
+				"credentialId": "P7ZJ1VZ10J1QQ99L"
+			},
+			{
+				"name": "Azure Fundamentals",
+				"issuer": "Microsoft",
+				"date": "Oct 2022",
+				"credentialId": "I460-4201"
+			}
+		],
+		"education": [
+			{
+				"institution": "Universidad de Konkuk",
+				"degree": "Licenciatura",
+				"major": "Ingeniería de Convergencia ICT Inteligente",
+				"period": "Mar 2017 ~ Feb 2023",
+				"gpa": "3.85/4.5 (Especialidad)",
+				"courses": ["Base de Datos (A+)", "Redes de Computadoras (A+)", "Estructuras de Datos y Algoritmos (A+)", "Sistemas Operativos (A)"]
+			}
+		]
+	}
 }

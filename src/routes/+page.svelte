@@ -173,59 +173,59 @@
 
 				<!-- 오른쪽: 연락처 (아이콘 통일) -->
 				<div class="contact-icons page-enter stagger-2">
-						<a
-							href="https://github.com/w-seok"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="contact-link"
-							aria-label="GitHub"
+					<a
+						href="https://github.com/w-seok"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="contact-link"
+						aria-label="GitHub"
+					>
+						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+							<path
+								d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+							/>
+						</svg>
+					</a>
+					<a href="mailto:tkddls4456@gmail.com" class="contact-link" aria-label="Email">
+						<svg
+							class="w-5 h-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							stroke-width="1.5"
+							aria-hidden="true"
 						>
-							<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-								<path
-									d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-								/>
-							</svg>
-						</a>
-						<a href="mailto:tkddls4456@gmail.com" class="contact-link" aria-label="Email">
-							<svg
-								class="w-5 h-5"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								stroke-width="1.5"
-								aria-hidden="true"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-								/>
-							</svg>
-						</a>
-						<a
-							href="https://w-seok.github.io/blog"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="contact-link"
-							aria-label="Blog"
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+							/>
+						</svg>
+					</a>
+					<a
+						href="https://w-seok.github.io/blog"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="contact-link"
+						aria-label="Blog"
+					>
+						<svg
+							class="w-5 h-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							stroke-width="1.5"
+							aria-hidden="true"
 						>
-							<svg
-								class="w-5 h-5"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								stroke-width="1.5"
-								aria-hidden="true"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-								/>
-							</svg>
-						</a>
-					</div>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+							/>
+						</svg>
+					</a>
 				</div>
+			</div>
 		</section>
 
 		<!-- 구분선 -->
@@ -241,9 +241,14 @@
 				{$t.sections.about}
 			</h2>
 			<div class="section-body">
-				<p class="body-text">
-					{$t.header.subtitle}
+				<p class="body-text about-summary">
+					{$t.resume.about.summary}
 				</p>
+				<ul class="highlight-list">
+					{#each $t.resume.about.highlights as highlight}
+						<li class="highlight-item">{highlight}</li>
+					{/each}
+				</ul>
 			</div>
 		</section>
 
@@ -260,9 +265,28 @@
 				{$t.sections.experience}
 			</h2>
 			<div class="section-body">
-				<div class="card">
-					<p class="text-secondary">경력 정보가 여기에 표시됩니다.</p>
-				</div>
+				{#each $t.resume.experience as exp, i}
+					<article class="experience-item" class:mt-experience={i > 0}>
+						<div class="experience-header">
+							<div class="experience-company-info">
+								<h3 class="experience-company">{exp.company}</h3>
+								<p class="experience-position">{exp.position}</p>
+							</div>
+							<span class="experience-period">{exp.period}</span>
+						</div>
+						<p class="experience-description">{exp.description}</p>
+						{#each exp.achievements as achievement}
+							<div class="achievement-block">
+								<h4 class="achievement-title">{achievement.title}</h4>
+								<ul class="achievement-details">
+									{#each achievement.details as detail}
+										<li class="achievement-detail">{detail}</li>
+									{/each}
+								</ul>
+							</div>
+						{/each}
+					</article>
+				{/each}
 			</div>
 		</section>
 
@@ -279,13 +303,204 @@
 				{$t.sections.skills}
 			</h2>
 			<div class="section-body">
-				<div class="skill-tags">
-					<span class="skill-tag">Java</span>
-					<span class="skill-tag">Spring</span>
-					<span class="skill-tag">TypeScript</span>
-					<span class="skill-tag">React</span>
-					<span class="skill-tag">Node.js</span>
+				{#each $t.resume.skills as category}
+					<div class="skill-category">
+						<h3 class="skill-category-title">{category.category}</h3>
+						<div class="skill-tags">
+							{#each category.items as skill}
+								<span class="skill-tag">{skill}</span>
+							{/each}
+						</div>
+					</div>
+				{/each}
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Opensource 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="opensource-heading"
+			bind:this={sections[4]}
+		>
+			<h2 id="opensource-heading" class="section-heading">
+				{$t.sections.opensource}
+			</h2>
+			<div class="section-body">
+				{#each $t.resume.opensource as project, i}
+					<article class="opensource-item" class:mt-experience={i > 0}>
+						<div class="opensource-header">
+							<h3 class="opensource-name">{project.name}</h3>
+							<span class="opensource-period">{project.period}</span>
+						</div>
+						<p class="opensource-description">{project.description}</p>
+						<ul class="opensource-contributions">
+							{#each project.contributions as contribution}
+								<li class="contribution-item">{contribution}</li>
+							{/each}
+						</ul>
+						<div class="opensource-links">
+							{#each project.links as link}
+								<a
+									href={link.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="opensource-link"
+								>
+									{link.label}
+									<svg
+										class="w-3 h-3 ml-1"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+										/>
+									</svg>
+								</a>
+							{/each}
+						</div>
+					</article>
+				{/each}
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Activities 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="activities-heading"
+			bind:this={sections[5]}
+		>
+			<h2 id="activities-heading" class="section-heading">
+				{$t.sections.activities}
+			</h2>
+			<div class="section-body">
+				{#each $t.resume.activities as activity}
+					<article class="activity-item">
+						<div class="activity-header">
+							<div>
+								<h3 class="activity-name">{activity.name}</h3>
+								<p class="activity-org">{activity.organization}</p>
+							</div>
+							<span class="activity-period">{activity.period}</span>
+						</div>
+						<p class="activity-description">{activity.description}</p>
+						<ul class="activity-highlights">
+							{#each activity.highlights as highlight}
+								<li class="activity-highlight">{highlight}</li>
+							{/each}
+						</ul>
+					</article>
+				{/each}
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Awards 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="awards-heading"
+			bind:this={sections[6]}
+		>
+			<h2 id="awards-heading" class="section-heading">
+				{$t.sections.awards}
+			</h2>
+			<div class="section-body">
+				<div class="awards-grid">
+					{#each $t.resume.awards as award}
+						<article class="award-item">
+							<div class="award-header">
+								<h3 class="award-name">
+									{#if award.link}
+										<a href={award.link} target="_blank" rel="noopener noreferrer" class="award-link">
+											{award.name}
+										</a>
+									{:else}
+										{award.name}
+									{/if}
+								</h3>
+								<span class="award-date">{award.date}</span>
+							</div>
+							<p class="award-org">{award.organization}</p>
+							<p class="award-result">{award.result}</p>
+						</article>
+					{/each}
 				</div>
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Certificates 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="certificates-heading"
+			bind:this={sections[7]}
+		>
+			<h2 id="certificates-heading" class="section-heading">
+				{$t.sections.certificates}
+			</h2>
+			<div class="section-body">
+				<div class="certificates-grid">
+					{#each $t.resume.certificates as cert}
+						<article class="certificate-item">
+							<h3 class="certificate-name">{cert.name}</h3>
+							<p class="certificate-issuer">{cert.issuer}</p>
+							<p class="certificate-date">{cert.date}</p>
+						</article>
+					{/each}
+				</div>
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Education 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="education-heading"
+			bind:this={sections[8]}
+		>
+			<h2 id="education-heading" class="section-heading">
+				{$t.sections.education}
+			</h2>
+			<div class="section-body">
+				{#each $t.resume.education as edu}
+					<article class="education-item">
+						<div class="education-header">
+							<div>
+								<h3 class="education-institution">{edu.institution}</h3>
+								<p class="education-degree">
+									{edu.degree} · {edu.major}
+								</p>
+							</div>
+							<span class="education-period">{edu.period}</span>
+						</div>
+						{#if edu.gpa}
+							<p class="education-gpa">GPA: {edu.gpa}</p>
+						{/if}
+						{#if edu.courses && edu.courses.length > 0}
+							<div class="education-courses">
+								{#each edu.courses as course}
+									<span class="course-tag">{course}</span>
+								{/each}
+							</div>
+						{/if}
+					</article>
+				{/each}
 			</div>
 		</section>
 	</main>
@@ -451,7 +666,6 @@
 	.section-heading {
 		font-size: 1.125rem;
 		font-weight: 600;
-		text-align: center;
 		color: var(--color-primary);
 		margin-bottom: var(--space-8);
 	}
@@ -473,24 +687,157 @@
 		line-height: 1.75;
 	}
 
-	/* ===== 스킬 태그 ===== */
+	/* ===== About 섹션 ===== */
+	.about-summary {
+		margin-bottom: var(--space-6);
+	}
+
+	.highlight-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.highlight-item {
+		position: relative;
+		padding-left: var(--space-5);
+		margin-bottom: var(--space-2);
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+		line-height: 1.6;
+	}
+
+	.highlight-item::before {
+		content: '•';
+		position: absolute;
+		left: var(--space-2);
+		color: var(--color-muted);
+	}
+
+	/* ===== Experience 섹션 ===== */
+	.experience-item {
+		/* 경력 아이템 */
+	}
+
+	.mt-experience {
+		margin-top: var(--space-10);
+	}
+
+	.experience-header {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		margin-bottom: var(--space-4);
+	}
+
+	@media (min-width: 640px) {
+		.experience-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+	}
+
+	.experience-company-info {
+		/* 회사 정보 */
+	}
+
+	.experience-company {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin-bottom: var(--space-1);
+	}
+
+	.experience-position {
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+	}
+
+	.experience-period {
+		font-size: 0.875rem;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.experience-description {
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+		margin-bottom: var(--space-6);
+		line-height: 1.6;
+	}
+
+	.achievement-block {
+		margin-bottom: var(--space-6);
+	}
+
+	.achievement-block:last-child {
+		margin-bottom: 0;
+	}
+
+	.achievement-title {
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin-bottom: var(--space-3);
+		padding-left: var(--space-3);
+		border-left: 2px solid var(--color-border-hover);
+	}
+
+	.achievement-details {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.achievement-detail {
+		position: relative;
+		padding-left: var(--space-5);
+		margin-bottom: var(--space-2);
+		font-size: 0.875rem;
+		color: var(--color-secondary);
+		line-height: 1.6;
+	}
+
+	.achievement-detail::before {
+		content: '–';
+		position: absolute;
+		left: var(--space-2);
+		color: var(--color-muted);
+	}
+
+	/* ===== Skills 섹션 ===== */
+	.skill-category {
+		margin-bottom: var(--space-6);
+	}
+
+	.skill-category:last-child {
+		margin-bottom: 0;
+	}
+
+	.skill-category-title {
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin-bottom: var(--space-3);
+	}
+
 	.skill-tags {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-2);
-		justify-content: center;
 	}
 
 	.skill-tag {
 		display: inline-flex;
 		align-items: center;
-		padding: var(--space-2) var(--space-3);
-		font-size: 0.875rem;
+		padding: var(--space-1) var(--space-3);
+		font-size: 0.8125rem;
 		font-weight: 500;
 		color: var(--color-secondary);
 		background-color: var(--color-surface);
 		border: 1px solid var(--color-border);
-		border-radius: var(--space-2);
+		border-radius: var(--space-1);
 		transition:
 			border-color var(--duration-fast) var(--ease-out),
 			background-color var(--duration-fast) var(--ease-out);
@@ -499,6 +846,320 @@
 	.skill-tag:hover {
 		border-color: var(--color-border-hover);
 		background-color: var(--color-surface-elevated);
+	}
+
+	/* ===== Opensource 섹션 ===== */
+	.opensource-item {
+		/* 오픈소스 아이템 */
+	}
+
+	.opensource-header {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		margin-bottom: var(--space-3);
+	}
+
+	@media (min-width: 640px) {
+		.opensource-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	.opensource-name {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-primary);
+	}
+
+	.opensource-period {
+		font-size: 0.875rem;
+		color: var(--color-muted);
+	}
+
+	.opensource-description {
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+		line-height: 1.6;
+		margin-bottom: var(--space-4);
+	}
+
+	.opensource-contributions {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 var(--space-4) 0;
+	}
+
+	.contribution-item {
+		position: relative;
+		padding-left: var(--space-5);
+		margin-bottom: var(--space-2);
+		font-size: 0.875rem;
+		color: var(--color-secondary);
+		line-height: 1.6;
+	}
+
+	.contribution-item::before {
+		content: '•';
+		position: absolute;
+		left: var(--space-2);
+		color: var(--color-muted);
+	}
+
+	.opensource-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	.opensource-link {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.8125rem;
+		color: var(--color-secondary);
+		text-decoration: none;
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.opensource-link:hover {
+		color: var(--color-primary);
+	}
+
+	.opensource-link svg {
+		margin-left: var(--space-1);
+	}
+
+	/* ===== Activities 섹션 ===== */
+	.activity-item {
+		/* 활동 아이템 */
+	}
+
+	.activity-header {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		margin-bottom: var(--space-3);
+	}
+
+	@media (min-width: 640px) {
+		.activity-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+	}
+
+	.activity-name {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin-bottom: var(--space-1);
+	}
+
+	.activity-org {
+		font-size: 0.875rem;
+		color: var(--color-secondary);
+	}
+
+	.activity-period {
+		font-size: 0.875rem;
+		color: var(--color-muted);
+	}
+
+	.activity-description {
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+		line-height: 1.6;
+		margin-bottom: var(--space-4);
+	}
+
+	.activity-highlights {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.activity-highlight {
+		position: relative;
+		padding-left: var(--space-5);
+		margin-bottom: var(--space-2);
+		font-size: 0.875rem;
+		color: var(--color-secondary);
+		line-height: 1.6;
+	}
+
+	.activity-highlight::before {
+		content: '•';
+		position: absolute;
+		left: var(--space-2);
+		color: var(--color-muted);
+	}
+
+	/* ===== Awards 섹션 ===== */
+	.awards-grid {
+		display: grid;
+		gap: var(--space-6);
+	}
+
+	@media (min-width: 640px) {
+		.awards-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.award-item {
+		padding: var(--space-4);
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--space-2);
+	}
+
+	.award-header {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		margin-bottom: var(--space-2);
+	}
+
+	@media (min-width: 480px) {
+		.award-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+	}
+
+	.award-name {
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		line-height: 1.4;
+	}
+
+	.award-link {
+		color: inherit;
+		text-decoration: none;
+		transition: color var(--duration-fast) var(--ease-out);
+	}
+
+	.award-link:hover {
+		color: var(--color-secondary);
+	}
+
+	.award-date {
+		font-size: 0.8125rem;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.award-org {
+		font-size: 0.8125rem;
+		color: var(--color-secondary);
+		margin-bottom: var(--space-1);
+	}
+
+	.award-result {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--color-primary);
+	}
+
+	/* ===== Certificates 섹션 ===== */
+	.certificates-grid {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	@media (min-width: 640px) {
+		.certificates-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.certificate-item {
+		padding: var(--space-4);
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--space-2);
+	}
+
+	.certificate-name {
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin-bottom: var(--space-2);
+	}
+
+	.certificate-issuer {
+		font-size: 0.8125rem;
+		color: var(--color-secondary);
+		margin-bottom: var(--space-1);
+	}
+
+	.certificate-date {
+		font-size: 0.8125rem;
+		color: var(--color-muted);
+	}
+
+	/* ===== Education 섹션 ===== */
+	.education-item {
+		/* 학력 아이템 */
+	}
+
+	.education-header {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		margin-bottom: var(--space-3);
+	}
+
+	@media (min-width: 640px) {
+		.education-header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+	}
+
+	.education-institution {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		margin-bottom: var(--space-1);
+	}
+
+	.education-degree {
+		font-size: 0.9375rem;
+		color: var(--color-secondary);
+	}
+
+	.education-period {
+		font-size: 0.875rem;
+		color: var(--color-muted);
+	}
+
+	.education-gpa {
+		font-size: 0.875rem;
+		color: var(--color-secondary);
+		margin-bottom: var(--space-3);
+	}
+
+	.education-courses {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+
+	.course-tag {
+		display: inline-flex;
+		padding: var(--space-1) var(--space-2);
+		font-size: 0.75rem;
+		color: var(--color-secondary);
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--space-1);
 	}
 
 	/* ===== 푸터 ===== */

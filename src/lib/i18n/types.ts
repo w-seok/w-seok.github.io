@@ -26,17 +26,21 @@ export interface HeaderTranslation {
  * @property about - 소개 섹션
  * @property experience - 경력 섹션
  * @property skills - 기술 스택 섹션
- * @property projects - 프로젝트 섹션
+ * @property opensource - 오픈소스 섹션
  * @property education - 학력 섹션
  * @property activities - 활동 섹션
+ * @property awards - 수상 섹션
+ * @property certificates - 자격증 섹션
  */
 export interface SectionTranslation {
 	about: string;
 	experience: string;
 	skills: string;
-	projects: string;
+	opensource: string;
 	education: string;
 	activities: string;
+	awards: string;
+	certificates: string;
 }
 
 /**
@@ -56,15 +60,165 @@ export interface CommonTranslation {
 }
 
 /**
+ * 소개 섹션 데이터
+ * @property summary - 핵심 요약 (3-4줄)
+ * @property highlights - 핵심 강점 리스트
+ */
+export interface AboutData {
+	summary: string;
+	highlights: string[];
+}
+
+/**
+ * 경력 업무 성과 항목
+ * @property title - 성과 제목
+ * @property details - 세부 내용
+ */
+export interface AchievementItem {
+	title: string;
+	details: string[];
+}
+
+/**
+ * 경력 항목
+ * @property company - 회사명
+ * @property position - 직책
+ * @property period - 근무 기간
+ * @property description - 회사/팀 설명
+ * @property achievements - 성과 목록
+ */
+export interface ExperienceItem {
+	company: string;
+	position: string;
+	period: string;
+	description: string;
+	achievements: AchievementItem[];
+}
+
+/**
+ * 스킬 카테고리
+ * @property category - 카테고리명
+ * @property items - 스킬 목록
+ */
+export interface SkillCategory {
+	category: string;
+	items: string[];
+}
+
+/**
+ * 오픈소스 프로젝트 항목
+ * @property name - 프로젝트명
+ * @property period - 기간
+ * @property description - 프로젝트 설명
+ * @property contributions - 기여 내용
+ * @property links - 관련 링크
+ */
+export interface OpensourceItem {
+	name: string;
+	period: string;
+	description: string;
+	contributions: string[];
+	links: { label: string; url: string }[];
+}
+
+/**
+ * 활동 항목
+ * @property name - 활동명
+ * @property organization - 소속/주최
+ * @property period - 기간
+ * @property description - 설명
+ * @property highlights - 주요 활동
+ */
+export interface ActivityItem {
+	name: string;
+	organization: string;
+	period: string;
+	description: string;
+	highlights: string[];
+}
+
+/**
+ * 수상 항목
+ * @property name - 수상명
+ * @property organization - 수여기관
+ * @property result - 수상결과
+ * @property date - 수상일
+ * @property link - 관련 링크 (선택)
+ */
+export interface AwardItem {
+	name: string;
+	organization: string;
+	result: string;
+	date: string;
+	link?: string;
+}
+
+/**
+ * 자격증 항목
+ * @property name - 자격증명
+ * @property issuer - 발행처
+ * @property date - 취득일
+ * @property credentialId - 등록번호 (선택)
+ */
+export interface CertificateItem {
+	name: string;
+	issuer: string;
+	date: string;
+	credentialId?: string;
+}
+
+/**
+ * 학력 항목
+ * @property institution - 학교명
+ * @property degree - 학위
+ * @property major - 전공
+ * @property period - 기간
+ * @property gpa - 학점 (선택)
+ * @property courses - 주요 이수 과목 (선택)
+ */
+export interface EducationItem {
+	institution: string;
+	degree: string;
+	major: string;
+	period: string;
+	gpa?: string;
+	courses?: string[];
+}
+
+/**
+ * 이력서 데이터
+ * @property about - 소개 섹션
+ * @property experience - 경력 섹션
+ * @property skills - 기술 스택 섹션
+ * @property opensource - 오픈소스 섹션
+ * @property activities - 활동 섹션
+ * @property awards - 수상 섹션
+ * @property certificates - 자격증 섹션
+ * @property education - 학력 섹션
+ */
+export interface ResumeData {
+	about: AboutData;
+	experience: ExperienceItem[];
+	skills: SkillCategory[];
+	opensource: OpensourceItem[];
+	activities: ActivityItem[];
+	awards: AwardItem[];
+	certificates: CertificateItem[];
+	education: EducationItem[];
+}
+
+/**
  * 전체 번역 구조
  * @property header - 헤더 섹션 번역
  * @property sections - 섹션 이름 번역
  * @property common - 공통 UI 텍스트 번역
+ * @property resume - 이력서 데이터
  */
 export interface Translation {
 	header: HeaderTranslation;
 	sections: SectionTranslation;
 	common: CommonTranslation;
+	resume: ResumeData;
 }
 
 /**

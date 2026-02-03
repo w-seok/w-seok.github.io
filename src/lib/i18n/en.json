@@ -1,22 +1,221 @@
 {
-  "header": {
-    "greeting": "Hello",
-    "title": "Software Engineer",
-    "subtitle": "Pursuing clarity in an intricate world"
-  },
-  "sections": {
-    "about": "About",
-    "experience": "Experience",
-    "skills": "Skills",
-    "projects": "Projects",
-    "education": "Education",
-    "activities": "Activities"
-  },
-  "common": {
-    "readMore": "Read more",
-    "collapse": "Collapse",
-    "present": "Present",
-    "toggleTheme": "Toggle theme",
-    "toggleLanguage": "Change language"
-  }
+	"header": {
+		"greeting": "Hello",
+		"title": "Backend Engineer",
+		"subtitle": "Pursuing clarity in an intricate world"
+	},
+	"sections": {
+		"about": "About",
+		"experience": "Experience",
+		"skills": "Skills",
+		"opensource": "Open Source",
+		"education": "Education",
+		"activities": "Activities",
+		"awards": "Awards",
+		"certificates": "Certificates"
+	},
+	"common": {
+		"readMore": "Read more",
+		"collapse": "Collapse",
+		"present": "Present",
+		"toggleTheme": "Toggle theme",
+		"toggleLanguage": "Change language"
+	},
+	"resume": {
+		"about": {
+			"summary": "Backend engineer with 2 years of experience specializing in legacy system modernization and developer productivity improvements. Passionate about finding optimal solutions while balancing deadlines with code quality. Strong believer in soft skills as the key to project success, thriving in collaborative environments focused on effective problem-solving.",
+			"highlights": [
+				"Achieved 70% Docker image size reduction and automated CI/CD test environments",
+				"Built system processing 1M+ monthly image requests, reducing infra costs 20% and CDN costs 80%",
+				"Founded Tibero Support Organization, developed and released 3 open source projects"
+			]
+		},
+		"experience": [
+			{
+				"company": "Tmax Fintech",
+				"position": "Backend Engineer",
+				"period": "Feb 2024 ~ Present",
+				"description": "Focused on service optimization and building infrastructure for enhanced developer productivity.",
+				"achievements": [
+					{
+						"title": "Improved Tibero Database Development Environment and Open Source Ecosystem",
+						"details": [
+							"Developed Tibero Docker/TestContainer, eliminating per-developer local test DB setup overhead and reducing team-wide environment configuration costs",
+							"Achieved 70% Docker image size reduction (1.5GB → 401MB) by applying zstd compression algorithm and removing unnecessary files",
+							"Integrated Tibero TestContainer into CI/CD pipelines, automating database-dependent tests and ensuring consistent test environments",
+							"Analyzed Flyway core logic and developed Tibero-specific dialect for automated DDL version control, streamlining schema deployment process",
+							"Released 3 internally validated projects as open source, contributing to the expansion of Tibero developer ecosystem"
+						]
+					}
+				]
+			},
+			{
+				"company": "Miridih",
+				"position": "Backend Engineer",
+				"period": "May 2023 ~ Jan 2024",
+				"description": "Led backend development for MiriCanvas AI Drawing service.",
+				"achievements": [
+					{
+						"title": "Built AI Image Generation Service Backend from Scratch (0→1)",
+						"details": [
+							"Scaled from early prototype to production system handling 1M+ monthly image generation requests reliably",
+							"Designed asynchronous processing pipeline integrating external AI model APIs (OpenAI, Stability AI)",
+							"Launched DALL·E 3 integration (first in Korean industry), achieving 40% increase in daily image requests"
+						]
+					},
+					{
+						"title": "Optimized Infrastructure Costs, Achieving 20% Monthly Reduction",
+						"details": [
+							"Implemented request classification logic by characteristics (resolution, model) to optimize GPU resource utilization",
+							"Applied instance downsizing (g5.2xlarge → g5.xlarge) based on workload analysis",
+							"Reduced spot instance setup time by 40% (25min → 15min) through AMI optimization and prewarming strategy"
+						]
+					},
+					{
+						"title": "Reduced CDN Costs 80%+ with Lambda@Edge Real-time Image Transformation",
+						"details": [
+							"Implemented Lambda function for real-time PNG → WebP conversion at CloudFront origin response",
+							"Achieved 75% average file size reduction through image format conversion, reducing CDN transfer costs by 80%+",
+							"Designed architecture enabling gradual migration without modifying existing S3 storage"
+						]
+					},
+					{
+						"title": "Resolved Admin Server Concurrency Issues with Redis Distributed Lock",
+						"details": [
+							"Resolved ID collision issues caused by AutoIncrement PK changes using Redis-based distributed lock",
+							"Implemented AOP-based automatic retry logic ensuring graceful handling during lock conflicts",
+							"Eliminated data loss issues from designer work conflicts, improved concurrency control within legacy constraints"
+						]
+					}
+				]
+			}
+		],
+		"skills": [
+			{
+				"category": "Backend",
+				"items": [
+					"Java 21",
+					"Spring 6.1",
+					"Spring Boot 3.2",
+					"PostgreSQL 15",
+					"Tibero 7",
+					"Redis",
+					"RabbitMQ"
+				]
+			},
+			{
+				"category": "DevOps",
+				"items": [
+					"Docker",
+					"AWS (EC2, S3, ElastiCache, CloudWatch, ECS, Code Deploy)",
+					"Prometheus",
+					"Grafana",
+					"Loki",
+					"Nginx",
+					"GitHub Actions"
+				]
+			},
+			{
+				"category": "Documentation",
+				"items": ["Swagger", "Spring REST Docs"]
+			}
+		],
+		"opensource": [
+			{
+				"name": "Tibero Support Organization",
+				"period": "May 2024 ~ Present",
+				"description": "Tibero is a widely-used DBMS in Korean enterprises but lacked developer ecosystem support. Founded GitHub Organization and led development and release of 3 open source projects.",
+				"contributions": [
+					"Flyway for Tibero: Analyzed Flyway source code and developed Tibero-specific dialect, enabling automated DDL migration support",
+					"Tibero Docker: Delivered lightweight 401MB image with zstd compression, standardizing container-based test environments",
+					"Tibero TestContainer: Integrated with JUnit 5 to automate Tibero integration testing in CI/CD pipelines"
+				],
+				"links": [
+					{
+						"label": "GitHub Organization",
+						"url": "https://github.com/Tibero-Support"
+					}
+				]
+			},
+			{
+				"name": "MDN Web Docs Korean Localization",
+				"period": "Aug 2023 ~ Present",
+				"description": "Contributing to Korean translation quality improvements of MDN Web Docs. Participating in translations of latest web standard documentation and improving existing translations.",
+				"contributions": [
+					"Translated untranslated web technology documentation (JavaScript, Web API, etc.) to Korean",
+					"Fixed mistranslations and updated documentation to align with latest specifications"
+				],
+				"links": [
+					{
+						"label": "GitHub",
+						"url": "https://github.com/mdn/translated-content"
+					},
+					{
+						"label": "Contribution PRs",
+						"url": "https://github.com/mdn/translated-content/pulls?q=is%3Apr+author%3Atkddls23+is%3Aclosed"
+					}
+				]
+			}
+		],
+		"activities": [
+			{
+				"name": "Pirogramming",
+				"organization": "Web Development Club",
+				"period": "Dec 2021 ~ Aug 2022",
+				"description": "A web development club learning Python and Django framework to build web services",
+				"highlights": [
+					"Learned web development from fundamentals to advanced concepts",
+					"Completed 9-week team project and deployed service",
+					"As staff member, created educational materials and conducted lectures for new members"
+				]
+			}
+		],
+		"awards": [
+			{
+				"name": "2022 Korea Tourism Organization & Kakao Tourism Data Competition",
+				"organization": "Ministry of Culture, Sports and Tourism",
+				"result": "Grand Prize (Minister's Award)",
+				"date": "Oct 2022",
+				"link": "https://n.news.naver.com/mnews/article/468/0000889630?sid=103"
+			},
+			{
+				"name": "2022 KU Software Competition",
+				"organization": "Konkuk University",
+				"result": "Excellence Award",
+				"date": "Nov 2022",
+				"link": "https://swedu.konkuk.ac.kr/noticeView.do?siteId=SWEDU&boardSeq=398&menuSeq=2602&seq=176351"
+			},
+			{
+				"name": "Public Data Youth Intern Hackathon",
+				"organization": "National Information Society Agency",
+				"result": "Encouragement Award",
+				"date": "Dec 2021",
+				"link": "https://www.data.go.kr/tcs/eds/ctm/selectContestData.do?contestId=40041"
+			}
+		],
+		"certificates": [
+			{
+				"name": "AWS Certified Developer - Associate",
+				"issuer": "AWS",
+				"date": "Oct 2023",
+				"credentialId": "P7ZJ1VZ10J1QQ99L"
+			},
+			{
+				"name": "Azure Fundamentals",
+				"issuer": "Microsoft",
+				"date": "Oct 2022",
+				"credentialId": "I460-4201"
+			}
+		],
+		"education": [
+			{
+				"institution": "Konkuk University",
+				"degree": "Bachelor's",
+				"major": "Smart ICT Convergence Engineering",
+				"period": "Mar 2017 ~ Feb 2023",
+				"gpa": "3.85/4.5 (Major)",
+				"courses": ["Database (A+)", "Computer Networks (A+)", "Data Structures & Algorithms (A+)", "Operating Systems (A)"]
+			}
+		]
+	}
 }

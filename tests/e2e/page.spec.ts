@@ -74,9 +74,9 @@ test.describe('언어 전환', () => {
 
 		await langButton.click();
 
-		await expect(page.locator('text=한국어')).toBeVisible();
-		await expect(page.locator('text=English')).toBeVisible();
-		await expect(page.locator('text=Español')).toBeVisible();
+		await expect(page.locator('role=menuitem >> text=한국어')).toBeVisible();
+		await expect(page.locator('role=menuitem >> text=English')).toBeVisible();
+		await expect(page.locator('role=menuitem >> text=Español')).toBeVisible();
 	});
 
 	test('언어 선택 시 콘텐츠가 변경됨', async ({ page }) => {
