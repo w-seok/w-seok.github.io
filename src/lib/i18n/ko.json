@@ -32,10 +32,17 @@
 		},
 		"experience": [
 			{
+				"company": "Cupix",
+				"position": "Application Part Lead",
+				"period": "2024.11 ~ 현재",
+				"description": "360° 영상 기반 디지털 트윈 플랫폼의 백엔드 개발을 담당합니다.",
+				"achievements": []
+			},
+			{
 				"company": "Tmax Fintech",
 				"position": "Backend Engineer",
-				"period": "2024.02 ~ 현재",
-				"description": "서비스 최적화 및 개발 생산성 향상을 위한 환경 구축에 주력합니다.",
+				"period": "2024.02 ~ 2024.10",
+				"description": "서비스 최적화 및 개발 생산성 향상을 위한 환경 구축에 주력했습니다.",
 				"achievements": [
 					{
 						"title": "Tibero 데이터베이스 개발 환경 개선 및 오픈소스 생태계 기여",

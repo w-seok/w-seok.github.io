@@ -518,7 +518,7 @@
 	<!-- 푸터 -->
 	<footer class="page-footer no-print">
 		<div class="section-container">
-			<p class="footer-text">&copy; {new Date().getFullYear()} {getName($locale)}</p>
+			<p class="footer-text">&copy; {new Date().getFullYear()} Wonseok Shin. All rights reserved.</p>
 		</div>
 	</footer>
 </div>

@@ -32,9 +32,16 @@
 		},
 		"experience": [
 			{
+				"company": "Cupix",
+				"position": "Application Part Lead",
+				"period": "Nov 2024 – Actualidad",
+				"description": "Desarrollo de sistemas backend para plataforma de gemelo digital basada en video 360° para construcción y gestión de instalaciones.",
+				"achievements": []
+			},
+			{
 				"company": "Tmax Fintech",
 				"position": "Ingeniero Backend",
-				"period": "Feb 2024 – Actualidad",
+				"period": "Feb 2024 – Oct 2024",
 				"description": "Enfocado en optimización de servicios y construcción de infraestructura para mejorar la productividad del desarrollador.",
 				"achievements": [
 					{
