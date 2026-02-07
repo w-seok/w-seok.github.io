@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer with 2 years of experience specializing in legacy system modernization and developer productivity improvements. Passionate about finding optimal solutions while balancing deadlines with code quality. Strong believer in soft skills as the key to project success, thriving in collaborative environments focused on effective problem-solving.",
+			"summary": "Backend engineer specializing in legacy system modernization and developer productivity improvements. Passionate about finding optimal solutions while balancing deadlines with code quality. Strong believer in soft skills as the key to project success, thriving in collaborative environments focused on effective problem-solving.",
 			"highlights": [
 				"Achieved 70% Docker image size reduction and automated CI/CD test environments",
 				"Built system processing 1M+ monthly image requests, reducing infra costs 20% and CDN costs 80%",
@@ -34,7 +34,7 @@
 			{
 				"company": "Tmax Fintech",
 				"position": "Backend Engineer",
-				"period": "Feb 2024 ~ Present",
+				"period": "Feb 2024 – Present",
 				"description": "Focused on service optimization and building infrastructure for enhanced developer productivity.",
 				"achievements": [
 					{
@@ -52,11 +52,11 @@
 			{
 				"company": "Miridih",
 				"position": "Backend Engineer",
-				"period": "May 2023 ~ Jan 2024",
+				"period": "May 2023 – Jan 2024",
 				"description": "Led backend development for MiriCanvas AI Drawing service.",
 				"achievements": [
 					{
-						"title": "Built AI Image Generation Service Backend from Scratch (0→1)",
+						"title": "Built AI Image Generation Service Backend from Scratch",
 						"details": [
 							"Scaled from early prototype to production system handling 1M+ monthly image generation requests reliably",
 							"Designed asynchronous processing pipeline integrating external AI model APIs (OpenAI, Stability AI)",
@@ -123,7 +123,7 @@
 		"opensource": [
 			{
 				"name": "Tibero Support Organization",
-				"period": "May 2024 ~ Present",
+				"period": "May 2024 – Present",
 				"description": "Tibero is a widely-used DBMS in Korean enterprises but lacked developer ecosystem support. Founded GitHub Organization and led development and release of 3 open source projects.",
 				"contributions": [
 					"Flyway for Tibero: Analyzed Flyway source code and developed Tibero-specific dialect, enabling automated DDL migration support",
@@ -139,7 +139,7 @@
 			},
 			{
 				"name": "MDN Web Docs Korean Localization",
-				"period": "Aug 2023 ~ Present",
+				"period": "Aug 2023 – Present",
 				"description": "Contributing to Korean translation quality improvements of MDN Web Docs. Participating in translations of latest web standard documentation and improving existing translations.",
 				"contributions": [
 					"Translated untranslated web technology documentation (JavaScript, Web API, etc.) to Korean",
@@ -161,10 +161,9 @@
 			{
 				"name": "Pirogramming",
 				"organization": "Web Development Club",
-				"period": "Dec 2021 ~ Aug 2022",
+				"period": "Dec 2021 – Aug 2022",
 				"description": "A web development club learning Python and Django framework to build web services",
 				"highlights": [
-					"Learned web development from fundamentals to advanced concepts",
 					"Completed 9-week team project and deployed service",
 					"As staff member, created educational materials and conducted lectures for new members"
 				]
@@ -173,7 +172,7 @@
 		"awards": [
 			{
 				"name": "2022 Korea Tourism Organization & Kakao Tourism Data Competition",
-				"organization": "Ministry of Culture, Sports and Tourism",
+				"organization": "Ministry of Culture, Sports and Tourism (South Korea)",
 				"result": "Grand Prize (Minister's Award)",
 				"date": "Oct 2022",
 				"link": "https://n.news.naver.com/mnews/article/468/0000889630?sid=103"
@@ -187,7 +186,7 @@
 			},
 			{
 				"name": "Public Data Youth Intern Hackathon",
-				"organization": "National Information Society Agency",
+				"organization": "National Information Society Agency (South Korea)",
 				"result": "Encouragement Award",
 				"date": "Dec 2021",
 				"link": "https://www.data.go.kr/tcs/eds/ctm/selectContestData.do?contestId=40041"
@@ -210,11 +209,11 @@
 		"education": [
 			{
 				"institution": "Konkuk University",
-				"degree": "Bachelor's",
+				"degree": "B.S.",
 				"major": "Smart ICT Convergence Engineering",
-				"period": "Mar 2017 ~ Feb 2023",
-				"gpa": "3.85/4.5 (Major)",
-				"courses": ["Database (A+)", "Computer Networks (A+)", "Data Structures & Algorithms (A+)", "Operating Systems (A)"]
+				"period": "Mar 2017 – Feb 2023",
+				"gpa": "3.85/4.5 (Major GPA)",
+				"courses": []
 			}
 		]
 	}

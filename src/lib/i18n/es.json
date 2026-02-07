@@ -16,14 +16,14 @@
 	},
 	"common": {
 		"readMore": "Leer más",
-		"collapse": "Colapsar",
+		"collapse": "Ver menos",
 		"present": "Actualidad",
 		"toggleTheme": "Cambiar tema",
 		"toggleLanguage": "Cambiar idioma"
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend con 2 años de experiencia especializado en modernización de sistemas legacy y mejora de la productividad del desarrollo. Apasionado por encontrar soluciones óptimas equilibrando plazos con calidad de código. Firme creyente en las habilidades blandas como clave del éxito del proyecto, prosperando en entornos colaborativos enfocados en la resolución efectiva de problemas.",
+			"summary": "Ingeniero backend especializado en modernización de sistemas legacy y mejora de la productividad del desarrollo. Apasionado por encontrar soluciones óptimas equilibrando plazos con calidad de código. Firme creyente en las habilidades blandas como clave del éxito del proyecto, prosperando en entornos colaborativos enfocados en la resolución efectiva de problemas.",
 			"highlights": [
 				"Reducción del 70% en tamaño de imagen Docker y automatización de entornos de prueba CI/CD",
 				"Construcción de sistema procesando 1M+ solicitudes mensuales, reduciendo costos de infraestructura 20% y CDN 80%",
@@ -34,7 +34,7 @@
 			{
 				"company": "Tmax Fintech",
 				"position": "Ingeniero Backend",
-				"period": "Feb 2024 ~ Actualidad",
+				"period": "Feb 2024 – Actualidad",
 				"description": "Enfocado en optimización de servicios y construcción de infraestructura para mejorar la productividad del desarrollador.",
 				"achievements": [
 					{
@@ -52,11 +52,11 @@
 			{
 				"company": "Miridih",
 				"position": "Ingeniero Backend",
-				"period": "May 2023 ~ Ene 2024",
+				"period": "May 2023 – Ene 2024",
 				"description": "Lideré el desarrollo backend del servicio de dibujo con IA de MiriCanvas.",
 				"achievements": [
 					{
-						"title": "Construcción del Sistema Backend de Servicio de Generación de Imágenes IA desde Cero (0→1)",
+						"title": "Construcción del Sistema Backend de Servicio de Generación de Imágenes IA desde Cero",
 						"details": [
 							"Escalé desde prototipo inicial hasta sistema de producción manejando 1M+ solicitudes mensuales de generación de imágenes de forma confiable",
 							"Diseñé pipeline de procesamiento asíncrono integrando APIs de modelos de IA externos (OpenAI, Stability AI)",
@@ -123,7 +123,7 @@
 		"opensource": [
 			{
 				"name": "Tibero Support Organization",
-				"period": "May 2024 ~ Actualidad",
+				"period": "May 2024 – Actualidad",
 				"description": "Tibero es un DBMS ampliamente utilizado en empresas coreanas pero carecía de soporte del ecosistema de desarrolladores. Fundé la Organización GitHub y lideré el desarrollo y lanzamiento de 3 proyectos de código abierto.",
 				"contributions": [
 					"Flyway para Tibero: Analicé código fuente de Flyway y desarrollé dialect específico para Tibero, habilitando soporte de migración DDL automatizada",
@@ -139,7 +139,7 @@
 			},
 			{
 				"name": "Localización Coreana de MDN Web Docs",
-				"period": "Ago 2023 ~ Actualidad",
+				"period": "Ago 2023 – Actualidad",
 				"description": "Contribuyendo a mejoras de calidad en la traducción coreana de MDN Web Docs. Participando en traducciones de documentación de estándares web más recientes y mejorando traducciones existentes.",
 				"contributions": [
 					"Traduje documentación de tecnología web no traducida (JavaScript, Web API, etc.) al coreano",
@@ -161,10 +161,9 @@
 			{
 				"name": "Pirogramming",
 				"organization": "Club de Desarrollo Web",
-				"period": "Dic 2021 ~ Ago 2022",
+				"period": "Dic 2021 – Ago 2022",
 				"description": "Un club de desarrollo web que aprende Python y framework Django para construir servicios web",
 				"highlights": [
-					"Aprendí desarrollo web desde fundamentos hasta conceptos avanzados",
 					"Completé proyecto de equipo de 9 semanas y desplegué servicio",
 					"Como miembro del personal, creé materiales educativos y dicté charlas para nuevos miembros"
 				]
@@ -173,7 +172,7 @@
 		"awards": [
 			{
 				"name": "Concurso de Datos Turísticos de la Organización de Turismo de Corea y Kakao 2022",
-				"organization": "Ministerio de Cultura, Deportes y Turismo",
+				"organization": "Ministerio de Cultura, Deportes y Turismo (Corea del Sur)",
 				"result": "Gran Premio (Premio del Ministro)",
 				"date": "Oct 2022",
 				"link": "https://n.news.naver.com/mnews/article/468/0000889630?sid=103"
@@ -187,7 +186,7 @@
 			},
 			{
 				"name": "Hackathon de Pasantes Jóvenes de Datos Públicos",
-				"organization": "Agencia Nacional de la Sociedad de la Información",
+				"organization": "Agencia Nacional de la Sociedad de la Información (Corea del Sur)",
 				"result": "Premio de Incentivo",
 				"date": "Dic 2021",
 				"link": "https://www.data.go.kr/tcs/eds/ctm/selectContestData.do?contestId=40041"
@@ -210,11 +209,11 @@
 		"education": [
 			{
 				"institution": "Universidad de Konkuk",
-				"degree": "Licenciatura",
+				"degree": "Grado",
 				"major": "Ingeniería de Convergencia ICT Inteligente",
-				"period": "Mar 2017 ~ Feb 2023",
-				"gpa": "3.85/4.5 (Especialidad)",
-				"courses": ["Base de Datos (A+)", "Redes de Computadoras (A+)", "Estructuras de Datos y Algoritmos (A+)", "Sistemas Operativos (A)"]
+				"period": "Mar 2017 – Feb 2023",
+				"gpa": "3.85/4.5 (Nota de la especialidad)",
+				"courses": []
 			}
 		]
 	}
