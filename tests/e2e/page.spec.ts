@@ -38,8 +38,9 @@ test.describe('메인 페이지', () => {
 
 	test('푸터가 표시됨', async ({ page }) => {
 		const footer = page.locator('footer');
+		await footer.scrollIntoViewIfNeeded();
 		await expect(footer).toBeVisible();
-		await expect(footer.locator('text=신원석').or(footer.locator('text=Leo Shin'))).toBeVisible();
+		await expect(footer.locator('text=Wonseok Shin')).toBeVisible();
 	});
 
 	test('GitHub 링크가 올바른 URL을 가짐', async ({ page }) => {
