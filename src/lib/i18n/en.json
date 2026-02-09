@@ -23,11 +23,11 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer with 3+ years of experience specializing in enterprise platform architecture, distributed data consistency, and cloud infrastructure automation. Track record of building production systems end-to-end—from Terraform provisioning to API delivery—handling 1M+ monthly requests across 6 deployment regions.",
+			"summary": "Backend engineer with 3+ years of experience building and operating backend systems and cloud infrastructure across multiple products—tailoring architecture to each product's requirements and maintaining thorough documentation. Currently serving as Part Lead for a digital twin SaaS platform deployed across 6 regions.",
 			"highlights": [
 				"Built enterprise asset management system end-to-end (ERD to SDK) and AI preprocessing pipeline across 4 repositories from scratch",
-				"Scaled system to handle 1M+ monthly image requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
-				"Founded Tibero Support Organization, developed and released 3 open source projects with 70% Docker image size reduction"
+				"Scaled AI image generation system from prototype to 1M+ monthly requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
+				"Developed and released 3 open source projects for the Tibero developer ecosystem with 70% Docker image size reduction"
 			]
 		},
 		"experience": [

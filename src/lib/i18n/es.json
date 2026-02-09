@@ -23,11 +23,11 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend con más de 3 años de experiencia, especializado en arquitectura de plataformas empresariales, consistencia de datos distribuidos y automatización de infraestructura cloud. Trayectoria demostrada construyendo sistemas de producción de extremo a extremo—desde aprovisionamiento de infraestructura con Terraform hasta entrega de APIs—gestionando más de 1M solicitudes mensuales en 6 regiones de despliegue.",
+			"summary": "Ingeniero backend con más de 3 años de experiencia en diseño e implementación de sistemas backend e infraestructura cloud para múltiples productos, con enfoque en arquitectura adecuada a cada contexto y documentación rigurosa. Actualmente Part Lead de una plataforma SaaS de gemelo digital desplegada en 6 regiones, responsable del diseño, implementación y operación de dominios clave.",
 			"highlights": [
 				"Construí sistema enterprise de gestión de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA desde cero a través de 4 repositorios",
-				"Escalé sistema a 1M+ solicitudes mensuales de imágenes, reduciendo costos de infraestructura en 20% y CDN en 80%+",
-				"Fundé Tibero Support Organization, desarrollé y publiqué 3 proyectos de código abierto con reducción del 70% en tamaño de imagen Docker"
+				"Escalé sistema de generación de imágenes IA desde prototipo a 1M+ solicitudes mensuales, reduciendo costos de infraestructura en 20% y CDN en 80%+",
+				"Desarrollé y publiqué 3 proyectos de código abierto para el ecosistema de desarrolladores Tibero con reducción del 70% en tamaño de imagen Docker"
 			]
 		},
 		"experience": [
