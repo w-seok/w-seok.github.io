@@ -15,7 +15,7 @@
 		"certificates": "Certificaciones"
 	},
 	"common": {
-		"readMore": "Leer más",
+		"readMore": "Ver más",
 		"collapse": "Ver menos",
 		"present": "Actualidad",
 		"toggleTheme": "Cambiar tema",
@@ -23,11 +23,11 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend especializado en modernización de sistemas legacy y mejora de la productividad del desarrollo. Apasionado por encontrar soluciones óptimas equilibrando plazos con calidad de código. Firme creyente en las habilidades blandas como clave del éxito del proyecto, prosperando en entornos colaborativos enfocados en la resolución efectiva de problemas.",
+			"summary": "Ingeniero backend especializado en arquitectura de plataformas empresariales, consistencia de datos distribuidos y automatización de infraestructura cloud. Trayectoria demostrada construyendo sistemas de extremo a extremo, desde aprovisionamiento de infraestructura con Terraform y desarrollo de agentes ECS hasta entrega de APIs en producción a través de 5 repositorios. Comprometido con equilibrar entregas orientadas a plazos con calidad de código y fiabilidad operacional.",
 			"highlights": [
-				"Reducción del 70% en tamaño de imagen Docker y automatización de entornos de prueba CI/CD",
-				"Construcción de sistema procesando 1M+ solicitudes mensuales, reduciendo costos de infraestructura 20% y CDN 80%",
-				"Fundador de Tibero Support Organization, desarrollo y lanzamiento de 3 proyectos de código abierto"
+				"Construí sistema enterprise de gestión de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA desde cero a través de 4 repositorios",
+				"Escalé sistema a 1M+ solicitudes mensuales de imágenes, reduciendo costos de infraestructura en 20% y CDN en 80%+",
+				"Fundé Tibero Support Organization, desarrollé y publiqué 3 proyectos de código abierto con reducción del 70% en tamaño de imagen Docker"
 			]
 		},
 		"experience": [
@@ -35,8 +35,41 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Actualidad",
-				"description": "Desarrollo de sistemas backend para plataforma de gemelo digital basada en video 360° para construcción y gestión de instalaciones.",
-				"achievements": []
+				"description": "Liderazgo de desarrollo backend y gestión de equipo para plataforma SaaS de gemelo digital 360° para construcción y gestión de instalaciones. Impulso del diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
+				"achievements": [
+					{
+						"title": "Diseño y Construcción de Sistema Enterprise de Gestión de Activos (Asset Atlas)",
+						"details": [
+							"Diseñé modelo de datos con categorías jerárquicas basadas en Closure Table y máquina de estados FormWorkflow/FormStatus, implementando API completa desde CRUD hasta operaciones Bulk (34 issues, 107 commits en 12 meses)",
+							"Implementé validación estricta de integridad de datos en API Bulk—deduplicación UUID, prevención de referencias circulares, detección de self-loop—habilitando importación masiva CSV para clientes enterprise",
+							"Entregué funcionalidades enterprise incluyendo auditoría basada en PaperTrail, herencia jerárquica de FormField, y capacidades de adjuntos/comentarios/thumbnails"
+						]
+					},
+					{
+						"title": "Lideré Diseño de Arquitectura e Implementación de Plataforma SiteInsights Ligera (SI Lite)",
+						"details": [
+							"Diseñé infraestructura completa con Terraform (ECS Fargate, SQS, OpenSearch, políticas IAM) e implementé API backend, Processing Agent y SDK a través de 4 repositorios",
+							"Arquitecté máquina de estados si_lite_state y streaming de eventos basado en Kinesis, estableciendo base de integración de eventos entre SI Pro y Lite",
+							"Construí API de Validación de consistencia de datos Element-ElementRecord, detectando y resolviendo sistemáticamente discrepancias MySQL-MongoDB para clientes enterprise"
+						]
+					},
+					{
+						"title": "Construcción de Pipeline de Preprocesamiento de Imágenes Panorámicas con IA (PixGenie) desde Cero",
+						"details": [
+							"Añadí etapa de preprocesamiento IA basada en cola GPU al pipeline de procesamiento de capturas, diseñando arquitectura asíncrona con ECS Task y SQS",
+							"Entregué implementación de extremo a extremo a través de 4 repositorios—desde infraestructura Terraform hasta desarrollo de agente, API de gestión de estados backend y SDK OpenAPI",
+							"Implementé lógica de enrutamiento por región soportando despliegue multi-región (US, EU, AU, JP, NSW Gov)"
+						]
+					},
+					{
+						"title": "Optimización de Infraestructura y Mejora de Consistencia de Datos en Sistemas Distribuidos",
+						"details": [
+							"Eliminé bloqueo de 100ms en Redis migrando KEYS a SCAN, y mejoré aislamiento de fallos separando cache y cola en instancias ElastiCache dedicadas",
+							"Resolví race condition de TaskSyncWorker mediante enfoque por fases: Redis cache lock para mitigación inmediata, luego RetryWorker para recuperación sistemática",
+							"Establecí monitorización basada en Datadog (SLO, Error Tracking, APM) y gestioné despliegues en 6 regiones (US, EU, AU, JP, CA, NSW Gov)"
+						]
+					}
+				]
 			},
 			{
 				"company": "Tmax Fintech",
@@ -63,7 +96,7 @@
 				"description": "Lideré el desarrollo backend del servicio de dibujo con IA de MiriCanvas.",
 				"achievements": [
 					{
-						"title": "Construcción del Sistema Backend de Servicio de Generación de Imágenes IA desde Cero",
+						"title": "Construcción del Sistema Backend de Generación de Imágenes IA desde Cero",
 						"details": [
 							"Escalé desde prototipo inicial hasta sistema de producción manejando 1M+ solicitudes mensuales de generación de imágenes de forma confiable",
 							"Diseñé pipeline de procesamiento asíncrono integrando APIs de modelos de IA externos (OpenAI, Stability AI)",
@@ -101,30 +134,36 @@
 			{
 				"category": "Backend",
 				"items": [
-					"Java 21",
-					"Spring 6.1",
-					"Spring Boot 3.2",
-					"PostgreSQL 15",
-					"Tibero 7",
-					"Redis",
-					"RabbitMQ"
+					"Ruby on Rails",
+					"Java",
+					"Spring Boot",
+					"TypeScript/Node.js"
 				]
 			},
 			{
-				"category": "DevOps",
+				"category": "Bases de Datos",
 				"items": [
-					"Docker",
-					"AWS (EC2, S3, ElastiCache, CloudWatch, ECS, Code Deploy)",
-					"Prometheus",
-					"Grafana",
-					"Loki",
-					"Nginx",
+					"MySQL",
+					"MongoDB",
+					"PostgreSQL",
+					"Redis"
+				]
+			},
+			{
+				"category": "Cloud / Infraestructura",
+				"items": [
+					"AWS (ECS Fargate, SQS, S3, Lambda, Kinesis, EC2, ElastiCache)",
+					"Terraform",
+					"Docker"
+				]
+			},
+			{
+				"category": "DevOps / Monitorización",
+				"items": [
+					"Datadog",
+					"Azure DevOps",
 					"GitHub Actions"
 				]
-			},
-			{
-				"category": "Documentación",
-				"items": ["Swagger", "Spring REST Docs"]
 			}
 		],
 		"opensource": [

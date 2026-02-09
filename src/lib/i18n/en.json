@@ -23,11 +23,11 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer specializing in legacy system modernization and developer productivity improvements. Passionate about finding optimal solutions while balancing deadlines with code quality. Strong believer in soft skills as the key to project success, thriving in collaborative environments focused on effective problem-solving.",
+			"summary": "Backend engineer specializing in enterprise platform architecture, distributed data consistency, and cloud infrastructure automation. Track record of building systems end-to-end—from Terraform infrastructure provisioning and ECS agent development to production API delivery across 5 repositories. Committed to balancing deadline-driven delivery with code quality and operational reliability.",
 			"highlights": [
-				"Achieved 70% Docker image size reduction and automated CI/CD test environments",
-				"Built system processing 1M+ monthly image requests, reducing infra costs 20% and CDN costs 80%",
-				"Founded Tibero Support Organization, developed and released 3 open source projects"
+				"Built enterprise asset management system end-to-end (ERD to SDK) and AI preprocessing pipeline across 4 repositories from scratch",
+				"Scaled system to handle 1M+ monthly image requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
+				"Founded Tibero Support Organization, developed and released 3 open source projects with 70% Docker image size reduction"
 			]
 		},
 		"experience": [
@@ -35,8 +35,41 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Present",
-				"description": "Developing backend systems for a 360° video-based digital twin platform for construction and facility management.",
-				"achievements": []
+				"description": "Leading backend development and team management for a 360° digital twin SaaS platform for construction and facility management. Driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
+				"achievements": [
+					{
+						"title": "Designed and Built Enterprise Asset Management System (Asset Atlas)",
+						"details": [
+							"Designed data model with Closure Table-based hierarchical categories and FormWorkflow/FormStatus state machine, implementing full API from CRUD to Bulk operations (34 issues, 107 commits over 12 months)",
+							"Implemented strict data integrity validation in Bulk API—UUID deduplication, circular reference prevention, self-loop detection—enabling CSV mass import for enterprise clients",
+							"Delivered enterprise-grade features including PaperTrail-based audit trail, hierarchical FormField inheritance, and attachment/comment/thumbnail capabilities"
+						]
+					},
+					{
+						"title": "Led Architecture Design and Implementation of Lightweight SiteInsights (SI Lite) Platform",
+						"details": [
+							"Designed full infrastructure with Terraform (ECS Fargate, SQS, OpenSearch, IAM policies) and implemented backend API, Processing Agent, and SDK across 4 repositories",
+							"Architected si_lite_state state machine and Kinesis-based event streaming, establishing event integration foundation between SI Pro and Lite",
+							"Built Element-ElementRecord data consistency Validation API, systematically detecting and resolving MySQL-MongoDB discrepancies for enterprise customers"
+						]
+					},
+					{
+						"title": "Built AI-Powered Panorama Image Preprocessing Pipeline (PixGenie) from Scratch",
+						"details": [
+							"Added GPU queue-based AI preprocessing stage to capture processing pipeline, designing async architecture with ECS Task and SQS",
+							"Delivered end-to-end implementation across 4 repositories—from Terraform infrastructure to agent development, backend state management API, and OpenAPI SDK",
+							"Implemented region-specific routing logic supporting multi-region deployment (US, EU, AU, JP, NSW Gov)"
+						]
+					},
+					{
+						"title": "Optimized Infrastructure and Improved Distributed System Data Consistency",
+						"details": [
+							"Eliminated 100ms Redis blocking by migrating KEYS to SCAN, and improved fault isolation by separating cache and queue into dedicated ElastiCache instances",
+							"Resolved TaskSyncWorker race condition through phased approach: Redis cache lock for immediate mitigation, then RetryWorker for systematic recovery",
+							"Established Datadog-based monitoring (SLO, Error Tracking, APM) and managed deployments across 6 regions (US, EU, AU, JP, CA, NSW Gov)"
+						]
+					}
+				]
 			},
 			{
 				"company": "Tmax Fintech",
@@ -101,30 +134,36 @@
 			{
 				"category": "Backend",
 				"items": [
-					"Java 21",
-					"Spring 6.1",
-					"Spring Boot 3.2",
-					"PostgreSQL 15",
-					"Tibero 7",
-					"Redis",
-					"RabbitMQ"
+					"Ruby on Rails",
+					"Java",
+					"Spring Boot",
+					"TypeScript/Node.js"
 				]
 			},
 			{
-				"category": "DevOps",
+				"category": "Database",
 				"items": [
-					"Docker",
-					"AWS (EC2, S3, ElastiCache, CloudWatch, ECS, Code Deploy)",
-					"Prometheus",
-					"Grafana",
-					"Loki",
-					"Nginx",
+					"MySQL",
+					"MongoDB",
+					"PostgreSQL",
+					"Redis"
+				]
+			},
+			{
+				"category": "Cloud / Infrastructure",
+				"items": [
+					"AWS (ECS Fargate, SQS, S3, Lambda, Kinesis, EC2, ElastiCache)",
+					"Terraform",
+					"Docker"
+				]
+			},
+			{
+				"category": "DevOps / Monitoring",
+				"items": [
+					"Datadog",
+					"Azure DevOps",
 					"GitHub Actions"
 				]
-			},
-			{
-				"category": "Documentation",
-				"items": ["Swagger", "Spring REST Docs"]
 			}
 		],
 		"opensource": [

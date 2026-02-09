@@ -23,11 +23,11 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "백엔드 엔지니어로서 레거시 시스템 개선과 개발 생산성 향상에 주력합니다. 단일 기능 구현에도 최적의 방식을 고민하며, 기한과 품질의 균형 속에서 견고하고 효율적인 솔루션을 만들어냅니다. 소프트 스킬이 프로젝트 성공의 핵심이라 믿으며, 효과적인 문제 해결과 협업을 위해 끊임없이 노력하는 환경을 선호합니다.",
+			"summary": "레거시 시스템 개선, 대규모 자산 관리 시스템 설계, 분산 시스템 데이터 정합성 해결에 강점을 가진 백엔드 엔지니어입니다. 5개 리포지토리에 걸친 풀스택 백엔드 개발과 Terraform 인프라 구축부터 프로덕션 운영까지의 경험을 바탕으로, 기한과 품질의 균형 속에서 최적의 솔루션을 만들어냅니다.",
 			"highlights": [
-				"Docker 이미지 70% 경량화 및 CI/CD 테스트 환경 자동화로 개발 생산성 향상",
-				"월 100만+ 이미지 처리 시스템 구축, 인프라 비용 20% 및 CDN 비용 80% 절감",
-				"Tibero Support Organization 주도, 3개 오픈소스 프로젝트 개발 및 배포"
+				"Enterprise 자산 관리 시스템을 ERD 설계부터 API, SDK까지 단독 구축하고, AI 전처리 파이프라인을 4개 리포에 걸쳐 신규 구현",
+				"월 100만+ 이미지 처리 시스템 구축 후 인프라 비용 20%, CDN 비용 80%+ 절감 달성",
+				"Tibero Support Organization 주도로 3개 오픈소스 프로젝트 개발 및 배포, Docker 이미지 70% 경량화"
 			]
 		},
 		"experience": [
@@ -35,8 +35,41 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "2024.11 ~ 현재",
-				"description": "360° 영상 기반 디지털 트윈 플랫폼의 백엔드 개발을 담당합니다.",
-				"achievements": []
+				"description": "360° 영상 기반 디지털 트윈 SaaS 플랫폼의 백엔드 시스템 개발 및 팀 리드를 담당합니다. 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
+				"achievements": [
+					{
+						"title": "Enterprise 자산 관리 시스템 (Asset Atlas) 설계 및 구현",
+						"details": [
+							"Closure Table 기반 계층적 카테고리 구조와 FormWorkflow/FormStatus 상태 머신을 포함한 데이터 모델을 설계하고, CRUD부터 Bulk API까지 전체 API를 구현 (34개 이슈, 107 커밋, 12개월)",
+							"Bulk API에서 UUID 중복 검증, Circular reference 방지, Self-loop 방지 등 엄격한 데이터 무결성 검증 로직을 구현하여 CSV 대량 import 지원",
+							"PaperTrail 기반 자산 변경 이력 추적, 계층적 FormField 상속, 첨부파일/댓글/썸네일 기능을 포함한 enterprise-grade 기능 완성"
+						]
+					},
+					{
+						"title": "경량 SiteInsights (SI Lite) 플랫폼 아키텍처 설계 및 구현 리드",
+						"details": [
+							"Terraform으로 ECS Fargate, SQS 큐, OpenSearch, IAM 정책을 포함한 전체 인프라를 설계하고, 4개 리포지토리에 걸쳐 백엔드 API, Processing Agent, SDK를 구현",
+							"si_lite_state 상태 머신과 Kinesis 기반 이벤트 스트리밍을 설계하여 SI Pro/Lite 간 이벤트 통합 기반 마련",
+							"Element-ElementRecord 간 데이터 정합성 자동 탐지 Validation API를 구현하여 enterprise 고객의 불일치 문제를 체계적으로 해결"
+						]
+					},
+					{
+						"title": "AI 기반 파노라마 이미지 전처리 파이프라인 (PixGenie) 신규 구축",
+						"details": [
+							"Capture processing pipeline에 GPU 큐 기반의 AI 전처리 단계를 신규 추가, ECS Task + SQS를 활용한 비동기 처리 아키텍처 설계",
+							"Terraform 인프라 정의부터 Agent 개발, 백엔드 상태 관리 API, OpenAPI SDK 반영까지 4개 리포지토리에 걸친 end-to-end 구현",
+							"US, EU, AU, JP, NSW Gov 등 다중 리전을 지원하는 리전별 라우팅 로직 구현"
+						]
+					},
+					{
+						"title": "인프라 최적화 및 분산 시스템 데이터 정합성 개선",
+						"details": [
+							"Redis KEYS→SCAN 변경으로 100ms blocking을 제거하고, cache/queue 분리(ElastiCache)로 장애 격리 및 성능 향상 달성",
+							"TaskSyncWorker의 race condition을 Redis cache lock과 자동 재시도 메커니즘(RetryWorker)의 이중 안전망으로 단계적 해결",
+							"Datadog 기반 모니터링 체계(SLO, Error Tracking, APM)를 구축하고 6개 리전(US, EU, AU, JP, CA, NSW Gov) 배포를 관리"
+						]
+					}
+				]
 			},
 			{
 				"company": "Tmax Fintech",
@@ -101,30 +134,35 @@
 			{
 				"category": "Backend",
 				"items": [
-					"Java 21",
-					"Spring 6.1",
-					"Spring Boot 3.2",
-					"PostgreSQL 15",
-					"Tibero 7",
-					"Redis",
-					"RabbitMQ"
+					"Ruby on Rails",
+					"Java",
+					"Spring Boot"
 				]
 			},
 			{
-				"category": "DevOps",
+				"category": "Database",
 				"items": [
-					"Docker",
-					"AWS (EC2, S3, ElastiCache, CloudWatch, ECS, Code Deploy)",
-					"Prometheus",
-					"Grafana",
-					"Loki",
-					"Nginx",
+					"MySQL",
+					"MongoDB",
+					"PostgreSQL",
+					"Redis"
+				]
+			},
+			{
+				"category": "Cloud / Infrastructure",
+				"items": [
+					"AWS (ECS Fargate, SQS, S3, Lambda, Kinesis, EC2, ElastiCache)",
+					"Terraform",
+					"Docker"
+				]
+			},
+			{
+				"category": "DevOps / Monitoring",
+				"items": [
+					"Datadog",
+					"Azure DevOps",
 					"GitHub Actions"
 				]
-			},
-			{
-				"category": "Documentation",
-				"items": ["Swagger", "Spring REST Docs"]
 			}
 		],
 		"opensource": [
