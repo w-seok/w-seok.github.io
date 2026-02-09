@@ -136,7 +136,9 @@
 				"items": [
 					"Ruby on Rails",
 					"Java",
-					"Spring Boot"
+					"Spring Boot",
+					"TypeScript/Node.js",
+					"Python"
 				]
 			},
 			{
@@ -149,19 +151,13 @@
 				]
 			},
 			{
-				"category": "Cloud / Infrastructure",
+				"category": "Cloud / DevOps",
 				"items": [
-					"AWS (ECS Fargate, SQS, S3, Lambda, Kinesis, EC2, ElastiCache)",
+					"AWS",
 					"Terraform",
-					"Docker"
-				]
-			},
-			{
-				"category": "DevOps / Monitoring",
-				"items": [
+					"Docker",
 					"Datadog",
-					"Azure DevOps",
-					"GitHub Actions"
+					"Azure DevOps"
 				]
 			}
 		],
