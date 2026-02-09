@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend con más de 3 años de experiencia en diseño e implementación de sistemas backend e infraestructura cloud para múltiples productos, con enfoque en arquitectura adecuada a cada contexto y documentación rigurosa. Actualmente Part Lead de una plataforma SaaS de IA espacial desplegada en 6 regiones, responsable del diseño, implementación y operación de dominios clave.",
+			"summary": "Ingeniero backend con más de 3 años de experiencia en diseño e implementación de sistemas backend e infraestructura cloud para múltiples productos, con enfoque en arquitectura adecuada a cada contexto y documentación rigurosa. Actualmente Part Lead de una plataforma SaaS de IA espacial 360° desplegada en 6 regiones, responsable del diseño, implementación y operación de dominios clave.",
 			"highlights": [
 				"Construí sistema de clasificación y seguimiento de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA de imágenes panorámicas desde cero a través de 4 repositorios",
 				"Escalé sistema de generación de imágenes IA desde prototipo a 1M+ solicitudes mensuales, reduciendo costos de infraestructura en 20% y CDN en 80%+",

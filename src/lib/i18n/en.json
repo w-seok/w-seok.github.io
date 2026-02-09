@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer with 3+ years of experience building and operating backend systems and cloud infrastructure across multiple products—tailoring architecture to each product's requirements and maintaining thorough documentation. Currently serving as Part Lead for a spatial AI SaaS platform deployed across 6 regions.",
+			"summary": "Backend engineer with 3+ years of experience building and operating backend systems and cloud infrastructure across multiple products—tailoring architecture to each product's requirements and maintaining thorough documentation. Currently serving as Part Lead for a 360° spatial AI SaaS platform deployed across 6 regions.",
 			"highlights": [
 				"Built asset classification and tracking system end-to-end (ERD to SDK) and panorama image AI preprocessing pipeline across 4 repositories from scratch",
 				"Scaled AI image generation system from prototype to 1M+ monthly requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
