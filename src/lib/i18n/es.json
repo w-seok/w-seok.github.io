@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend especializado en arquitectura de plataformas empresariales, consistencia de datos distribuidos y automatización de infraestructura cloud. Trayectoria demostrada construyendo sistemas de extremo a extremo, desde aprovisionamiento de infraestructura con Terraform y desarrollo de agentes ECS hasta entrega de APIs en producción a través de 5 repositorios. Comprometido con equilibrar entregas orientadas a plazos con calidad de código y fiabilidad operacional.",
+			"summary": "Ingeniero backend con más de 3 años de experiencia, especializado en arquitectura de plataformas empresariales, consistencia de datos distribuidos y automatización de infraestructura cloud. Trayectoria demostrada construyendo sistemas de producción de extremo a extremo—desde aprovisionamiento de infraestructura con Terraform hasta entrega de APIs—gestionando más de 1M solicitudes mensuales en 6 regiones de despliegue.",
 			"highlights": [
 				"Construí sistema enterprise de gestión de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA desde cero a través de 4 repositorios",
 				"Escalé sistema a 1M+ solicitudes mensuales de imágenes, reduciendo costos de infraestructura en 20% y CDN en 80%+",
