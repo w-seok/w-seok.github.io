@@ -23,9 +23,9 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "여러 프로덕트의 백엔드와 인프라를 각 요구사항에 맞게 설계·구현하고, 체계적으로 문서화하는 엔지니어입니다. 현재 Part Lead로서 6개 리전에 배포되는 디지털 트윈 SaaS 플랫폼의 핵심 도메인을 담당하고 있습니다.",
+			"summary": "여러 프로덕트의 백엔드와 인프라를 각 요구사항에 맞게 설계·구현하고, 체계적으로 문서화하는 엔지니어입니다. 현재 Part Lead로서 6개 리전에 배포되는 공간 AI SaaS 플랫폼의 핵심 도메인을 담당하고 있습니다.",
 			"highlights": [
-				"Enterprise 자산 관리 시스템을 ERD 설계부터 API, SDK까지 주도적으로 구축하고, AI 전처리 파이프라인을 4개 리포에 걸쳐 신규 구현",
+				"자산 분류·추적 시스템을 ERD 설계부터 API, SDK까지 주도적으로 구축하고, 파노라마 이미지 AI 전처리 파이프라인을 4개 리포에 걸쳐 신규 구현",
 				"월 100만+ 이미지 생성 요청을 처리하는 시스템으로 확장하며 인프라 비용 20%, CDN 비용 80%+ 절감 달성",
 				"Tibero 개발 생태계 확장을 위해 3개 오픈소스 프로젝트 개발 및 배포, Docker 이미지 70% 경량화"
 			]
@@ -35,10 +35,10 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "2024.11 ~ 현재",
-				"description": "360° 영상 기반 디지털 트윈 SaaS 플랫폼의 백엔드 시스템 개발 및 팀 리드를 담당합니다. 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
+				"description": "360° 영상 기반 공간 AI SaaS 플랫폼의 백엔드 시스템 개발 및 팀 리드를 담당합니다. 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
 				"achievements": [
 					{
-						"title": "Enterprise 자산 관리 시스템 (Asset Atlas) 설계 및 구현",
+						"title": "자산 분류·추적 시스템 (Asset Atlas) 설계 및 구현",
 						"details": [
 							"Closure Table 기반 계층적 카테고리 구조와 FormWorkflow/FormStatus 상태 머신을 포함한 데이터 모델을 설계하고, CRUD부터 Bulk API까지 전체 API를 구현 (34개 이슈, 107 커밋, 12개월)",
 							"Bulk API에서 UUID 중복 검증, Circular reference 방지, Self-loop 방지 등 엄격한 데이터 무결성 검증 로직을 구현하여 CSV 대량 import 지원",

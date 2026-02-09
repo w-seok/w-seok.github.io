@@ -23,9 +23,9 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend con más de 3 años de experiencia en diseño e implementación de sistemas backend e infraestructura cloud para múltiples productos, con enfoque en arquitectura adecuada a cada contexto y documentación rigurosa. Actualmente Part Lead de una plataforma SaaS de gemelo digital desplegada en 6 regiones, responsable del diseño, implementación y operación de dominios clave.",
+			"summary": "Ingeniero backend con más de 3 años de experiencia en diseño e implementación de sistemas backend e infraestructura cloud para múltiples productos, con enfoque en arquitectura adecuada a cada contexto y documentación rigurosa. Actualmente Part Lead de una plataforma SaaS de IA espacial desplegada en 6 regiones, responsable del diseño, implementación y operación de dominios clave.",
 			"highlights": [
-				"Construí sistema enterprise de gestión de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA desde cero a través de 4 repositorios",
+				"Construí sistema de clasificación y seguimiento de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA de imágenes panorámicas desde cero a través de 4 repositorios",
 				"Escalé sistema de generación de imágenes IA desde prototipo a 1M+ solicitudes mensuales, reduciendo costos de infraestructura en 20% y CDN en 80%+",
 				"Desarrollé y publiqué 3 proyectos de código abierto para el ecosistema de desarrolladores Tibero con reducción del 70% en tamaño de imagen Docker"
 			]
@@ -35,10 +35,10 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Actualidad",
-				"description": "Liderazgo de desarrollo backend y gestión de equipo para plataforma SaaS de gemelo digital 360° para construcción y gestión de instalaciones. Impulso del diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
+				"description": "Liderazgo de desarrollo backend y gestión de equipo para plataforma SaaS de IA espacial 360° para construcción y gestión de instalaciones. Impulso del diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
 				"achievements": [
 					{
-						"title": "Diseño y Construcción de Sistema Enterprise de Gestión de Activos (Asset Atlas)",
+						"title": "Diseño y Construcción de Sistema de Clasificación y Seguimiento de Activos (Asset Atlas)",
 						"details": [
 							"Diseñé modelo de datos con categorías jerárquicas basadas en Closure Table y máquina de estados FormWorkflow/FormStatus, implementando API completa desde CRUD hasta operaciones Bulk (34 issues, 107 commits en 12 meses)",
 							"Implementé validación estricta de integridad de datos en API Bulk—deduplicación UUID, prevención de referencias circulares, detección de self-loop—habilitando importación masiva CSV para clientes enterprise",

@@ -23,9 +23,9 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer with 3+ years of experience building and operating backend systems and cloud infrastructure across multiple products—tailoring architecture to each product's requirements and maintaining thorough documentation. Currently serving as Part Lead for a digital twin SaaS platform deployed across 6 regions.",
+			"summary": "Backend engineer with 3+ years of experience building and operating backend systems and cloud infrastructure across multiple products—tailoring architecture to each product's requirements and maintaining thorough documentation. Currently serving as Part Lead for a spatial AI SaaS platform deployed across 6 regions.",
 			"highlights": [
-				"Built enterprise asset management system end-to-end (ERD to SDK) and AI preprocessing pipeline across 4 repositories from scratch",
+				"Built asset classification and tracking system end-to-end (ERD to SDK) and panorama image AI preprocessing pipeline across 4 repositories from scratch",
 				"Scaled AI image generation system from prototype to 1M+ monthly requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
 				"Developed and released 3 open source projects for the Tibero developer ecosystem with 70% Docker image size reduction"
 			]
@@ -35,10 +35,10 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Present",
-				"description": "Leading backend development and team management for a 360° digital twin SaaS platform for construction and facility management. Driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
+				"description": "Leading backend development and team management for a 360° spatial AI SaaS platform for construction and facility management. Driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
 				"achievements": [
 					{
-						"title": "Designed and Built Enterprise Asset Management System (Asset Atlas)",
+						"title": "Designed and Built Asset Classification and Tracking System (Asset Atlas)",
 						"details": [
 							"Designed data model with Closure Table-based hierarchical categories and FormWorkflow/FormStatus state machine, implementing full API from CRUD to Bulk operations (34 issues, 107 commits over 12 months)",
 							"Implemented strict data integrity validation in Bulk API—UUID deduplication, circular reference prevention, self-loop detection—enabling CSV mass import for enterprise clients",
