@@ -96,13 +96,23 @@ export interface ExperienceItem {
 }
 
 /**
+ * 스킬 항목
+ * @property name - 기술명
+ * @property context - 사용 맥락 (선택)
+ */
+export interface SkillItem {
+	name: string;
+	context?: string;
+}
+
+/**
  * 스킬 카테고리
  * @property category - 카테고리명
  * @property items - 스킬 목록
  */
 export interface SkillCategory {
 	category: string;
-	items: string[];
+	items: SkillItem[];
 }
 
 /**

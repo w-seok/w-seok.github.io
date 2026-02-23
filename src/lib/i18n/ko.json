@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "여러 프로덕트의 백엔드와 인프라를 각 요구사항에 맞게 설계·구현하고, 체계적으로 문서화하는 엔지니어입니다. 현재 Part Lead로서 6개 리전에 배포되는 360° 공간 AI SaaS 플랫폼의 핵심 도메인을 담당하고 있습니다.",
+			"summary": "초기 단계 서비스를 프로덕션 레벨로 확장하고, 필요한 도구가 없으면 직접 만들어 문제를 해결하는 엔지니어입니다. 현재 Part Lead로서 6개 리전에 배포되는 360° 공간 AI SaaS 플랫폼의 핵심 도메인을 설계하고 운영하고 있습니다.",
 			"highlights": [
 				"자산 분류·추적 시스템을 ERD 설계부터 API, SDK까지 주도적으로 구축하고, 파노라마 이미지 AI 전처리 파이프라인을 4개 리포에 걸쳐 신규 구현",
 				"월 100만+ 이미지 생성 요청을 처리하는 시스템으로 확장하며 인프라 비용 20%, CDN 비용 80%+ 절감 달성",
@@ -35,18 +35,18 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "2024.11 ~ 현재",
-				"description": "360° 영상 기반 공간 AI SaaS 플랫폼의 백엔드 시스템 개발 및 팀 리드를 담당합니다. 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
+				"description": "건설·시설 관리 시장을 대상으로 하는 글로벌 360° 공간 AI SaaS 기업. 백엔드 시스템 개발 및 팀 리드를 담당하며, 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
 				"achievements": [
 					{
-						"title": "자산 분류·추적 시스템 (Asset Atlas) 설계 및 구현",
+						"title": "건설 현장 자산 이력 추적을 위한 자산 관리 시스템 설계 및 구축",
 						"details": [
-							"Closure Table 기반 계층적 카테고리 구조와 FormWorkflow/FormStatus 상태 머신을 포함한 데이터 모델을 설계하고, CRUD부터 Bulk API까지 전체 API를 구현 (34개 이슈, 107 커밋, 12개월)",
+							"Closure Table 기반 계층적 카테고리 구조와 FormWorkflow/FormStatus 상태 머신을 포함한 데이터 모델을 설계하고, CRUD부터 Bulk API까지 전체 API를 구현",
 							"Bulk API에서 UUID 중복 검증, Circular reference 방지, Self-loop 방지 등 엄격한 데이터 무결성 검증 로직을 구현하여 CSV 대량 import 지원",
 							"PaperTrail 기반 자산 변경 이력 추적, 계층적 FormField 상속, 첨부파일/댓글/썸네일 기능을 포함한 enterprise-grade 기능 완성"
 						]
 					},
 					{
-						"title": "경량 SiteInsights (SI Lite) 플랫폼 아키텍처 설계 및 구현 리드",
+						"title": "간편한 건설 진행률 추적을 위한 경량 플랫폼 아키텍처 설계 및 구현 리드",
 						"details": [
 							"Terraform으로 ECS Fargate, SQS 큐, OpenSearch, IAM 정책을 포함한 전체 인프라를 설계하고, 4개 리포지토리에 걸쳐 백엔드 API, Processing Agent, SDK를 구현",
 							"si_lite_state 상태 머신과 Kinesis 기반 이벤트 스트리밍을 설계하여 SI Pro/Lite 간 이벤트 통합 기반 마련",
@@ -54,7 +54,7 @@
 						]
 					},
 					{
-						"title": "AI 기반 파노라마 이미지 전처리 파이프라인 (PixGenie) 신규 구축",
+						"title": "파노라마 이미지 객체 탐지를 위한 AI 전처리 파이프라인 신규 구축",
 						"details": [
 							"Capture processing pipeline에 GPU 큐 기반의 AI 전처리 단계를 신규 추가, ECS Task + SQS를 활용한 비동기 처리 아키텍처 설계",
 							"Terraform 인프라 정의부터 Agent 개발, 백엔드 상태 관리 API, OpenAPI SDK 반영까지 4개 리포지토리에 걸친 end-to-end 구현",
@@ -62,7 +62,7 @@
 						]
 					},
 					{
-						"title": "인프라 최적화 및 분산 시스템 데이터 정합성 개선",
+						"title": "시스템 안정성 및 데이터 정합성 향상을 위한 인프라 최적화",
 						"details": [
 							"Redis KEYS→SCAN 변경으로 100ms blocking을 제거하고, cache/queue 분리(ElastiCache)로 장애 격리 및 성능 향상 달성",
 							"TaskSyncWorker의 race condition을 Redis cache lock과 자동 재시도 메커니즘(RetryWorker)의 이중 안전망으로 단계적 해결",
@@ -100,7 +100,7 @@
 						"details": [
 							"초기 프로토타입에서 월 100만+ 이미지 생성 요청을 안정적으로 처리하는 프로덕션 시스템으로 확장",
 							"OpenAI, Stability AI 등 외부 AI 모델 API 연동 및 비동기 처리 파이프라인 설계",
-							"국내 업계 최초 DALL·E 3 통합으로 일일 이미지 생성 요청량 40% 증가 달성"
+							"DALL·E 3 통합으로 일일 이미지 생성 요청량 40% 증가 달성"
 						]
 					},
 					{
@@ -134,30 +134,27 @@
 			{
 				"category": "Backend",
 				"items": [
-					"Ruby on Rails",
-					"Java",
-					"Spring Boot",
-					"TypeScript/Node.js",
-					"Python"
+					{ "name": "Ruby on Rails", "context": "360° 공간 AI SaaS 플랫폼 백엔드 개발" },
+					{ "name": "Java / Spring Boot", "context": "AI 이미지 생성 서비스, Tibero 오픈소스 도구 개발" },
+					{ "name": "TypeScript / Node.js", "context": "Processing Agent, SDK 개발" },
+					{ "name": "Python", "context": "AI 전처리 파이프라인 구축" }
 				]
 			},
 			{
 				"category": "Database",
 				"items": [
-					"MySQL",
-					"MongoDB",
-					"PostgreSQL",
-					"Redis"
+					{ "name": "MySQL / PostgreSQL", "context": "메인 RDBMS 설계 및 운영" },
+					{ "name": "MongoDB", "context": "360° 공간 데이터 저장 및 조회" },
+					{ "name": "Redis", "context": "캐시, 분산 락, Pub/Sub 구현" }
 				]
 			},
 			{
 				"category": "Cloud / DevOps",
 				"items": [
-					"AWS",
-					"Terraform",
-					"Docker",
-					"Datadog",
-					"Azure DevOps"
+					{ "name": "AWS", "context": "ECS Fargate, Lambda, SQS, Kinesis 기반 아키텍처 설계" },
+					{ "name": "Terraform", "context": "멀티 리전 인프라 코드화" },
+					{ "name": "Docker", "context": "Tibero 이미지 70% 경량화 (1.5GB → 401MB)" },
+					{ "name": "Datadog", "context": "6개 리전 SLO/APM 모니터링 체계 구축" }
 				]
 			}
 		],

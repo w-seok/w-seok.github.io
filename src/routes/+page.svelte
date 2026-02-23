@@ -316,11 +316,16 @@
 				{#each $t.resume.skills as category}
 					<div class="skill-category">
 						<h3 class="skill-category-title">{category.category}</h3>
-						<div class="skill-tags">
+						<ul class="skill-list">
 							{#each category.items as skill}
-								<span class="skill-tag">{skill}</span>
+								<li class="skill-item">
+									<span class="skill-name">{skill.name}</span>
+									{#if skill.context}
+										<span class="skill-context">— {skill.context}</span>
+									{/if}
+								</li>
 							{/each}
-						</div>
+						</ul>
 					</div>
 				{/each}
 			</div>
@@ -832,30 +837,30 @@
 		margin-bottom: var(--space-3);
 	}
 
-	.skill-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-2);
+	.skill-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
 	}
 
-	.skill-tag {
-		display: inline-flex;
-		align-items: center;
-		padding: var(--space-1) var(--space-3);
-		font-size: 0.8125rem;
-		font-weight: 500;
+	.skill-item {
+		margin-bottom: var(--space-2);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+
+	.skill-item:last-child {
+		margin-bottom: 0;
+	}
+
+	.skill-name {
+		font-weight: 600;
+		color: var(--color-primary);
+	}
+
+	.skill-context {
 		color: var(--color-secondary);
-		background-color: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--space-1);
-		transition:
-			border-color var(--duration-fast) var(--ease-out),
-			background-color var(--duration-fast) var(--ease-out);
-	}
-
-	.skill-tag:hover {
-		border-color: var(--color-border-hover);
-		background-color: var(--color-surface-elevated);
+		margin-left: var(--space-1);
 	}
 
 	/* ===== Opensource 섹션 ===== */

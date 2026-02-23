@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend con más de 3 años de experiencia en diseño e implementación de sistemas backend e infraestructura cloud para múltiples productos, con enfoque en arquitectura adecuada a cada contexto y documentación rigurosa. Actualmente Part Lead de una plataforma SaaS de IA espacial 360° desplegada en 6 regiones, responsable del diseño, implementación y operación de dominios clave.",
+			"summary": "Ingeniero que escala servicios en etapa inicial a nivel de producción y construye herramientas desde cero cuando no existen. Actualmente Part Lead, diseñando y operando dominios clave de una plataforma SaaS de IA espacial 360° desplegada en 6 regiones.",
 			"highlights": [
 				"Construí sistema de clasificación y seguimiento de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA de imágenes panorámicas desde cero a través de 4 repositorios",
 				"Escalé sistema de generación de imágenes IA desde prototipo a 1M+ solicitudes mensuales, reduciendo costos de infraestructura en 20% y CDN en 80%+",
@@ -35,18 +35,18 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Actualidad",
-				"description": "Liderazgo de desarrollo backend y gestión de equipo para plataforma SaaS de IA espacial 360° para construcción y gestión de instalaciones. Impulso del diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
+				"description": "Empresa global de SaaS de IA espacial 360° para mercados de construcción y gestión de instalaciones. Liderazgo de desarrollo backend y gestión de equipo, impulsando el diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
 				"achievements": [
 					{
-						"title": "Diseño y Construcción de Sistema de Clasificación y Seguimiento de Activos (Asset Atlas)",
+						"title": "Diseño y Construcción de Sistema de Gestión de Activos para Seguimiento de Historial en Construcción",
 						"details": [
-							"Diseñé modelo de datos con categorías jerárquicas basadas en Closure Table y máquina de estados FormWorkflow/FormStatus, implementando API completa desde CRUD hasta operaciones Bulk (34 issues, 107 commits en 12 meses)",
+							"Diseñé modelo de datos con categorías jerárquicas basadas en Closure Table y máquina de estados FormWorkflow/FormStatus, implementando API completa desde CRUD hasta operaciones Bulk",
 							"Implementé validación estricta de integridad de datos en API Bulk—deduplicación UUID, prevención de referencias circulares, detección de self-loop—habilitando importación masiva CSV para clientes enterprise",
 							"Entregué funcionalidades enterprise incluyendo auditoría basada en PaperTrail, herencia jerárquica de FormField, y capacidades de adjuntos/comentarios/thumbnails"
 						]
 					},
 					{
-						"title": "Lideré Diseño de Arquitectura e Implementación de Plataforma SiteInsights Ligera (SI Lite)",
+						"title": "Lideré Diseño de Arquitectura e Implementación de Plataforma Ligera para Seguimiento de Progreso de Construcción Simplificado",
 						"details": [
 							"Diseñé infraestructura completa con Terraform (ECS Fargate, SQS, OpenSearch, políticas IAM) e implementé API backend, Processing Agent y SDK a través de 4 repositorios",
 							"Arquitecté máquina de estados si_lite_state y streaming de eventos basado en Kinesis, estableciendo base de integración de eventos entre SI Pro y Lite",
@@ -54,7 +54,7 @@
 						]
 					},
 					{
-						"title": "Construcción de Pipeline de Preprocesamiento de Imágenes Panorámicas con IA (PixGenie) desde Cero",
+						"title": "Construcción de Pipeline de Preprocesamiento IA desde Cero para Detección de Objetos en Imágenes Panorámicas",
 						"details": [
 							"Añadí etapa de preprocesamiento IA basada en cola GPU al pipeline de procesamiento de capturas, diseñando arquitectura asíncrona con ECS Task y SQS",
 							"Entregué implementación de extremo a extremo a través de 4 repositorios—desde infraestructura Terraform hasta desarrollo de agente, API de gestión de estados backend y SDK OpenAPI",
@@ -62,7 +62,7 @@
 						]
 					},
 					{
-						"title": "Optimización de Infraestructura y Mejora de Consistencia de Datos en Sistemas Distribuidos",
+						"title": "Optimización de Infraestructura para Estabilidad del Sistema y Consistencia de Datos",
 						"details": [
 							"Eliminé bloqueo de 100ms en Redis migrando KEYS a SCAN, y mejoré aislamiento de fallos separando cache y cola en instancias ElastiCache dedicadas",
 							"Resolví race condition de TaskSyncWorker mediante enfoque por fases: Redis cache lock para mitigación inmediata, luego RetryWorker para recuperación sistemática",
@@ -100,7 +100,7 @@
 						"details": [
 							"Escalé desde prototipo inicial hasta sistema de producción manejando 1M+ solicitudes mensuales de generación de imágenes de forma confiable",
 							"Diseñé pipeline de procesamiento asíncrono integrando APIs de modelos de IA externos (OpenAI, Stability AI)",
-							"Lancé integración de DALL·E 3 (primera en la industria coreana), logrando un aumento del 40% en solicitudes diarias de imágenes"
+							"Integré DALL·E 3, logrando un aumento del 40% en solicitudes diarias de imágenes"
 						]
 					},
 					{
@@ -134,35 +134,27 @@
 			{
 				"category": "Backend",
 				"items": [
-					"Ruby on Rails",
-					"Java",
-					"Spring Boot",
-					"TypeScript/Node.js",
-					"Python"
+					{ "name": "Ruby on Rails", "context": "Backend de plataforma SaaS de IA espacial 360°" },
+					{ "name": "Java / Spring Boot", "context": "Servicio de generación de imágenes IA, herramientas open source Tibero" },
+					{ "name": "TypeScript / Node.js", "context": "Desarrollo de Processing Agent y SDK" },
+					{ "name": "Python", "context": "Pipeline de preprocesamiento IA" }
 				]
 			},
 			{
 				"category": "Bases de Datos",
 				"items": [
-					"MySQL",
-					"MongoDB",
-					"PostgreSQL",
-					"Redis"
+					{ "name": "MySQL / PostgreSQL", "context": "Diseño y operación de RDBMS principal" },
+					{ "name": "MongoDB", "context": "Almacenamiento y consulta de datos espaciales 360°" },
+					{ "name": "Redis", "context": "Caché, bloqueos distribuidos, Pub/Sub" }
 				]
 			},
 			{
-				"category": "Cloud / Infraestructura",
+				"category": "Cloud / DevOps",
 				"items": [
-					"AWS (ECS Fargate, SQS, S3, Lambda, Kinesis)",
-					"Terraform",
-					"Docker"
-				]
-			},
-			{
-				"category": "DevOps / Monitorización",
-				"items": [
-					"Datadog",
-					"Azure DevOps"
+					{ "name": "AWS", "context": "Arquitectura basada en ECS Fargate, Lambda, SQS, Kinesis" },
+					{ "name": "Terraform", "context": "Infraestructura como código multi-región" },
+					{ "name": "Docker", "context": "Reducción 70% tamaño imagen Tibero (1.5GB → 401MB)" },
+					{ "name": "Datadog", "context": "Sistema de monitorización SLO/APM en 6 regiones" }
 				]
 			}
 		],

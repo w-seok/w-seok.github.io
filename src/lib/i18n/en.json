@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer with 3+ years of experience building and operating backend systems and cloud infrastructure across multiple products—tailoring architecture to each product's requirements and maintaining thorough documentation. Currently serving as Part Lead for a 360° spatial AI SaaS platform deployed across 6 regions.",
+			"summary": "Engineer who scales early-stage services to production level and builds tools from scratch when they don't exist. Currently serving as Part Lead, designing and operating core domains for a 360° spatial AI SaaS platform deployed across 6 regions.",
 			"highlights": [
 				"Built asset classification and tracking system end-to-end (ERD to SDK) and panorama image AI preprocessing pipeline across 4 repositories from scratch",
 				"Scaled AI image generation system from prototype to 1M+ monthly requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
@@ -35,18 +35,18 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Present",
-				"description": "Leading backend development and team management for a 360° spatial AI SaaS platform for construction and facility management. Driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
+				"description": "Global 360° spatial AI SaaS company serving construction and facility management markets. Leading backend development and team management, driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
 				"achievements": [
 					{
-						"title": "Designed and Built Asset Classification and Tracking System (Asset Atlas)",
+						"title": "Designed and Built Asset Management System for Construction Site Asset Tracking",
 						"details": [
-							"Designed data model with Closure Table-based hierarchical categories and FormWorkflow/FormStatus state machine, implementing full API from CRUD to Bulk operations (34 issues, 107 commits over 12 months)",
+							"Designed data model with Closure Table-based hierarchical categories and FormWorkflow/FormStatus state machine, implementing full API from CRUD to Bulk operations",
 							"Implemented strict data integrity validation in Bulk API—UUID deduplication, circular reference prevention, self-loop detection—enabling CSV mass import for enterprise clients",
 							"Delivered enterprise-grade features including PaperTrail-based audit trail, hierarchical FormField inheritance, and attachment/comment/thumbnail capabilities"
 						]
 					},
 					{
-						"title": "Led Architecture Design and Implementation of Lightweight SiteInsights (SI Lite) Platform",
+						"title": "Led Lightweight Platform Architecture Design and Implementation for Simplified Construction Progress Tracking",
 						"details": [
 							"Designed full infrastructure with Terraform (ECS Fargate, SQS, OpenSearch, IAM policies) and implemented backend API, Processing Agent, and SDK across 4 repositories",
 							"Architected si_lite_state state machine and Kinesis-based event streaming, establishing event integration foundation between SI Pro and Lite",
@@ -54,7 +54,7 @@
 						]
 					},
 					{
-						"title": "Built AI-Powered Panorama Image Preprocessing Pipeline (PixGenie) from Scratch",
+						"title": "Built AI-Powered Preprocessing Pipeline from Scratch for Panorama Image Object Detection",
 						"details": [
 							"Added GPU queue-based AI preprocessing stage to capture processing pipeline, designing async architecture with ECS Task and SQS",
 							"Delivered end-to-end implementation across 4 repositories—from Terraform infrastructure to agent development, backend state management API, and OpenAPI SDK",
@@ -62,7 +62,7 @@
 						]
 					},
 					{
-						"title": "Optimized Infrastructure and Improved Distributed System Data Consistency",
+						"title": "Optimized Infrastructure for System Stability and Data Consistency",
 						"details": [
 							"Eliminated 100ms Redis blocking by migrating KEYS to SCAN, and improved fault isolation by separating cache and queue into dedicated ElastiCache instances",
 							"Resolved TaskSyncWorker race condition through phased approach: Redis cache lock for immediate mitigation, then RetryWorker for systematic recovery",
@@ -100,7 +100,7 @@
 						"details": [
 							"Scaled from early prototype to production system handling 1M+ monthly image generation requests reliably",
 							"Designed asynchronous processing pipeline integrating external AI model APIs (OpenAI, Stability AI)",
-							"Launched DALL·E 3 integration (first in Korean industry), achieving 40% increase in daily image requests"
+							"Integrated DALL·E 3, achieving 40% increase in daily image requests"
 						]
 					},
 					{
@@ -134,36 +134,27 @@
 			{
 				"category": "Backend",
 				"items": [
-					"Ruby on Rails",
-					"Java",
-					"Spring Boot",
-					"TypeScript/Node.js",
-					"Python"
+					{ "name": "Ruby on Rails", "context": "360° spatial AI SaaS platform backend" },
+					{ "name": "Java / Spring Boot", "context": "AI image generation service, Tibero open source tools" },
+					{ "name": "TypeScript / Node.js", "context": "Processing Agent, SDK development" },
+					{ "name": "Python", "context": "AI preprocessing pipeline" }
 				]
 			},
 			{
 				"category": "Database",
 				"items": [
-					"MySQL",
-					"MongoDB",
-					"PostgreSQL",
-					"Redis"
+					{ "name": "MySQL / PostgreSQL", "context": "Primary RDBMS design and operations" },
+					{ "name": "MongoDB", "context": "360° spatial data storage and retrieval" },
+					{ "name": "Redis", "context": "Caching, distributed locks, Pub/Sub" }
 				]
 			},
 			{
-				"category": "Cloud / Infrastructure",
+				"category": "Cloud / DevOps",
 				"items": [
-					"AWS (ECS Fargate, SQS, S3, Lambda, Kinesis, EC2, ElastiCache)",
-					"Terraform",
-					"Docker"
-				]
-			},
-			{
-				"category": "DevOps / Monitoring",
-				"items": [
-					"Datadog",
-					"Azure DevOps",
-					"GitHub Actions"
+					{ "name": "AWS", "context": "ECS Fargate, Lambda, SQS, Kinesis-based architecture" },
+					{ "name": "Terraform", "context": "Multi-region infrastructure as code" },
+					{ "name": "Docker", "context": "Tibero image 70% size reduction (1.5GB → 401MB)" },
+					{ "name": "Datadog", "context": "6-region SLO/APM monitoring system" }
 				]
 			}
 		],
