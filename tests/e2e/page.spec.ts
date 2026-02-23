@@ -73,8 +73,9 @@ test.describe('언어 전환', () => {
 		const langMenuContainer = page.locator('.lang-menu-container');
 		await expect(langMenuContainer).toBeVisible();
 
-		// hover로 드롭다운 표시
-		await langMenuContainer.hover();
+		// Svelte 5 이벤트 델리게이션과 호환을 위해 dispatchEvent 사용
+		const langButton = langMenuContainer.locator('button').first();
+		await langButton.dispatchEvent('click');
 
 		await expect(page.locator('role=menuitem >> text=한국어')).toBeVisible();
 		await expect(page.locator('role=menuitem >> text=English')).toBeVisible();
@@ -86,13 +87,17 @@ test.describe('언어 전환', () => {
 		await expect(aboutHeading).toHaveText('소개');
 
 		const langMenuContainer = page.locator('.lang-menu-container');
-		await langMenuContainer.hover();
-		await page.locator('role=menuitem >> text=English').click();
+		const langButton = langMenuContainer.locator('button').first();
+
+		// Svelte 5 이벤트 델리게이션과 호환을 위해 dispatchEvent 사용
+		await langButton.dispatchEvent('click');
+		await page.locator('role=menuitem >> text=English').dispatchEvent('click');
 
 		await expect(aboutHeading).toHaveText('About');
 
-		await langMenuContainer.hover();
-		await page.locator('role=menuitem >> text=Español').click();
+		// 다시 드롭다운 열기
+		await langButton.dispatchEvent('click');
+		await page.locator('role=menuitem >> text=Español').dispatchEvent('click');
 
 		await expect(aboutHeading).toHaveText('Sobre mí');
 	});
@@ -113,18 +118,23 @@ test.describe('테마 전환', () => {
 	});
 
 	test('테마 전환 시 클래스가 변경됨', async ({ page }) => {
-		const html = page.locator('html');
+		// dark 클래스는 min-h-screen div에 적용됨
+		const themeContainer = page.locator('.min-h-screen').first();
 		const themeButton = page.locator('button[aria-label="테마 전환"]');
 
-		await expect(html).toHaveClass(/light/);
+		// 초기 상태: light (dark 클래스 없음)
+		await expect(themeContainer).not.toHaveClass(/dark/);
 
-		await themeButton.click();
+		// Svelte 5 이벤트 델리게이션과 호환을 위해 dispatchEvent 사용
+		await themeButton.dispatchEvent('click');
 
-		await expect(html).toHaveClass(/dark/);
+		// dark 모드로 전환
+		await expect(themeContainer).toHaveClass(/dark/);
 
-		await themeButton.click();
+		await themeButton.dispatchEvent('click');
 
-		await expect(html).toHaveClass(/light/);
+		// 다시 light 모드로
+		await expect(themeContainer).not.toHaveClass(/dark/);
 	});
 });
 

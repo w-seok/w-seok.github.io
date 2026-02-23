@@ -316,16 +316,16 @@
 				{#each $t.resume.skills as category}
 					<div class="skill-category">
 						<h3 class="skill-category-title">{category.category}</h3>
-						<ul class="skill-list">
+						<div class="skill-tags">
 							{#each category.items as skill}
-								<li class="skill-item">
-									<span class="skill-name">{skill.name}</span>
+								<div class="skill-tag">
+									<span class="skill-tag-name">{skill.name}</span>
 									{#if skill.context}
-										<span class="skill-context">— {skill.context}</span>
+										<span class="skill-tag-context">{skill.context}</span>
 									{/if}
-								</li>
+								</div>
 							{/each}
-						</ul>
+						</div>
 					</div>
 				{/each}
 			</div>
@@ -837,30 +837,34 @@
 		margin-bottom: var(--space-3);
 	}
 
-	.skill-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
+	.skill-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
 	}
 
-	.skill-item {
-		margin-bottom: var(--space-2);
+	.skill-tag {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		padding: var(--space-3) var(--space-4);
+		background: var(--color-card-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		min-width: 140px;
+		max-width: 220px;
+	}
+
+	.skill-tag-name {
 		font-size: 0.9375rem;
-		line-height: 1.6;
-	}
-
-	.skill-item:last-child {
-		margin-bottom: 0;
-	}
-
-	.skill-name {
 		font-weight: 600;
 		color: var(--color-primary);
 	}
 
-	.skill-context {
-		color: var(--color-secondary);
-		margin-left: var(--space-1);
+	.skill-tag-context {
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		line-height: 1.4;
 	}
 
 	/* ===== Opensource 섹션 ===== */
