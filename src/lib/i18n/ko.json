@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "초기 단계 서비스를 프로덕션 레벨로 확장하고, 필요한 도구가 없으면 직접 만들어 문제를 해결하는 엔지니어입니다. 현재 Part Lead로서 6개 리전에 배포되는 360° 공간 AI SaaS 플랫폼의 핵심 도메인을 설계하고 운영하고 있습니다.",
+			"summary": "초기 단계 서비스를 프로덕션 레벨로 확장하고, 필요한 도구가 없으면 직접 만들어 문제를 해결하는 엔지니어입니다. 현재 Part Lead로서 6개 리전에 배포되는 360° 공간 AI SaaS 플랫폼의 핵심 도메인을 처음부터 설계해 운영까지 책임지며, 다중 리전 환경의 안정성과 데이터 정합성을 관리하고 있습니다.",
 			"highlights": [
 				"자산 분류·추적 시스템을 ERD 설계부터 API, SDK까지 주도적으로 구축하고, 파노라마 이미지 AI 전처리 파이프라인을 4개 리포에 걸쳐 신규 구현",
 				"월 100만+ 이미지 생성 요청을 처리하는 시스템으로 확장하며 인프라 비용 20%, CDN 비용 80%+ 절감 달성",
@@ -38,35 +38,35 @@
 				"description": "건설·시설 관리 시장을 대상으로 하는 글로벌 360° 공간 AI SaaS 기업. 백엔드 시스템 개발 및 팀 리드를 담당하며, 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
 				"achievements": [
 					{
-						"title": "건설 현장 자산 이력 추적을 위한 자산 관리 시스템 설계 및 구축",
+						"title": "엔터프라이즈 자산 관리 시스템을 데이터 모델부터 Bulk API까지 설계·구축",
 						"details": [
 							"Closure Table 기반 계층적 카테고리 구조와 FormWorkflow/FormStatus 상태 머신을 포함한 데이터 모델을 설계하고, CRUD부터 Bulk API까지 전체 API를 구현",
-							"Bulk API에서 UUID 중복 검증, Circular reference 방지, Self-loop 방지 등 엄격한 데이터 무결성 검증 로직을 구현하여 CSV 대량 import 지원",
+							"Bulk API에 UUID 중복 검증, 순환 참조(circular reference)·self-loop 방지 로직을 구현하여 CSV 대량 import의 데이터 무결성을 보장",
 							"PaperTrail 기반 자산 변경 이력 추적, 계층적 FormField 상속, 첨부파일/댓글/썸네일 기능을 포함한 enterprise-grade 기능 완성"
 						]
 					},
 					{
-						"title": "간편한 건설 진행률 추적을 위한 경량 플랫폼 아키텍처 설계 및 구현 리드",
+						"title": "건설 진행률 추적 경량 플랫폼 아키텍처 설계·구현 리드",
 						"details": [
-							"Terraform으로 ECS Fargate, SQS 큐, OpenSearch, IAM 정책을 포함한 전체 인프라를 설계하고, 4개 리포지토리에 걸쳐 백엔드 API, Processing Agent, SDK를 구현",
-							"si_lite_state 상태 머신과 Kinesis 기반 이벤트 스트리밍을 설계하여 SI Pro/Lite 간 이벤트 통합 기반 마련",
+							"ECS Fargate·SQS·OpenSearch·IAM 정책을 Terraform으로 코드화하고, 백엔드 API, Processing Agent, SDK를 구현",
+							"상태 머신과 Kinesis 기반 이벤트 스트리밍을 설계하여 서비스 등급 간 이벤트 통합 기반 마련",
 							"Element-ElementRecord 간 데이터 정합성 자동 탐지 Validation API를 구현하여 enterprise 고객의 불일치 문제를 체계적으로 해결"
 						]
 					},
 					{
-						"title": "파노라마 이미지 객체 탐지를 위한 AI 전처리 파이프라인 신규 구축",
+						"title": "파노라마 객체 탐지 AI 전처리 파이프라인 신규 구축",
 						"details": [
 							"Capture processing pipeline에 GPU 큐 기반의 AI 전처리 단계를 신규 추가, ECS Task + SQS를 활용한 비동기 처리 아키텍처 설계",
-							"Terraform 인프라 정의부터 Agent 개발, 백엔드 상태 관리 API, OpenAPI SDK 반영까지 4개 리포지토리에 걸친 end-to-end 구현",
-							"US, EU, AU, JP, NSW Gov 등 다중 리전을 지원하는 리전별 라우팅 로직 구현"
+							"인프라 정의부터 Agent 개발, 백엔드 상태 관리 API, OpenAPI SDK 반영까지 4개 리포지토리에 걸친 end-to-end 구현",
+							"다중 리전을 지원하는 리전별 라우팅 로직 구현"
 						]
 					},
 					{
-						"title": "시스템 안정성 및 데이터 정합성 향상을 위한 인프라 최적화",
+						"title": "인프라 최적화로 100ms blocking 제거 및 데이터 유실 0건 운영",
 						"details": [
 							"Redis KEYS→SCAN 변경으로 100ms blocking을 제거하고, cache/queue 분리(ElastiCache)로 장애 격리 및 성능 향상 달성",
 							"TaskSyncWorker의 race condition을 Redis cache lock과 자동 재시도 메커니즘(RetryWorker)의 이중 안전망으로 단계적 해결",
-							"Datadog 기반 모니터링 체계(SLO, Error Tracking, APM)를 구축하고 6개 리전(US, EU, AU, JP, CA, NSW Gov) 배포를 관리"
+							"Datadog 기반 모니터링 체계(SLO, Error Tracking, APM)를 구축하고, 자동 재시도 기반으로 6개 리전(US, EU, AU, JP, CA, NSW Gov) 배포를 데이터 유실 없이 운영"
 						]
 					}
 				]
@@ -78,7 +78,7 @@
 				"description": "서비스 최적화 및 개발 생산성 향상을 위한 환경 구축에 주력했습니다.",
 				"achievements": [
 					{
-						"title": "Tibero 데이터베이스 개발 환경 개선 및 오픈소스 생태계 기여",
+						"title": "폐쇄적 DBMS 환경의 개발 생산성·테스트 자동화 개선 (Tibero)",
 						"details": [
 							"Tibero Docker/TestContainer 개발로 개발자별 로컬 테스트 DB 구축 시간 제거, 팀 전체 환경 설정 비용 절감",
 							"zstd 압축 알고리즘 적용 및 불필요 파일 제거로 Docker 이미지 70% 경량화 달성 (1.5GB → 401MB)",

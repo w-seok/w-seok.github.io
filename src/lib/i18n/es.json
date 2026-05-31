@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero que escala servicios en etapa inicial a nivel de producción y construye herramientas desde cero cuando no existen. Actualmente Part Lead, diseñando y operando dominios clave de una plataforma SaaS de IA espacial 360° desplegada en 6 regiones.",
+			"summary": "Ingeniero que escala servicios en etapa inicial a nivel de producción y construye herramientas desde cero cuando no existen. Actualmente Part Lead, responsable de dominios clave de extremo a extremo—del diseño a la operación—en una plataforma SaaS de IA espacial 360° desplegada en 6 regiones, garantizando la estabilidad y la consistencia de datos en un entorno multi-región.",
 			"highlights": [
 				"Construí sistema de clasificación y seguimiento de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA de imágenes panorámicas desde cero a través de 4 repositorios",
 				"Escalé sistema de generación de imágenes IA desde prototipo a 1M+ solicitudes mensuales, reduciendo costos de infraestructura en 20% y CDN en 80%+",
@@ -38,35 +38,35 @@
 				"description": "Empresa global de SaaS de IA espacial 360° para mercados de construcción y gestión de instalaciones. Liderazgo de desarrollo backend y gestión de equipo, impulsando el diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
 				"achievements": [
 					{
-						"title": "Diseño y Construcción de Sistema de Gestión de Activos para Seguimiento de Historial en Construcción",
+						"title": "Diseñé y Construí un Sistema de Gestión de Activos Enterprise—del Modelo de Datos a la API Bulk",
 						"details": [
 							"Diseñé modelo de datos con categorías jerárquicas basadas en Closure Table y máquina de estados FormWorkflow/FormStatus, implementando API completa desde CRUD hasta operaciones Bulk",
-							"Implementé validación estricta de integridad de datos en API Bulk—deduplicación UUID, prevención de referencias circulares, detección de self-loop—habilitando importación masiva CSV para clientes enterprise",
+							"Implementé validación de integridad de datos en API Bulk—deduplicación UUID, prevención de referencias circulares y self-loop—garantizando la integridad en la importación masiva CSV de clientes enterprise",
 							"Entregué funcionalidades enterprise incluyendo auditoría basada en PaperTrail, herencia jerárquica de FormField, y capacidades de adjuntos/comentarios/thumbnails"
 						]
 					},
 					{
-						"title": "Lideré Diseño de Arquitectura e Implementación de Plataforma Ligera para Seguimiento de Progreso de Construcción Simplificado",
+						"title": "Lideré el Diseño e Implementación de la Arquitectura de una Plataforma Ligera de Seguimiento de Progreso de Construcción",
 						"details": [
-							"Diseñé infraestructura completa con Terraform (ECS Fargate, SQS, OpenSearch, políticas IAM) e implementé API backend, Processing Agent y SDK a través de 4 repositorios",
-							"Arquitecté máquina de estados si_lite_state y streaming de eventos basado en Kinesis, estableciendo base de integración de eventos entre SI Pro y Lite",
+							"Definí la infraestructura como código con Terraform (ECS Fargate, SQS, OpenSearch, políticas IAM) e implementé API backend, Processing Agent y SDK",
+							"Arquitecté una máquina de estados y streaming de eventos basado en Kinesis, estableciendo una base de integración de eventos entre niveles de servicio",
 							"Construí API de Validación de consistencia de datos Element-ElementRecord, detectando y resolviendo sistemáticamente discrepancias MySQL-MongoDB para clientes enterprise"
 						]
 					},
 					{
-						"title": "Construcción de Pipeline de Preprocesamiento IA desde Cero para Detección de Objetos en Imágenes Panorámicas",
+						"title": "Construí desde Cero un Pipeline de Preprocesamiento IA para Detección de Objetos en Panorámicas",
 						"details": [
 							"Añadí etapa de preprocesamiento IA basada en cola GPU al pipeline de procesamiento de capturas, diseñando arquitectura asíncrona con ECS Task y SQS",
-							"Entregué implementación de extremo a extremo a través de 4 repositorios—desde infraestructura Terraform hasta desarrollo de agente, API de gestión de estados backend y SDK OpenAPI",
-							"Implementé lógica de enrutamiento por región soportando despliegue multi-región (US, EU, AU, JP, NSW Gov)"
+							"Entregué implementación de extremo a extremo a través de 4 repositorios—desde la definición de infraestructura hasta desarrollo de agente, API de gestión de estados backend y SDK OpenAPI",
+							"Implementé lógica de enrutamiento por región soportando despliegue multi-región"
 						]
 					},
 					{
-						"title": "Optimización de Infraestructura para Estabilidad del Sistema y Consistencia de Datos",
+						"title": "Optimicé la Infraestructura: Eliminé el Bloqueo de 100ms y Operé sin Pérdida de Datos",
 						"details": [
 							"Eliminé bloqueo de 100ms en Redis migrando KEYS a SCAN, y mejoré aislamiento de fallos separando cache y cola en instancias ElastiCache dedicadas",
 							"Resolví race condition de TaskSyncWorker mediante enfoque por fases: Redis cache lock para mitigación inmediata, luego RetryWorker para recuperación sistemática",
-							"Establecí monitorización basada en Datadog (SLO, Error Tracking, APM) y gestioné despliegues en 6 regiones (US, EU, AU, JP, CA, NSW Gov)"
+							"Establecí monitorización basada en Datadog (SLO, Error Tracking, APM) y operé despliegues en 6 regiones (US, EU, AU, JP, CA, NSW Gov) sin pérdida de datos mediante reintento automático"
 						]
 					}
 				]
@@ -78,7 +78,7 @@
 				"description": "Enfocado en optimización de servicios y construcción de infraestructura para mejorar la productividad del desarrollador.",
 				"achievements": [
 					{
-						"title": "Mejora del Entorno de Desarrollo Tibero y Contribución al Ecosistema de Código Abierto",
+						"title": "Mejora de la Productividad del Desarrollador y Automatización de Pruebas en un Entorno DBMS Cerrado (Tibero)",
 						"details": [
 							"Desarrollé Tibero Docker/TestContainer, eliminando la carga de configuración de BD local por desarrollador y reduciendo costos de configuración del equipo",
 							"Logré reducción del 70% en tamaño de imagen Docker (1.5GB → 401MB) aplicando algoritmo de compresión zstd y eliminando archivos innecesarios",

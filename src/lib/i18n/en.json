@@ -23,7 +23,7 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Engineer who scales early-stage services to production level and builds tools from scratch when they don't exist. Currently serving as Part Lead, designing and operating core domains for a 360° spatial AI SaaS platform deployed across 6 regions.",
+			"summary": "Engineer who scales early-stage services to production level and builds tools from scratch when they don't exist. Currently serving as Part Lead, owning core domains end-to-end—from design through operation—for a 360° spatial AI SaaS platform deployed across 6 regions, accountable for stability and data consistency in a multi-region environment.",
 			"highlights": [
 				"Built asset classification and tracking system end-to-end (ERD to SDK) and panorama image AI preprocessing pipeline across 4 repositories from scratch",
 				"Scaled AI image generation system from prototype to 1M+ monthly requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
@@ -38,35 +38,35 @@
 				"description": "Global 360° spatial AI SaaS company serving construction and facility management markets. Leading backend development and team management, driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
 				"achievements": [
 					{
-						"title": "Designed and Built Asset Management System for Construction Site Asset Tracking",
+						"title": "Designed and Built an Enterprise Asset Management System—from Data Model to Bulk API",
 						"details": [
 							"Designed data model with Closure Table-based hierarchical categories and FormWorkflow/FormStatus state machine, implementing full API from CRUD to Bulk operations",
-							"Implemented strict data integrity validation in Bulk API—UUID deduplication, circular reference prevention, self-loop detection—enabling CSV mass import for enterprise clients",
+							"Implemented data integrity validation in Bulk API—UUID deduplication, circular reference and self-loop prevention—guaranteeing integrity for enterprise CSV mass import",
 							"Delivered enterprise-grade features including PaperTrail-based audit trail, hierarchical FormField inheritance, and attachment/comment/thumbnail capabilities"
 						]
 					},
 					{
-						"title": "Led Lightweight Platform Architecture Design and Implementation for Simplified Construction Progress Tracking",
+						"title": "Led Architecture Design and Implementation of a Lightweight Construction Progress-Tracking Platform",
 						"details": [
-							"Designed full infrastructure with Terraform (ECS Fargate, SQS, OpenSearch, IAM policies) and implemented backend API, Processing Agent, and SDK across 4 repositories",
-							"Architected si_lite_state state machine and Kinesis-based event streaming, establishing event integration foundation between SI Pro and Lite",
+							"Codified infrastructure as code with Terraform (ECS Fargate, SQS, OpenSearch, IAM policies) and implemented backend API, Processing Agent, and SDK",
+							"Architected a state machine and Kinesis-based event streaming, establishing an event integration foundation between service tiers",
 							"Built Element-ElementRecord data consistency Validation API, systematically detecting and resolving MySQL-MongoDB discrepancies for enterprise customers"
 						]
 					},
 					{
-						"title": "Built AI-Powered Preprocessing Pipeline from Scratch for Panorama Image Object Detection",
+						"title": "Built a Panorama Object-Detection AI Preprocessing Pipeline from Scratch",
 						"details": [
 							"Added GPU queue-based AI preprocessing stage to capture processing pipeline, designing async architecture with ECS Task and SQS",
-							"Delivered end-to-end implementation across 4 repositories—from Terraform infrastructure to agent development, backend state management API, and OpenAPI SDK",
-							"Implemented region-specific routing logic supporting multi-region deployment (US, EU, AU, JP, NSW Gov)"
+							"Delivered end-to-end implementation across 4 repositories—from infrastructure definition to agent development, backend state management API, and OpenAPI SDK",
+							"Implemented region-specific routing logic supporting multi-region deployment"
 						]
 					},
 					{
-						"title": "Optimized Infrastructure for System Stability and Data Consistency",
+						"title": "Optimized Infrastructure: Eliminated 100ms Blocking and Achieved Zero-Data-Loss Operation",
 						"details": [
 							"Eliminated 100ms Redis blocking by migrating KEYS to SCAN, and improved fault isolation by separating cache and queue into dedicated ElastiCache instances",
 							"Resolved TaskSyncWorker race condition through phased approach: Redis cache lock for immediate mitigation, then RetryWorker for systematic recovery",
-							"Established Datadog-based monitoring (SLO, Error Tracking, APM) and managed deployments across 6 regions (US, EU, AU, JP, CA, NSW Gov)"
+							"Established Datadog-based monitoring (SLO, Error Tracking, APM) and operated deployments across 6 regions (US, EU, AU, JP, CA, NSW Gov) with zero data loss via automated retry"
 						]
 					}
 				]
@@ -78,7 +78,7 @@
 				"description": "Focused on service optimization and building infrastructure for enhanced developer productivity.",
 				"achievements": [
 					{
-						"title": "Improved Tibero Database Development Environment and Open Source Ecosystem",
+						"title": "Improved Developer Productivity and Test Automation in a Closed DBMS Environment (Tibero)",
 						"details": [
 							"Developed Tibero Docker/TestContainer, eliminating per-developer local test DB setup overhead and reducing team-wide environment configuration costs",
 							"Achieved 70% Docker image size reduction (1.5GB → 401MB) by applying zstd compression algorithm and removing unnecessary files",
