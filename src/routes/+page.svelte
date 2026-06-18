@@ -1181,6 +1181,131 @@
 		border-radius: var(--space-1);
 	}
 
+	@media print {
+		.page-content {
+			padding-top: var(--space-4);
+			padding-bottom: var(--space-8);
+		}
+
+		.hero-section {
+			margin-bottom: var(--space-6);
+		}
+
+		.section-heading,
+		.experience-header,
+		.experience-description,
+		.achievement-title,
+		.opensource-header,
+		.opensource-description,
+		.activity-header,
+		.activity-description,
+		.award-header,
+		.certificate-name,
+		.education-header,
+		.skill-category-title {
+			break-after: avoid;
+			page-break-after: avoid;
+		}
+
+		.experience-header,
+		.achievement-block,
+		.opensource-item,
+		.activity-item,
+		.award-item,
+		.certificate-item,
+		.education-item,
+		.skill-category,
+		.skill-tags,
+		.skill-tag {
+			break-inside: avoid;
+			page-break-inside: avoid;
+		}
+
+		.content-section {
+			padding-top: var(--space-5);
+			padding-bottom: var(--space-5);
+		}
+
+		.section-heading {
+			margin-bottom: var(--space-4);
+		}
+
+		.experience-header {
+			margin-bottom: var(--space-3);
+		}
+
+		.mt-experience {
+			margin-top: var(--space-6);
+		}
+
+		.experience-description,
+		.achievement-block {
+			margin-bottom: var(--space-3);
+		}
+
+		.experience-description {
+			line-height: 1.45;
+		}
+
+		.opensource-header,
+		.activity-header,
+		.education-header {
+			margin-bottom: var(--space-2);
+		}
+
+		.opensource-description,
+		.activity-description,
+		.opensource-contributions {
+			margin-bottom: var(--space-3);
+		}
+
+		.contribution-item,
+		.activity-highlight {
+			margin-bottom: var(--space-1);
+			line-height: 1.45;
+		}
+
+		.achievement-title {
+			margin-bottom: var(--space-2);
+		}
+
+		.achievement-detail {
+			margin-bottom: var(--space-1);
+			line-height: 1.45;
+		}
+
+		.skill-category {
+			margin-bottom: var(--space-4);
+		}
+
+		.skill-category-title {
+			margin-bottom: var(--space-2);
+			font-size: 0.75rem;
+		}
+
+		.skill-tags {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: var(--space-2);
+		}
+
+		.skill-tag {
+			min-width: 0;
+			max-width: none;
+			padding: var(--space-2) var(--space-3);
+			border-radius: var(--space-1);
+		}
+
+		.skill-tag-name {
+			font-size: 0.8125rem;
+		}
+
+		.skill-tag-context {
+			font-size: 0.6875rem;
+			line-height: 1.25;
+		}
+	}
+
 	/* ===== 푸터 ===== */
 	.page-footer {
 		border-top: 1px solid var(--color-border);

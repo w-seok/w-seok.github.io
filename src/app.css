@@ -379,14 +379,16 @@
 		display: none !important;
 	}
 
+	.animate-on-scroll,
+	.page-enter {
+		opacity: 1 !important;
+		transform: none !important;
+		animation: none !important;
+		transition: none !important;
+	}
+
 	a {
 		color: black;
 		text-decoration: underline;
-	}
-
-	a[href^='http']::after {
-		content: ' (' attr(href) ')';
-		font-size: 0.8em;
-		color: #666;
 	}
 }
