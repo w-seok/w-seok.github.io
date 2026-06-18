@@ -23,11 +23,12 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero que escala servicios en etapa inicial a nivel de producción y construye herramientas desde cero cuando no existen. Actualmente Part Lead, responsable de dominios clave de extremo a extremo—del diseño a la operación—en una plataforma SaaS de IA espacial 360° desplegada en 6 regiones, garantizando la estabilidad y la consistencia de datos en un entorno multi-región.",
+			"summary": "Ingeniero backend que construye sistemas para que los datos de obra fluyan y operen con precisión en un SaaS global de IA espacial para construcción e instalaciones. Ha trabajado en gestión de activos, seguimiento del progreso de construcción y pipelines de preprocesamiento de IA, resolviendo problemas de inconsistencia de datos y procesamiento de eventos a gran escala. Cuando falta una función o una capa de validación necesaria, la construye y sigue el problema hasta resolverlo.",
 			"highlights": [
-				"Construí sistema de clasificación y seguimiento de activos de extremo a extremo (ERD a SDK) y pipeline de preprocesamiento IA de imágenes panorámicas desde cero a través de 4 repositorios",
-				"Escalé sistema de generación de imágenes IA desde prototipo a 1M+ solicitudes mensuales, reduciendo costos de infraestructura en 20% y CDN en 80%+",
-				"Desarrollé y publiqué 3 proyectos de código abierto para el ecosistema de desarrolladores Tibero con reducción del 70% en tamaño de imagen Docker"
+				"Construí un dominio backend para gestionar activos de edificios en una estructura jerárquica, facilitando crear, consultar y actualizar activos de obra complejos de forma consistente",
+				"Construí un sistema de validación que diagnostica automáticamente la consistencia entre los modelos de diseño y los datos de progreso en obra, resolviendo inconsistencias recurrentes en clientes corporativos",
+				"Estabilicé la capa de envío de eventos de progreso, donde los eventos se retrasaban ante picos de tráfico, y desplegué el cambio de forma gradual en 6 regiones",
+				"Escalé un servicio de generación de imágenes con IA de cero a más de 1M de solicitudes mensuales, reduciendo los costos de infraestructura en un 20% y los de CDN en más del 80%"
 			]
 		},
 		"experience": [

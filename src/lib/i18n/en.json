@@ -23,11 +23,12 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Engineer who scales early-stage services to production level and builds tools from scratch when they don't exist. Currently serving as Part Lead, owning core domains end-to-end—from design through operation—for a 360° spatial AI SaaS platform deployed across 6 regions, accountable for stability and data consistency in a multi-region environment.",
+			"summary": "Backend engineer who builds systems that help field data flow accurately and reliably in a global spatial AI SaaS for construction and facilities. Worked on asset management, construction progress tracking, and AI preprocessing pipelines while handling data inconsistency and high-volume event processing problems. When a needed feature or validation layer does not exist, builds it and follows the problem through.",
 			"highlights": [
-				"Built asset classification and tracking system end-to-end (ERD to SDK) and panorama image AI preprocessing pipeline across 4 repositories from scratch",
-				"Scaled AI image generation system from prototype to 1M+ monthly requests, reducing infrastructure costs by 20% and CDN costs by 80%+",
-				"Developed and released 3 open source projects for the Tibero developer ecosystem with 70% Docker image size reduction"
+				"Built a backend domain for managing building assets in a hierarchical structure, making complex field assets easier to create, query, and update consistently",
+				"Built a validation system that automatically diagnoses consistency between design models and on-site progress data, resolving recurring inconsistencies for enterprise customers",
+				"Stabilized the progress-event delivery layer where events were delayed under traffic spikes, and rolled the change out gradually across 6 regions",
+				"Scaled an AI image generation service from zero to 1M+ monthly requests, cutting infrastructure costs by 20% and CDN costs by 80%+"
 			]
 		},
 		"experience": [
