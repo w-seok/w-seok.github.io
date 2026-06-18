@@ -36,38 +36,30 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Present",
-				"description": "Global 360° spatial AI SaaS company serving construction and facility management markets. Leading backend development and team management, driving design and implementation of core domains including asset management, BIM integration, AI preprocessing pipelines, and construction progress tracking.",
+				"description": "Global spatial AI SaaS company that connects building 3D design models with on-site 360° capture data to track construction progress and asset status. Worked on backend areas that help field data be collected, validated, and delivered reliably, including asset management, progress-data validation, event delivery, and AI preprocessing.",
 				"achievements": [
 					{
-						"title": "Designed and Built an Enterprise Asset Management System—from Data Model to Bulk API",
+						"title": "Built a Field Asset Management Domain",
 						"details": [
-							"Designed data model with Closure Table-based hierarchical categories and FormWorkflow/FormStatus state machine, implementing full API from CRUD to Bulk operations",
-							"Implemented data integrity validation in Bulk API—UUID deduplication, circular reference and self-loop prevention—guaranteeing integrity for enterprise CSV mass import",
-							"Delivered enterprise-grade features including PaperTrail-based audit trail, hierarchical FormField inheritance, and attachment/comment/thumbnail capabilities"
+							"Built a backend domain for creating, querying, and updating building assets in a hierarchical structure, including Bulk APIs for large imports",
+							"Added validation for UUID duplicates, self-loops, and circular references so invalid import files could not corrupt asset hierarchy data",
+							"Implemented operational features such as asset change history, field inheritance, attachments, comments, and thumbnails"
 						]
 					},
 					{
-						"title": "Led Architecture Design and Implementation of a Lightweight Construction Progress-Tracking Platform",
+						"title": "Improved Reliability of Construction Progress Data",
 						"details": [
-							"Codified infrastructure as code with Terraform (ECS Fargate, SQS, OpenSearch, IAM policies) and implemented backend API, Processing Agent, and SDK",
-							"Architected a state machine and Kinesis-based event streaming, establishing an event integration foundation between service tiers",
-							"Built Element-ElementRecord data consistency Validation API, systematically detecting and resolving MySQL-MongoDB discrepancies for enterprise customers"
+							"Built a validation system that automatically detects inconsistencies between building 3D design models and on-site progress data",
+							"Classified recurring consistency issues such as duplicates, missing records, and status mismatches, making enterprise customer investigations more systematic",
+							"Stabilized the progress-event delivery layer where events were delayed under traffic spikes, and rolled the change out gradually across 6 regions"
 						]
 					},
 					{
-						"title": "Built a Panorama Object-Detection AI Preprocessing Pipeline from Scratch",
+						"title": "Built an AI Preprocessing Pipeline",
 						"details": [
-							"Added GPU queue-based AI preprocessing stage to capture processing pipeline, designing async architecture with ECS Task and SQS",
-							"Delivered end-to-end implementation across 4 repositories—from infrastructure definition to agent development, backend state management API, and OpenAPI SDK",
-							"Implemented region-specific routing logic supporting multi-region deployment"
-						]
-					},
-					{
-						"title": "Optimized Infrastructure: Eliminated 100ms Blocking and Achieved Zero-Data-Loss Operation",
-						"details": [
-							"Eliminated 100ms Redis blocking by migrating KEYS to SCAN, and improved fault isolation by separating cache and queue into dedicated ElastiCache instances",
-							"Resolved TaskSyncWorker race condition through phased approach: Redis cache lock for immediate mitigation, then RetryWorker for systematic recovery",
-							"Established Datadog-based monitoring (SLO, Error Tracking, APM) and operated deployments across 6 regions (US, EU, AU, JP, CA, NSW Gov) with zero data loss via automated retry"
+							"Added an AI preprocessing step for 360° capture data, with asynchronous processing flow and backend status-management APIs",
+							"Reflected processing results and status models in API and SDK contracts so clients and backend services followed the same workflow",
+							"Strengthened the regional execution flow so preprocessing jobs and status tracking worked reliably across deployment regions"
 						]
 					}
 				]

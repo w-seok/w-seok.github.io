@@ -36,38 +36,30 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "Nov 2024 – Actualidad",
-				"description": "Empresa global de SaaS de IA espacial 360° para mercados de construcción y gestión de instalaciones. Liderazgo de desarrollo backend y gestión de equipo, impulsando el diseño e implementación de dominios clave incluyendo gestión de activos, integración BIM, pipelines de preprocesamiento IA y seguimiento de progreso de construcción.",
+				"description": "Empresa global de SaaS de IA espacial que conecta modelos 3D de edificios con capturas 360° en obra para seguir el progreso de construcción y el estado de los activos. Desarrollo de áreas backend que ayudan a recopilar, validar y entregar datos de campo de forma fiable, incluyendo gestión de activos, validación de progreso, envío de eventos y preprocesamiento de IA.",
 				"achievements": [
 					{
-						"title": "Diseñé y Construí un Sistema de Gestión de Activos Enterprise—del Modelo de Datos a la API Bulk",
+						"title": "Construcción del Dominio de Gestión de Activos en Obra",
 						"details": [
-							"Diseñé modelo de datos con categorías jerárquicas basadas en Closure Table y máquina de estados FormWorkflow/FormStatus, implementando API completa desde CRUD hasta operaciones Bulk",
-							"Implementé validación de integridad de datos en API Bulk—deduplicación UUID, prevención de referencias circulares y self-loop—garantizando la integridad en la importación masiva CSV de clientes enterprise",
-							"Entregué funcionalidades enterprise incluyendo auditoría basada en PaperTrail, herencia jerárquica de FormField, y capacidades de adjuntos/comentarios/thumbnails"
+							"Construí un dominio backend para crear, consultar y actualizar activos de edificios en una estructura jerárquica, incluyendo APIs Bulk para importaciones grandes",
+							"Agregué validaciones de UUID duplicados, self-loops y referencias circulares para evitar que archivos de importación inválidos corrompieran la jerarquía de activos",
+							"Implementé funciones operativas como historial de cambios de activos, herencia de campos, adjuntos, comentarios y miniaturas"
 						]
 					},
 					{
-						"title": "Lideré el Diseño e Implementación de la Arquitectura de una Plataforma Ligera de Seguimiento de Progreso de Construcción",
+						"title": "Mejora de la Fiabilidad de los Datos de Progreso de Construcción",
 						"details": [
-							"Definí la infraestructura como código con Terraform (ECS Fargate, SQS, OpenSearch, políticas IAM) e implementé API backend, Processing Agent y SDK",
-							"Arquitecté una máquina de estados y streaming de eventos basado en Kinesis, estableciendo una base de integración de eventos entre niveles de servicio",
-							"Construí API de Validación de consistencia de datos Element-ElementRecord, detectando y resolviendo sistemáticamente discrepancias MySQL-MongoDB para clientes enterprise"
+							"Construí un sistema de validación que detecta automáticamente inconsistencias entre modelos 3D de edificios y datos de progreso en obra",
+							"Clasifiqué problemas recurrentes de consistencia, como duplicados, registros faltantes y diferencias de estado, para ordenar la investigación de incidencias en clientes corporativos",
+							"Estabilicé la capa de envío de eventos de progreso, donde los eventos se retrasaban ante picos de tráfico, y desplegué el cambio gradualmente en 6 regiones"
 						]
 					},
 					{
-						"title": "Construí desde Cero un Pipeline de Preprocesamiento IA para Detección de Objetos en Panorámicas",
+						"title": "Construcción de un Pipeline de Preprocesamiento de IA",
 						"details": [
-							"Añadí etapa de preprocesamiento IA basada en cola GPU al pipeline de procesamiento de capturas, diseñando arquitectura asíncrona con ECS Task y SQS",
-							"Entregué implementación de extremo a extremo a través de 4 repositorios—desde la definición de infraestructura hasta desarrollo de agente, API de gestión de estados backend y SDK OpenAPI",
-							"Implementé lógica de enrutamiento por región soportando despliegue multi-región"
-						]
-					},
-					{
-						"title": "Optimicé la Infraestructura: Eliminé el Bloqueo de 100ms y Operé sin Pérdida de Datos",
-						"details": [
-							"Eliminé bloqueo de 100ms en Redis migrando KEYS a SCAN, y mejoré aislamiento de fallos separando cache y cola en instancias ElastiCache dedicadas",
-							"Resolví race condition de TaskSyncWorker mediante enfoque por fases: Redis cache lock para mitigación inmediata, luego RetryWorker para recuperación sistemática",
-							"Establecí monitorización basada en Datadog (SLO, Error Tracking, APM) y operé despliegues en 6 regiones (US, EU, AU, JP, CA, NSW Gov) sin pérdida de datos mediante reintento automático"
+							"Agregué una etapa de preprocesamiento de IA para datos de captura 360°, con flujo asíncrono y APIs backend de gestión de estado",
+							"Reflejé los resultados de procesamiento y los modelos de estado en los contratos de API y SDK para que clientes y backend siguieran el mismo flujo",
+							"Reforcé el flujo de ejecución por región para que los trabajos de preprocesamiento y el seguimiento de estado funcionaran de forma fiable en regiones de despliegue"
 						]
 					}
 				]

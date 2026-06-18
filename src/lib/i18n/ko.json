@@ -36,38 +36,30 @@
 				"company": "Cupix",
 				"position": "Application Part Lead",
 				"period": "2024.11 ~ 현재",
-				"description": "건설·시설 관리 시장을 대상으로 하는 글로벌 360° 공간 AI SaaS 기업. 백엔드 시스템 개발 및 팀 리드를 담당하며, 자산 관리, BIM 연동, AI 전처리 파이프라인, 건설 진행률 추적 등 핵심 도메인의 설계와 구현을 주도하고 있습니다.",
+				"description": "건물 3D 설계 모델과 현장 360° 캡처 데이터를 연결해 시공 진행률과 자산 상태를 추적하는 글로벌 공간 AI SaaS 기업입니다. 자산 관리, 건설 진행률 검증, 이벤트 전송, AI 전처리 등 현장 데이터가 정확하게 수집·검증·전달되는 백엔드 영역을 개발하고 있습니다.",
 				"achievements": [
 					{
-						"title": "엔터프라이즈 자산 관리 시스템을 데이터 모델부터 Bulk API까지 설계·구축",
+						"title": "현장 자산 관리 도메인 구축",
 						"details": [
-							"Closure Table 기반 계층적 카테고리 구조와 FormWorkflow/FormStatus 상태 머신을 포함한 데이터 모델을 설계하고, CRUD부터 Bulk API까지 전체 API를 구현",
-							"Bulk API에 UUID 중복 검증, 순환 참조(circular reference)·self-loop 방지 로직을 구현하여 CSV 대량 import의 데이터 무결성을 보장",
-							"PaperTrail 기반 자산 변경 이력 추적, 계층적 FormField 상속, 첨부파일/댓글/썸네일 기능을 포함한 enterprise-grade 기능 완성"
+							"건물 자산을 계층 구조로 등록·조회·수정하는 백엔드 도메인을 구축하고, 대량 등록을 위한 Bulk API를 제공",
+							"대량 import 과정에서 UUID 중복, self-loop, 순환 참조를 검증해 잘못된 파일이 자산 계층 데이터를 망가뜨리지 않도록 차단",
+							"자산 변경 이력, 필드 상속, 첨부파일·댓글·썸네일 등 실제 운영에 필요한 관리 기능을 구현"
 						]
 					},
 					{
-						"title": "건설 진행률 추적 경량 플랫폼 아키텍처 설계·구현 리드",
+						"title": "건설 진행률 데이터 신뢰성 개선",
 						"details": [
-							"ECS Fargate·SQS·OpenSearch·IAM 정책을 Terraform으로 코드화하고, 백엔드 API, Processing Agent, SDK를 구현",
-							"상태 머신과 Kinesis 기반 이벤트 스트리밍을 설계하여 서비스 등급 간 이벤트 통합 기반 마련",
-							"Element-ElementRecord 간 데이터 정합성 자동 탐지 Validation API를 구현하여 enterprise 고객의 불일치 문제를 체계적으로 해결"
+							"건물 3D 설계 모델과 현장 시공 진행률 데이터가 서로 어긋나는 문제를 자동 진단하는 검증 시스템을 구축",
+							"중복·누락·상태 불일치 등 반복적으로 발생하던 데이터 정합성 문제를 분류해 엔터프라이즈 고객 이슈 대응을 체계화",
+							"트래픽 폭주 시 이벤트가 밀리던 진행률 전송 계층을 안정화하고, 6개 리전에 단계적으로 전환"
 						]
 					},
 					{
-						"title": "파노라마 객체 탐지 AI 전처리 파이프라인 신규 구축",
+						"title": "AI 전처리 파이프라인 구축",
 						"details": [
-							"Capture processing pipeline에 GPU 큐 기반의 AI 전처리 단계를 신규 추가, ECS Task + SQS를 활용한 비동기 처리 아키텍처 설계",
-							"인프라 정의부터 Agent 개발, 백엔드 상태 관리 API, OpenAPI SDK 반영까지 4개 리포지토리에 걸친 end-to-end 구현",
-							"다중 리전을 지원하는 리전별 라우팅 로직 구현"
-						]
-					},
-					{
-						"title": "인프라 최적화로 100ms blocking 제거 및 데이터 유실 0건 운영",
-						"details": [
-							"Redis KEYS→SCAN 변경으로 100ms blocking을 제거하고, cache/queue 분리(ElastiCache)로 장애 격리 및 성능 향상 달성",
-							"TaskSyncWorker의 race condition을 Redis cache lock과 자동 재시도 메커니즘(RetryWorker)의 이중 안전망으로 단계적 해결",
-							"Datadog 기반 모니터링 체계(SLO, Error Tracking, APM)를 구축하고, 자동 재시도 기반으로 6개 리전(US, EU, AU, JP, CA, NSW Gov) 배포를 데이터 유실 없이 운영"
+							"360° 캡처 데이터에 AI 전처리 단계를 추가하고, 비동기 처리 흐름과 백엔드 상태 관리 API를 구현",
+							"처리 결과와 상태 모델을 API·SDK 계약에 반영해 클라이언트와 백엔드가 같은 흐름으로 연동되도록 정리",
+							"리전별 실행 환경에 맞춰 전처리 작업과 상태 추적이 안정적으로 동작하도록 운영 흐름을 보강"
 						]
 					}
 				]
