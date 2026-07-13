@@ -23,43 +23,51 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Ingeniero backend que construye sistemas para que los datos de obra fluyan y operen con precisión en un SaaS global de IA espacial para construcción e instalaciones. Ha trabajado en gestión de activos, seguimiento del progreso de construcción y pipelines de preprocesamiento de IA, resolviendo problemas de inconsistencia de datos y procesamiento de eventos a gran escala. Cuando falta una función o una capa de validación necesaria, la construye y sigue el problema hasta resolverlo.",
-			"highlights": [
-				"Construí un dominio backend para gestionar activos de edificios en una estructura jerárquica, facilitando crear, consultar y actualizar activos de obra complejos de forma consistente",
-				"Construí un sistema de validación que diagnostica automáticamente la consistencia entre los modelos de diseño y los datos de progreso en obra, resolviendo inconsistencias recurrentes en clientes corporativos",
-				"Estabilicé la capa de envío de eventos de progreso, donde los eventos se retrasaban ante picos de tráfico, y desplegué el cambio de forma gradual en 6 regiones",
-				"Escalé un servicio de generación de imágenes con IA de cero a más de 1M de solicitudes mensuales, reduciendo los costos de infraestructura en un 20% y los de CDN en más del 80%"
-			]
+			"summary": "Soy Shin Wonseok, Backend Engineer de cuarto año que intenta entender la esencia del problema y el flujo completo antes de pasar directamente a implementarlo.\n\nEmpecé desarrollando servicios backend con Java/Spring, construyendo un servicio de generación de imágenes con IA que procesaba más de 1M de solicitudes mensuales y un entorno de migración con Flyway y automatización de pruebas adaptado a Tibero DBMS. Actualmente en Cupix diseño y mejoro la arquitectura backend que conecta datos de video de obras de construcción con archivos BIM que contienen información de diseño del edificio para hacer seguimiento del progreso, y mejoré el sistema para que 20M+ registros de campo y 100M+ snapshots y eventos se reflejen de forma consistente en 6+ regiones.\n\nTrabajar con problemas donde varios sistemas interactúan me enseñó que evitar que el mismo problema se repita importa más que corregirlo rápido. En ese proceso, aprendí que cuanto más complejo es el problema, más importante es ordenar la evidencia con calma, evitar que la discusión se vuelva improductiva y conectar el trabajo con soluciones que el equipo pueda ejecutar de inmediato. Quiero trabajar como Backend Engineer que busca seguir las causas hasta el final y convertirlas en mejoras que el equipo pueda ejecutar.",
+			"highlights": []
 		},
 		"experience": [
 			{
 				"company": "Cupix",
-				"position": "Application Part Lead",
+				"position": "Backend Engineer / Application Part Lead · Backend (Dic 2025–Actualidad, liderazgo de part de 3 personas)",
 				"period": "Nov 2024 – Actualidad",
-				"description": "Empresa global de SaaS de IA espacial que conecta modelos 3D de edificios con capturas 360° en obra para seguir el progreso de construcción y el estado de los activos. Desarrollo de áreas backend que ayudan a recopilar, validar y entregar datos de campo de forma fiable, incluyendo gestión de activos, validación de progreso, envío de eventos y preprocesamiento de IA.",
+				"description": "Empresa global de SaaS de IA espacial que conecta modelos 3D de edificios con capturas 360° en obra para seguir el progreso de construcción y el estado de los activos. Lideré el Application Part de 3 personas dentro del equipo backend de Cupix mientras contribuía directamente en validación de datos SiteInsights, procesamiento de eventos con Kinesis/SQS, preprocesamiento BIM AI, estabilidad operativa Redis/Sidekiq y contratos API/SDK.",
 				"achievements": [
 					{
-						"title": "Construcción del Dominio de Gestión de Activos en Obra",
+						"title": "Estabilización de Fiabilidad de Datos y Eventos en SiteInsights",
 						"details": [
-							"Construí un dominio backend para crear, consultar y actualizar activos de edificios en una estructura jerárquica, incluyendo APIs Bulk para importaciones grandes",
-							"Agregué validaciones de UUID duplicados, self-loops y referencias circulares para evitar que archivos de importación inválidos corrompieran la jerarquía de activos",
-							"Implementé funciones operativas como historial de cambios de activos, herencia de campos, adjuntos, comentarios y miniaturas"
+							"Construí una API de validación que clasifica discrepancias entre Elements de modelos 3D y ElementRecords de progreso en duplicados, orphans, phase mismatches, task-state mismatches y negative diffs",
+							"Descompuse 475 discrepancias en un caso real de cliente en 446 task-state mismatches y 29 registros faltantes, haciendo más sistemática la investigación de incidencias",
+							"Reemplacé actualizaciones masivas de ElementRecord con bulkWrite, reduciendo 300 actualizaciones de 300 comandos DB a 1 comando y verificando la ruta con un pool MongoDB limitado",
+							"Agregué partial batch failure, retención DLQ de 14 días, alarma de iterator age de 60 segundos y alarmas de write throughput para mejorar la visibilidad de lag y reintentos en Kinesis"
 						]
 					},
 					{
-						"title": "Mejora de la Fiabilidad de los Datos de Progreso de Construcción",
+						"title": "Construcción de BIM AI Preprocessing y Category Mapping Draft",
 						"details": [
-							"Construí un sistema de validación que detecta automáticamente inconsistencias entre modelos 3D de edificios y datos de progreso en obra",
-							"Clasifiqué problemas recurrentes de consistencia, como duplicados, registros faltantes y diferencias de estado, para ordenar la investigación de incidencias en clientes corporativos",
-							"Estabilicé la capa de envío de eventos de progreso, donde los eventos se retrasaban ante picos de tráfico, y desplegué el cambio gradualmente en 6 regiones"
+							"Construí un servicio interno NestJS que extrae decenas a cientos de miles de objetos BIM y los conecta con un artifact Python de IA para generar borradores de category mapping",
+							"Apliqué batches de inserción de 2,500 filas, batches de purge de 10,000 filas, timeouts de lectura y yield del event loop cada 2,048 elementos para reducir locks DB y bloqueo del event loop de Node.js",
+							"Configuré el worker BullMQ con concurrency 1, lock duration de 300 segundos y retry/backoff por etapa para evitar parsing CPU-bound duplicado y picos de memoria superpuestos",
+							"Usé decoradores OpenAPI como fuente única del contrato API y agregué openapi:check, pruebas unit/e2e y harnesses Testcontainers de load/burst para integración frontend y regresión",
+							"Eliminé el uso de admin token en rutas de producción, pasé tokens de usuario con scope de team y agregué una prueba de regresión que falla si se reintroduce admin delegation"
 						]
 					},
 					{
-						"title": "Construcción de un Pipeline de Preprocesamiento de IA",
+						"title": "Construcción de Pipeline Asíncrono de IA para Capture Intelligence",
 						"details": [
-							"Agregué una etapa de preprocesamiento de IA para datos de captura 360°, con flujo asíncrono y APIs backend de gestión de estado",
-							"Reflejé los resultados de procesamiento y los modelos de estado en los contratos de API y SDK para que clientes y backend siguieran el mismo flujo",
-							"Reforcé el flujo de ejecución por región para que los trabajos de preprocesamiento y el seguimiento de estado funcionaran de forma fiable en regiones de despliegue"
+							"Implementé un flujo asíncrono que envía datos de captura 360° a un agent basado en SQS FIFO y guarda la salida de Python LLM como summaries de capture y spacetime",
+							"Agregué estados queued, processing, done y error con guards de ejecución en Rails backend para que el procesamiento de IA fuera trazable en flujos de producto y logs",
+							"Validé embeddings de 1536 dimensiones antes de persistir para evitar que salidas LLM mal formadas rompieran el indexing dense-vector de Elasticsearch",
+							"Reflejé summary_version, campos summary nullables y schemas de embedding en contratos API y SDK para reducir drift de modelo entre backend, agent y client"
+						]
+					},
+					{
+						"title": "Mejora de Operaciones Redis/Sidekiq y Costo de Ejecución de Pruebas",
+						"details": [
+							"Reemplacé escaneos de cache basados en Redis KEYS por SCAN(count 1000), y apliqué connection pooling, lazy-free delete y separación de Redis dedicado a Sidekiq para reducir el riesgo de bloqueo en cache/jobs",
+							"Agregué lock-wait retry, prevención de retry duplicado y batching de 300 elementos en TaskSyncWorker para estabilizar sincronización background bajo contención",
+							"Introduje test-prof let_it_be, before_all y factory_default, reutilizando setup de factories en más de 135 archivos spec",
+							"Reduje overhead del pipeline de pruebas Rails al evitar costos de arranque de Datadog/Elasticsearch donde correspondía, simplificar formatters RSpec y limitar Rubocop en CI a archivos modificados"
 						]
 					}
 				]
@@ -86,18 +94,17 @@
 				"company": "Miridih",
 				"position": "Ingeniero Backend",
 				"period": "May 2023 – Ene 2024",
-				"description": "Lideré el desarrollo backend del servicio de dibujo con IA de MiriCanvas.",
+				"description": "Llevé el backend del servicio de dibujo con IA de MiriCanvas a producción, desde integraciones con modelos externos de IA hasta más de 1M de solicitudes mensuales de generación de imágenes y optimización de costos GPU/CDN.",
 				"achievements": [
 					{
 						"title": "Construcción del Sistema Backend de Generación de Imágenes IA desde Cero",
 						"details": [
 							"Escalé desde prototipo inicial hasta sistema de producción manejando 1M+ solicitudes mensuales de generación de imágenes de forma confiable",
-							"Diseñé pipeline de procesamiento asíncrono integrando APIs de modelos de IA externos (OpenAI, Stability AI)",
-							"Integré DALL·E 3, logrando un aumento del 40% en solicitudes diarias de imágenes"
+							"Diseñé pipeline de procesamiento asíncrono integrando APIs de modelos de IA externos (OpenAI, Stability AI)"
 						]
 					},
 					{
-						"title": "Optimización de Costos de Infraestructura, Logrando Reducción Mensual del 20%",
+						"title": "Ahorro de unos $185 mensuales por instancia mediante downsizing de infraestructura GPU",
 						"details": [
 							"Implementé lógica de clasificación de solicitudes por características (resolución, modelo) para optimizar utilización de recursos GPU",
 							"Apliqué reducción de instancias (g5.2xlarge → g5.xlarge) basada en análisis de carga de trabajo",
@@ -113,11 +120,11 @@
 						]
 					},
 					{
-						"title": "Resolución de Problemas de Concurrencia en Servidor Admin con Bloqueo Distribuido Redis",
+						"title": "Estabilización de concurrencia y reintentos en el pipeline de generación de imágenes con IA",
 						"details": [
-							"Resolví problemas de colisión de ID causados por cambios de PK AutoIncrement usando bloqueo distribuido basado en Redis",
-							"Implementé lógica de reintento automático basada en AOP garantizando manejo elegante durante conflictos de bloqueo",
-							"Eliminé problemas de pérdida de datos por conflictos de trabajo de diseñadores, mejoré control de concurrencia dentro de restricciones legacy"
+							"Revisé rutas donde los reintentos del usuario o la reejecución de jobs podían procesar dos veces la misma solicitud de generación",
+							"Organicé la ejecución del job y el guardado del resultado alrededor de un identificador de solicitud de generación para que ocurrieran una sola vez",
+							"Mejoré el estado de generación y el guardado de resultados para que los reintentos tras fallos de APIs externas de IA no quedaran desalineados"
 						]
 					}
 				]
@@ -155,11 +162,11 @@
 			{
 				"name": "Tibero Support Organization",
 				"period": "May 2024 – Actualidad",
-				"description": "Tibero es un DBMS ampliamente utilizado en empresas coreanas pero carecía de soporte del ecosistema de desarrolladores. Fundé la Organización GitHub y lideré el desarrollo y lanzamiento de 3 proyectos de código abierto.",
+				"description": "Publiqué herramientas de desarrollo para hacer repetibles la base de datos local de pruebas, las pruebas de integración y la migración de esquemas en servicios que usan Tibero.",
 				"contributions": [
-					"Flyway para Tibero: Analicé código fuente de Flyway y desarrollé dialect específico para Tibero, habilitando soporte de migración DDL automatizada",
-					"Tibero Docker: Entregué imagen ligera de 401MB con compresión zstd, estandarizando entornos de prueba basados en contenedores",
-					"Tibero TestContainer: Integré con JUnit 5 para automatizar pruebas de integración Tibero en pipelines CI/CD"
+					"Configuré entorno de pruebas basado en Docker/Testcontainers",
+					"Automaticé la migración de esquemas mediante implementación de dialect de Flyway",
+					"Reduje el tamaño de la imagen Docker de Tibero"
 				],
 				"links": [
 					{
@@ -169,12 +176,12 @@
 				]
 			},
 			{
-				"name": "Localización Coreana de MDN Web Docs",
+				"name": "Mejora de documentación coreana de MDN Web Docs",
 				"period": "Ago 2023 – Actualidad",
-				"description": "Contribuyendo a mejoras de calidad en la traducción coreana de MDN Web Docs. Participando en traducciones de documentación de estándares web más recientes y mejorando traducciones existentes.",
+				"description": "Corregí errores de traducción en documentación de estándares web como JavaScript y Web APIs, y ajusté las explicaciones a las especificaciones originales y al comportamiento real.",
 				"contributions": [
-					"Traduje documentación de tecnología web no traducida (JavaScript, Web API, etc.) al coreano",
-					"Corregí errores de traducción y actualicé documentación alineada con especificaciones más recientes"
+					"Corregí errores de traducción en documentación de estándares web como JavaScript y Web APIs",
+					"Continué contribuyendo públicamente para mejorar la precisión de la documentación técnica que consultan los desarrolladores"
 				],
 				"links": [
 					{

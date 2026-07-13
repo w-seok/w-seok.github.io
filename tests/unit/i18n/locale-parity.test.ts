@@ -82,9 +82,14 @@ describe('로케일 구조 일치', () => {
 
 	it('소개글이 백엔드 문제 해결 방식과 대표 성과를 설명함', () => {
 		expect(koData.resume.about.summary.split('\n\n')).toHaveLength(4);
-		expect(koData.resume.about.summary).toContain('문제가 생긴 맥락');
-		expect(koData.resume.about.summary).toContain('데이터가 흐르는 과정');
-		expect(koData.resume.about.summary).toContain('먼저 확인하는');
+		expect(koData.resume.about.summary).toContain('AI 이미지 생성');
+		expect(koData.resume.about.summary).toContain('핀테크');
+		expect(koData.resume.about.summary).toContain('공간 AI SaaS');
+		expect(koData.resume.about.summary).toContain('요구사항과 데이터 흐름이 서로 다른 도메인');
+		expect(koData.resume.about.summary).toContain('대량 요청 처리');
+		expect(koData.resume.about.summary).toContain('제한된 DBMS 환경의 마이그레이션');
+		expect(koData.resume.about.summary).toContain('멀티 리전 데이터 동기화');
+		expect(koData.resume.about.summary).toContain('백엔드 구조로 풀어 온');
 		expect(koData.resume.about.summary).toContain('4년 차 Backend Engineer 신원석');
 		expect(koData.resume.about.summary).toContain('Cupix');
 		expect(koData.resume.about.summary).toContain('Java/Spring');
@@ -117,6 +122,13 @@ describe('로케일 구조 일치', () => {
 		expect(koData.resume.about.summary).not.toContain('1억건 이상');
 		expect(koData.resume.about.summary).not.toContain('2천만+');
 		expect(koData.resume.about.summary).not.toContain('1억+');
+		expect(koData.resume.about.summary).not.toContain('서로 다른 도메인의 데이터 처리 흐름');
+		expect(koData.resume.about.summary).not.toContain(
+			'AI 이미지 생성 서비스, Tibero 기반 마이그레이션 자동화, 공간 AI SaaS'
+		);
+		expect(koData.resume.about.summary).not.toContain('요구사항을 바로 구현하기보다');
+		expect(koData.resume.about.summary).not.toContain('문제가 생긴 맥락');
+		expect(koData.resume.about.summary).not.toContain('데이터가 흐르는 과정');
 		expect(koData.resume.about.summary).not.toContain('문제의 본질과 전체 흐름');
 		expect(koData.resume.about.summary).not.toContain('이해하려고 하는');
 		expect(koData.resume.about.summary).not.toContain('4년간 개발하며 배운 것이 있습니다');
@@ -141,6 +153,11 @@ describe('로케일 구조 일치', () => {
 		expect(koData.resume.about.summary).not.toContain('Firehose');
 		expect(koData.resume.about.summary).not.toContain('로컬 테스트 DB 환경');
 		expect(koData.resume.about.summary).not.toContain('폐쇄적인 DBMS 환경');
+		expect(JSON.stringify(koData.resume.experience)).toContain(
+			'Rails test pipeline 실행 시간을 약 1시간에서 17분으로 단축'
+		);
+		expect(JSON.stringify(koData.resume.experience)).toContain('test-prof 기반 fixture 재사용');
+		expect(JSON.stringify(koData.resume.experience)).toContain('외부 의존성 boot overhead 정리');
 
 		expect(enData.resume.about.summary).toContain('Cupix');
 		expect(enData.resume.about.summary).toContain('Java/Spring');
@@ -199,5 +216,127 @@ describe('로케일 구조 일치', () => {
 		expect(esData.resume.about.summary).not.toContain('Firehose');
 		expect(esData.resume.about.summary).not.toContain('entorno local de base de datos de prueba');
 		expect(esData.resume.about.summary).not.toContain('entorno DBMS cerrado');
+	});
+
+	it('Cupix 경력이 파트 리드 기간과 리딩 범위를 설명함', () => {
+		const cupix = koData.resume.experience.find((exp) => exp.company === 'Cupix');
+		expect(cupix).toBeDefined();
+		if (!cupix) {
+			throw new Error('Cupix 경력 항목이 필요함');
+		}
+
+		expect(cupix.position).toContain('Backend Engineer');
+		expect(cupix.position).toContain('Application Part Lead · Backend');
+		expect(cupix.position).toContain('2025.12 ~');
+		expect(cupix.position).toContain('3명 파트 리딩');
+		expect(cupix.description).toContain('건물 3D 설계 모델과 현장 360° 캡처 데이터');
+		expect(cupix.description).toContain('글로벌 공간 AI SaaS 기업');
+		expect(cupix.description).toContain('Cupix 백엔드 팀 내 3명 규모 Application Part');
+		expect(cupix.description).toContain('실무 개발과 함께 리딩');
+		expect(cupix.description).not.toBe(
+			'건물 3D 설계 모델과 현장 360° 캡처 데이터를 연결해 시공 진행률과 자산 상태를 추적하는 글로벌 공간 AI SaaS 기업입니다. SiteInsights 데이터 검증, Kinesis/SQS 기반 이벤트 처리, BIM AI 전처리, Redis/Sidekiq 운영 안정화, API/SDK 계약 정리를 담당했습니다.'
+		);
+	});
+
+	it('Miridih 경력이 GPU와 CDN 비용 절감 기준을 설명함', () => {
+		const miridih = koData.resume.experience.find((exp) => exp.company === 'Miridih');
+		expect(miridih).toBeDefined();
+		if (!miridih) {
+			throw new Error('Miridih 경력 항목이 필요함');
+		}
+
+		const details = JSON.stringify(miridih.achievements);
+		expect(miridih.description).toContain('외부 AI 모델 연동부터');
+		expect(miridih.description).toContain('월 100만 건 이상 이미지 생성 요청 처리');
+		expect(miridih.description).toContain('GPU·CDN 비용 최적화');
+		expect(miridih.description).toContain('운영 환경으로 확장');
+		expect(details).toContain('GPU 인프라 다운사이징으로 월 약 $185/대 절감');
+		expect(details).toContain('월 GPU 인프라 비용을 20%(인스턴스 1대당 월 약 $185) 절감');
+		expect(details).toContain('월 약 5TB 규모의 CDN egress 비용을 월 약 $450 절감');
+		expect(details).toContain('AI 이미지 생성 비동기 파이프라인의 동시성·재시도 안정화');
+		expect(details).toContain(
+			'사용자 재시도나 job 재실행으로 같은 생성 요청이 두 번 처리될 수 있는 구간 점검'
+		);
+		expect(details).toContain(
+			'생성 요청 단위 식별자를 기준으로 job 실행과 결과 저장이 한 번만 이어지도록 정리'
+		);
+		expect(details).toContain(
+			'외부 AI API 호출 실패 후 재시도되는 경우에도 생성 상태와 저장 결과가 어긋나지 않도록 개선'
+		);
+		expect(details).not.toContain('DALL·E 3 통합으로 일일 이미지 생성 요청량 40% 증가 달성');
+		expect(details).not.toContain('Redis 분산 락');
+		expect(details).not.toContain('AutoIncrement PK');
+		expect(details).not.toContain('어드민 서버 동시성');
+		expect(details).not.toContain('인프라 비용 최적화로 월간 비용 20% 절감');
+	});
+
+	it('학력 기간이 병역으로 인한 재학 기간 오해를 줄임', () => {
+		const education = koData.resume.education.find((edu) => edu.institution === '건국대학교');
+		expect(education).toBeDefined();
+		if (!education) {
+			throw new Error('건국대학교 학력 항목이 필요함');
+		}
+
+		expect(education.period).toContain('2017.03 ~ 2023.02');
+		expect(education.period).toContain('병역: 군 복무 완료 (2018 ~ 2019)');
+	});
+
+	it('Tibero 오픈소스 기여가 테스트·마이그레이션 도구 공개로 설명됨', () => {
+		const tibero = koData.resume.opensource.find(
+			(project) => project.name === 'Tibero Support Organization'
+		);
+		expect(tibero).toBeDefined();
+		if (!tibero) {
+			throw new Error('Tibero Support Organization 오픈소스 항목이 필요함');
+		}
+
+		const contents = JSON.stringify(tibero);
+		expect(tibero.description).toContain('로컬 테스트 DB');
+		expect(tibero.description).toContain('통합 테스트');
+		expect(tibero.description).toContain('schema migration');
+		expect(tibero.description).toContain('반복 가능');
+		expect(contents).toContain('Docker/Testcontainers 기반 테스트 환경 구성');
+		expect(contents).toContain('Flyway dialect 구현으로 schema migration 자동화');
+		expect(contents).toContain('Tibero Docker 이미지 경량화');
+		expect(contents).not.toContain('국내 기업들이 널리 사용하는 DBMS');
+		expect(contents).not.toContain('개발자 생태계 지원이 부족');
+	});
+
+	it('MDN 오픈소스 기여가 웹 표준 문서 정확성 개선으로 설명됨', () => {
+		const mdn = koData.resume.opensource.find((project) => project.name.includes('MDN Web Docs'));
+		expect(mdn).toBeDefined();
+		if (!mdn) {
+			throw new Error('MDN Web Docs 오픈소스 항목이 필요함');
+		}
+
+		const contents = JSON.stringify(mdn);
+		expect(mdn.name).toContain('한국어 문서 개선');
+		expect(contents).toContain('JavaScript, Web API 등 웹 표준 문서의 오역을 수정');
+		expect(contents).toContain('원문 명세와 실제 동작에 맞게 설명을 정리');
+		expect(contents).toContain('기술 문서의 정확성');
+		expect(contents).not.toContain('한글화');
+		expect(contents).not.toContain('번역 품질 향상');
+	});
+
+	it('Tmax Fintech 경력이 Tibero 개발·테스트 환경 표준화 성과를 설명함', () => {
+		const tmax = koData.resume.experience.find((exp) => exp.company === 'Tmax Fintech');
+		expect(tmax).toBeDefined();
+		if (!tmax) {
+			throw new Error('Tmax Fintech 경력 항목이 필요함');
+		}
+
+		expect(tmax.description).toContain('핀테크 서비스 개발 조직');
+		expect(tmax.description).toContain('Tibero 기반 개발·테스트 환경을 표준화');
+		expect(tmax.description).toContain('로컬 테스트 DB');
+		expect(tmax.description).toContain('CI 통합 테스트');
+		expect(tmax.description).toContain('Flyway 마이그레이션');
+		expect(tmax.description).not.toContain('서비스 최적화 및 개발 생산성 향상');
+
+		const details = JSON.stringify(tmax.achievements);
+		expect(details).toContain('Tibero Docker/TestContainer를 구축');
+		expect(details).toContain('CI 파이프라인에 통합해 DB 의존 테스트를 자동화');
+		expect(details).toContain('Tibero 전용 dialect');
+		expect(details).toContain('1.5GB에서 401MB');
+		expect(details).toContain('3개 오픈소스 프로젝트');
 	});
 });

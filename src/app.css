@@ -32,8 +32,8 @@
 		/* 이 변수들은 미디어 쿼리에서 재정의됨 */
 		--container-padding: var(--space-4);      /* 16px - xs */
 		--container-max-width: 100%;
-		--section-gap: var(--space-12);           /* 48px */
-		--section-padding: var(--space-10);       /* 40px */
+		--section-gap: var(--space-8);            /* 32px */
+		--section-padding: var(--space-8);        /* 32px */
 
 		/* ===== Primitive Tokens - Toss Gray Scale (Blue tint) ===== */
 		--gray-50: #f9fafb;
@@ -82,7 +82,7 @@
 	@media (min-width: 360px) {
 		:root {
 			--container-padding: var(--space-5);    /* 20px */
-			--section-gap: var(--space-14);         /* 56px */
+			--section-gap: var(--space-10);         /* 40px */
 		}
 	}
 
@@ -91,8 +91,8 @@
 		:root {
 			--container-padding: var(--space-8);    /* 32px */
 			--container-max-width: 720px;
-			--section-gap: var(--space-16);         /* 64px */
-			--section-padding: var(--space-12);     /* 48px */
+			--section-gap: var(--space-12);         /* 48px */
+			--section-padding: var(--space-10);     /* 40px */
 		}
 	}
 
@@ -101,8 +101,8 @@
 		:root {
 			--container-padding: var(--space-10);   /* 40px */
 			--container-max-width: 800px;
-			--section-gap: var(--space-20);         /* 80px */
-			--section-padding: var(--space-14);     /* 56px */
+			--section-gap: var(--space-14);         /* 56px */
+			--section-padding: var(--space-12);     /* 48px */
 		}
 	}
 
@@ -111,8 +111,8 @@
 		:root {
 			--container-padding: var(--space-12);   /* 48px */
 			--container-max-width: 860px;
-			--section-gap: var(--space-24);         /* 96px */
-			--section-padding: var(--space-16);     /* 64px */
+			--section-gap: var(--space-16);         /* 64px */
+			--section-padding: var(--space-12);     /* 48px */
 		}
 	}
 
@@ -121,8 +121,8 @@
 		:root {
 			--container-padding: var(--space-14);   /* 56px */
 			--container-max-width: 900px;
-			--section-gap: var(--space-28);         /* 112px */
-			--section-padding: var(--space-20);     /* 80px */
+			--section-gap: var(--space-20);         /* 80px */
+			--section-padding: var(--space-14);     /* 56px */
 		}
 	}
 

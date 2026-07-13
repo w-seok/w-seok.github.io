@@ -251,14 +251,20 @@
 				{$t.sections.about}
 			</h2>
 			<div class="section-body">
-				<p class="body-text about-summary">
-					{$t.resume.about.summary}
-				</p>
-				<ul class="highlight-list">
-					{#each $t.resume.about.highlights as highlight}
-						<li class="highlight-item">{highlight}</li>
+				<div class="about-summary">
+					{#each $t.resume.about.summary.split('\n\n') as paragraph}
+						<p class="body-text about-paragraph">
+							{paragraph}
+						</p>
 					{/each}
-				</ul>
+				</div>
+				{#if $t.resume.about.highlights.length > 0}
+					<ul class="highlight-list">
+						{#each $t.resume.about.highlights as highlight}
+							<li class="highlight-item">{highlight}</li>
+						{/each}
+					</ul>
+				{/if}
 			</div>
 		</section>
 
@@ -705,6 +711,14 @@
 	/* ===== About 섹션 ===== */
 	.about-summary {
 		margin-bottom: var(--space-6);
+	}
+
+	.about-paragraph {
+		margin-bottom: var(--space-5);
+	}
+
+	.about-paragraph:last-child {
+		margin-bottom: 0;
 	}
 
 	.highlight-list {

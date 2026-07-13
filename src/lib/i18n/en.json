@@ -23,43 +23,51 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "Backend engineer who builds systems that help field data flow accurately and reliably in a global spatial AI SaaS for construction and facilities. Worked on asset management, construction progress tracking, and AI preprocessing pipelines while handling data inconsistency and high-volume event processing problems. When a needed feature or validation layer does not exist, builds it and follows the problem through.",
-			"highlights": [
-				"Built a backend domain for managing building assets in a hierarchical structure, making complex field assets easier to create, query, and update consistently",
-				"Built a validation system that automatically diagnoses consistency between design models and on-site progress data, resolving recurring inconsistencies for enterprise customers",
-				"Stabilized the progress-event delivery layer where events were delayed under traffic spikes, and rolled the change out gradually across 6 regions",
-				"Scaled an AI image generation service from zero to 1M+ monthly requests, cutting infrastructure costs by 20% and CDN costs by 80%+"
-			]
+			"summary": "I am Shin Wonseok, a fourth-year Backend Engineer who tries to understand the essence of a problem and the whole flow before jumping into implementation.\n\nI started backend development with Java/Spring services, building an AI image generation service that handled 1M+ monthly requests and a Flyway-based migration and test automation setup tailored to Tibero DBMS. At Cupix, I design and improve backend architecture that connects construction-site video data with BIM files containing building design information to track progress, and improved the system so 20M+ field data records and 100M+ snapshots and events are reflected consistently across 6+ regions.\n\nWorking through problems where multiple systems interact taught me that preventing the same issue from recurring matters more than fixing it quickly. In that process, I learned that the more complex the problem is, the more important it is to organize evidence calmly, keep discussions from becoming unproductive, and connect the work to solutions the team can act on right away. I want to work as a Backend Engineer who traces root causes to the end and turns them into improvements the team can execute.",
+			"highlights": []
 		},
 		"experience": [
 			{
 				"company": "Cupix",
-				"position": "Application Part Lead",
+				"position": "Backend Engineer / Application Part Lead · Backend (Dec 2025–Present, led 3-person part)",
 				"period": "Nov 2024 – Present",
-				"description": "Global spatial AI SaaS company that connects building 3D design models with on-site 360° capture data to track construction progress and asset status. Worked on backend areas that help field data be collected, validated, and delivered reliably, including asset management, progress-data validation, event delivery, and AI preprocessing.",
+				"description": "Global spatial AI SaaS company that connects building 3D design models with on-site 360° capture data to track construction progress and asset status. Led the 3-person Application Part within the Cupix backend team while contributing hands-on to SiteInsights data validation, Kinesis/SQS-based event processing, BIM AI preprocessing, Redis/Sidekiq operational stability, and API/SDK contract alignment.",
 				"achievements": [
 					{
-						"title": "Built a Field Asset Management Domain",
+						"title": "Stabilized SiteInsights Data Reliability and Event Processing",
 						"details": [
-							"Built a backend domain for creating, querying, and updating building assets in a hierarchical structure, including Bulk APIs for large imports",
-							"Added validation for UUID duplicates, self-loops, and circular references so invalid import files could not corrupt asset hierarchy data",
-							"Implemented operational features such as asset change history, field inheritance, attachments, comments, and thumbnails"
+							"Built a validation API that classifies discrepancies between 3D model Elements and field progress ElementRecords into duplicates, orphans, phase mismatches, task-state mismatches, and negative diffs",
+							"Broke down 475 discrepancies in a real customer case into 446 task-state mismatches and 29 missing records, making customer investigations more systematic",
+							"Replaced ElementRecord bulk updates with bulkWrite, reducing 300 updates from 300 DB commands to 1 command and verifying the path under a limited MongoDB connection pool",
+							"Added partial batch failure handling, 14-day DLQ retention, 60-second iterator-age alarms, and write-throughput alarms to improve Kinesis event lag visibility and retry behavior"
 						]
 					},
 					{
-						"title": "Improved Reliability of Construction Progress Data",
+						"title": "Built BIM AI Preprocessing and Category Mapping Draft Service",
 						"details": [
-							"Built a validation system that automatically detects inconsistencies between building 3D design models and on-site progress data",
-							"Classified recurring consistency issues such as duplicates, missing records, and status mismatches, making enterprise customer investigations more systematic",
-							"Stabilized the progress-event delivery layer where events were delayed under traffic spikes, and rolled the change out gradually across 6 regions"
+							"Built a NestJS internal service that extracts tens to hundreds of thousands of BIM objects and connects them to a Python AI artifact for category-mapping draft generation",
+							"Applied 2,500-row insert batches, 10,000-row purge batches, read-query timeouts, and event-loop yielding every 2,048 items to reduce DB lock time and Node.js event-loop blocking",
+							"Configured the BullMQ worker with concurrency 1, a 300-second lock duration, and step-level retry/backoff to avoid duplicate CPU-bound parsing and overlapping memory peaks",
+							"Used OpenAPI decorators as the single source of API contracts and added openapi:check, unit/e2e tests, and Testcontainers load/burst harnesses for frontend integration and regression coverage",
+							"Removed admin-token usage from production paths, passed through team-scoped user tokens, and added a regression test that fails if admin delegation is reintroduced"
 						]
 					},
 					{
-						"title": "Built an AI Preprocessing Pipeline",
+						"title": "Built an Asynchronous Capture Intelligence AI Pipeline",
 						"details": [
-							"Added an AI preprocessing step for 360° capture data, with asynchronous processing flow and backend status-management APIs",
-							"Reflected processing results and status models in API and SDK contracts so clients and backend services followed the same workflow",
-							"Strengthened the regional execution flow so preprocessing jobs and status tracking worked reliably across deployment regions"
+							"Implemented an asynchronous flow that sends 360° capture data to an SQS FIFO-based agent and stores Python LLM output as capture and spacetime summaries",
+							"Added queued, processing, done, and error states with execution guards in the Rails backend so AI processing status could be tracked in product flows and logs",
+							"Validated 1536-dimensional embedding shape before persistence to prevent malformed LLM output from breaking Elasticsearch dense-vector indexing",
+							"Reflected summary_version, nullable summary fields, and embedding schemas in API and SDK contracts to reduce model drift across backend, agent, and client"
+						]
+					},
+					{
+						"title": "Improved Redis/Sidekiq Operations and Test Execution Cost",
+						"details": [
+							"Replaced Redis KEYS-based cache scans with SCAN(count 1000), and applied Redis connection pooling, lazy-free deletes, and Sidekiq-dedicated Redis separation to reduce cache/job blocking risk",
+							"Added lock-wait retry, duplicate retry prevention, and 300-item batching to TaskSyncWorker to stabilize background synchronization under contention",
+							"Introduced test-prof let_it_be, before_all, and factory_default, reusing factory setup across 135+ spec files",
+							"Reduced Rails test pipeline overhead by skipping Datadog/Elasticsearch test boot costs where appropriate, simplifying RSpec formatter settings, and limiting CI Rubocop to changed files"
 						]
 					}
 				]
@@ -86,18 +94,17 @@
 				"company": "Miridih",
 				"position": "Backend Engineer",
 				"period": "May 2023 – Jan 2024",
-				"description": "Led backend development for MiriCanvas AI Drawing service.",
+				"description": "Expanded MiriCanvas AI Drawing backend into production, from external AI model integrations to 1M+ monthly image generation requests and GPU/CDN cost optimization.",
 				"achievements": [
 					{
 						"title": "Built AI Image Generation Service Backend from Scratch",
 						"details": [
 							"Scaled from early prototype to production system handling 1M+ monthly image generation requests reliably",
-							"Designed asynchronous processing pipeline integrating external AI model APIs (OpenAI, Stability AI)",
-							"Integrated DALL·E 3, achieving 40% increase in daily image requests"
+							"Designed asynchronous processing pipeline integrating external AI model APIs (OpenAI, Stability AI)"
 						]
 					},
 					{
-						"title": "Optimized Infrastructure Costs, Achieving 20% Monthly Reduction",
+						"title": "Saved About $185 per Month per Instance through GPU Infrastructure Downsizing",
 						"details": [
 							"Implemented request classification logic by characteristics (resolution, model) to optimize GPU resource utilization",
 							"Applied instance downsizing (g5.2xlarge → g5.xlarge) based on workload analysis",
@@ -113,11 +120,11 @@
 						]
 					},
 					{
-						"title": "Resolved Admin Server Concurrency Issues with Redis Distributed Lock",
+						"title": "Stabilized Concurrency and Retries in AI Image Generation Pipeline",
 						"details": [
-							"Resolved ID collision issues caused by AutoIncrement PK changes using Redis-based distributed lock",
-							"Implemented AOP-based automatic retry logic ensuring graceful handling during lock conflicts",
-							"Eliminated data loss issues from designer work conflicts, improved concurrency control within legacy constraints"
+							"Reviewed paths where user retries or job reruns could process the same generation request twice",
+							"Organized job execution and result persistence around a generation request identifier so they run once",
+							"Improved generation state and result persistence so retries after external AI API failures do not drift"
 						]
 					}
 				]
@@ -155,11 +162,11 @@
 			{
 				"name": "Tibero Support Organization",
 				"period": "May 2024 – Present",
-				"description": "Tibero is a widely-used DBMS in Korean enterprises but lacked developer ecosystem support. Founded GitHub Organization and led development and release of 3 open source projects.",
+				"description": "Published developer tools to make local test databases, integration tests, and schema migration repeatable for services using Tibero.",
 				"contributions": [
-					"Flyway for Tibero: Analyzed Flyway source code and developed Tibero-specific dialect, enabling automated DDL migration support",
-					"Tibero Docker: Delivered lightweight 401MB image with zstd compression, standardizing container-based test environments",
-					"Tibero TestContainer: Integrated with JUnit 5 to automate Tibero integration testing in CI/CD pipelines"
+					"Built Docker/Testcontainers-based test environment",
+					"Automated schema migration through Flyway dialect implementation",
+					"Reduced Tibero Docker image size"
 				],
 				"links": [
 					{
@@ -169,12 +176,12 @@
 				]
 			},
 			{
-				"name": "MDN Web Docs Korean Localization",
+				"name": "MDN Web Docs Korean Documentation Improvements",
 				"period": "Aug 2023 – Present",
-				"description": "Contributing to Korean translation quality improvements of MDN Web Docs. Participating in translations of latest web standard documentation and improving existing translations.",
+				"description": "Fixed mistranslations in web standards documentation such as JavaScript and Web APIs, and aligned explanations with original specifications and actual behavior.",
 				"contributions": [
-					"Translated untranslated web technology documentation (JavaScript, Web API, etc.) to Korean",
-					"Fixed mistranslations and updated documentation to align with latest specifications"
+					"Fixed mistranslations in web standards documentation such as JavaScript and Web APIs",
+					"Continued public contributions to improve the accuracy of technical documentation developers rely on"
 				],
 				"links": [
 					{
