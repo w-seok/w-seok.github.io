@@ -82,14 +82,17 @@ describe('로케일 구조 일치', () => {
 
 	it('소개글이 백엔드 문제 해결 방식과 대표 성과를 설명함', () => {
 		expect(koData.resume.about.summary.split('\n\n')).toHaveLength(4);
+		expect(koData.resume.about.summary.split('\n\n')[0]).toBe(
+			'안녕하세요. AI 이미지 생성, 핀테크, 공간 AI SaaS 분야에서 서비스를 개발해 온 4년 차 Backend Engineer 신원석입니다. 요구사항과 데이터 흐름이 서비스마다 달라 대량 요청 처리, DBMS 제약을 고려한 마이그레이션, 멀티 리전 데이터 동기화 등 다양한 기술 과제를 해결해 왔습니다.'
+		);
 		expect(koData.resume.about.summary).toContain('AI 이미지 생성');
 		expect(koData.resume.about.summary).toContain('핀테크');
 		expect(koData.resume.about.summary).toContain('공간 AI SaaS');
-		expect(koData.resume.about.summary).toContain('요구사항과 데이터 흐름이 서로 다른 도메인');
+		expect(koData.resume.about.summary).toContain('요구사항과 데이터 흐름이 서비스마다 달라');
 		expect(koData.resume.about.summary).toContain('대량 요청 처리');
-		expect(koData.resume.about.summary).toContain('제한된 DBMS 환경의 마이그레이션');
+		expect(koData.resume.about.summary).toContain('DBMS 제약을 고려한 마이그레이션');
 		expect(koData.resume.about.summary).toContain('멀티 리전 데이터 동기화');
-		expect(koData.resume.about.summary).toContain('백엔드 구조로 풀어 온');
+		expect(koData.resume.about.summary).toContain('다양한 기술 과제를 해결해 왔습니다');
 		expect(koData.resume.about.summary).toContain('4년 차 Backend Engineer 신원석');
 		expect(koData.resume.about.summary).toContain('Cupix');
 		expect(koData.resume.about.summary).toContain('Java/Spring');
