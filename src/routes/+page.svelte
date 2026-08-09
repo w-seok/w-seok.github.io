@@ -7,10 +7,65 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { locale, t, type Locale } from '$lib/i18n';
+	import type { SectionTranslation } from '$lib/i18n/types';
 	import { theme } from '$lib/stores/theme';
 
 	let sections: HTMLElement[] = $state([]);
 	let isLangMenuOpen = $state(false);
+	let scrollProgress = $state(0);
+	let activeSection = $state<keyof SectionTranslation>('about');
+
+	/**
+	 * 목차와 활성 섹션 추적에 사용하는 섹션 순서
+	 * @description 문서에 배치된 순서와 일치해야 한다
+	 */
+	const SECTION_IDS: (keyof SectionTranslation)[] = [
+		'about',
+		'experience',
+		'skills',
+		'opensource',
+		'activities',
+		'awards',
+		'certificates',
+		'education'
+	];
+
+	/** 문서 끝 판정 여유 - 브라우저마다 소수점 오차가 있어 완전히 0이 되지 않는다 */
+	const SCROLL_END_TOLERANCE_PX = 4;
+
+	/**
+	 * 스크롤 진행률과 현재 보고 있는 섹션을 갱신
+	 * @description 진행률은 문서 길이를 암시하고, 활성 섹션은 목차에서 현재 위치를 표시한다.
+	 * 활성 섹션은 "화면을 가장 많이 차지한 섹션"으로 정한다. 특정 지점을 넘었는지로 판정하면
+	 * 긴 섹션의 제목이 기준선 아래에 있는 동안 이전 섹션이 계속 활성으로 남는다.
+	 */
+	function updateScrollState() {
+		const max = document.documentElement.scrollHeight - window.innerHeight;
+		scrollProgress = max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0;
+
+		// 문서 끝에서는 마지막 섹션을 활성으로 둔다.
+		// 마지막 섹션이 짧으면 화면 점유량으로는 1위가 될 수 없기 때문이다.
+		if (max > 0 && max - window.scrollY <= SCROLL_END_TOLERANCE_PX) {
+			activeSection = SECTION_IDS[SECTION_IDS.length - 1];
+			return;
+		}
+
+		// 상단 바가 가리는 영역은 "보이는 영역"에서 제외한다
+		const barBottom = document.querySelector('.top-bar')?.getBoundingClientRect().bottom ?? 0;
+		let current = SECTION_IDS[0];
+		let widest = -1;
+		for (const id of SECTION_IDS) {
+			const section = document.getElementById(`${id}-heading`)?.closest('.content-section');
+			if (!section) continue;
+			const rect = section.getBoundingClientRect();
+			const visible = Math.min(window.innerHeight, rect.bottom) - Math.max(barBottom, rect.top);
+			if (visible > widest) {
+				widest = visible;
+				current = id;
+			}
+		}
+		activeSection = current;
+	}
 
 	const languages: { code: Locale; label: string }[] = [
 		{ code: 'ko', label: '한국어' },
@@ -44,6 +99,9 @@
 	}
 
 	onMount(() => {
+		// threshold는 "요소 전체 높이 대비 비율"이므로 긴 섹션일수록 더 많이 보여야 발화한다.
+		// 경력 섹션(2,700px)은 첫 화면에 180px이 보여도 6.7%라 0.1을 넘지 못해 빈 칸으로 남았다.
+		// 0으로 두면 1px이라도 들어오는 순간 발화한다.
 		const observer = new IntersectionObserver(
 			(entries) => {
 				for (const entry of entries) {
@@ -52,18 +110,31 @@
 					}
 				}
 			},
-			{ threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+			{ threshold: 0, rootMargin: '0px 0px -50px 0px' }
 		);
+
+		// 첫 화면에 이미 들어와 있는 섹션은 스크롤로 도달한 것이 아니므로 즉시 노출한다.
+		// 등장 애니메이션은 사용자가 스크롤해서 만나는 섹션에만 의미가 있다.
+		for (const section of sections) {
+			if (section && section.getBoundingClientRect().top < window.innerHeight) {
+				section.classList.add('visible');
+			}
+		}
 
 		for (const section of sections) {
 			if (section) observer.observe(section);
 		}
 
 		document.addEventListener('click', handleClickOutside);
+		window.addEventListener('scroll', updateScrollState, { passive: true });
+		window.addEventListener('resize', updateScrollState);
+		updateScrollState();
 
 		return () => {
 			observer.disconnect();
 			document.removeEventListener('click', handleClickOutside);
+			window.removeEventListener('scroll', updateScrollState);
+			window.removeEventListener('resize', updateScrollState);
 		};
 	});
 </script>
@@ -73,100 +144,125 @@
 </svelte:head>
 
 <div class="min-h-screen bg-background text-primary" class:dark={$theme === 'dark'}>
+	<!-- 스크롤 진행 바: 문서 길이를 암시한다 -->
+	<div class="scroll-progress no-print" aria-hidden="true">
+		<div class="scroll-progress-bar" style="width: {scrollProgress}%"></div>
+	</div>
+
+	<!-- 오른쪽 세로 목차 레일: 본문 텍스트 바깥 여백에 놓아 읽기를 방해하지 않는다 -->
+	<nav class="side-nav no-print" aria-label={$t.common.tableOfContents}>
+		<ul class="side-nav-list">
+			{#each SECTION_IDS as id}
+				<li>
+					<a
+						href="#{id}-heading"
+						class="side-nav-link"
+						class:active={activeSection === id}
+						aria-current={activeSection === id ? 'true' : undefined}
+					>
+						<span class="side-nav-label">{$t.sections[id]}</span>
+						<span class="side-nav-dash" aria-hidden="true"></span>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</nav>
+
 	<!-- 플로팅 컨트롤 (우측 상단) -->
 	<div class="floating-control no-print">
-		<div class="floating-control-inner">
-			<!-- 언어 선택 드롭다운 (hover + click for mobile) -->
-			<div
-				class="relative lang-menu-container"
-				onmouseenter={() => (isLangMenuOpen = true)}
-				onmouseleave={() => (isLangMenuOpen = false)}
-				role="presentation"
+	<div class="floating-control-inner">
+		<!-- 언어 선택 드롭다운 (hover + click for mobile) -->
+		<div
+			class="relative lang-menu-container"
+			onmouseenter={() => (isLangMenuOpen = true)}
+			onmouseleave={() => (isLangMenuOpen = false)}
+			role="presentation"
+		>
+			<button
+				class="btn-icon"
+				onclick={() => (isLangMenuOpen = !isLangMenuOpen)}
+				aria-label={$t.common.toggleLanguage}
+				aria-expanded={isLangMenuOpen}
+				aria-haspopup="true"
 			>
-				<button
-					class="btn-icon"
-					onclick={() => (isLangMenuOpen = !isLangMenuOpen)}
-					aria-label={$t.common.toggleLanguage}
-					aria-expanded={isLangMenuOpen}
-					aria-haspopup="true"
+				<svg
+					class="w-5 h-5"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					stroke-width="1.5"
+					aria-hidden="true"
 				>
-					<svg
-						class="w-5 h-5"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						stroke-width="1.5"
-						aria-hidden="true"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
-						/>
-						<path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8" />
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9Z"
-						/>
-					</svg>
-				</button>
-
-				{#if isLangMenuOpen}
-					<div
-						class="dropdown-menu"
-						role="menu"
-						transition:fly={{ y: -8, duration: 200 }}
-					>
-						{#each languages as lang}
-							<button
-								class="dropdown-item"
-								class:active={$locale === lang.code}
-								onclick={() => changeLanguage(lang.code)}
-								role="menuitem"
-							>
-								{lang.label}
-							</button>
-						{/each}
-					</div>
-				{/if}
-			</div>
-
-			<!-- 테마 전환 버튼 -->
-			<button class="btn-icon" onclick={() => theme.toggle()} aria-label={$t.common.toggleTheme}>
-				{#if $theme === 'light'}
-					<svg
-						class="w-5 h-5"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						stroke-width="1.5"
-						aria-hidden="true"
-					>
-						<circle cx="12" cy="12" r="4" />
-						<path
-							d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-						/>
-					</svg>
-				{:else}
-					<svg
-						class="w-5 h-5"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						stroke-width="1.5"
-						aria-hidden="true"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75 9.75 9.75 0 0 1 8.25 6c0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25 9.75 9.75 0 0 0 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-						/>
-					</svg>
-				{/if}
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
+					/>
+					<path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8" />
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9Z"
+					/>
+				</svg>
 			</button>
+
+			{#if isLangMenuOpen}
+				<div
+					class="dropdown-menu"
+					role="menu"
+					transition:fly={{ y: -8, duration: 200 }}
+				>
+					{#each languages as lang}
+						<button
+							class="dropdown-item"
+							class:active={$locale === lang.code}
+							onclick={() => changeLanguage(lang.code)}
+							role="menuitem"
+						>
+							{lang.label}
+						</button>
+					{/each}
+				</div>
+			{/if}
 		</div>
+
+		<!-- 테마 전환 버튼 -->
+		<button class="btn-icon" onclick={() => theme.toggle()} aria-label={$t.common.toggleTheme}>
+			{#if $theme === 'light'}
+				<svg
+					class="w-5 h-5"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					stroke-width="1.5"
+					aria-hidden="true"
+				>
+					<circle cx="12" cy="12" r="4" />
+					<path
+						d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+					/>
+				</svg>
+			{:else}
+				<svg
+					class="w-5 h-5"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					stroke-width="1.5"
+					aria-hidden="true"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75 9.75 9.75 0 0 1 8.25 6c0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25 9.75 9.75 0 0 0 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+					/>
+				</svg>
+			{/if}
+		</button>
 	</div>
+	</div>
+
 
 	<!-- 메인 콘텐츠 -->
 	<main class="section-container page-content">
@@ -178,7 +274,9 @@
 					<h1 id="hero-heading" class="hero-name">
 						{getName($locale)}
 					</h1>
-					<p class="hero-title">{$t.header.title}</p>
+					<p class="hero-title">
+						{$t.header.title}<span class="hero-role">{$t.header.summary}</span>
+					</p>
 				</div>
 
 				<!-- 오른쪽: 연락처 (아이콘 통일) -->
@@ -291,6 +389,13 @@
 							<span class="experience-period">{exp.period}</span>
 						</div>
 						<p class="experience-description">{exp.description}</p>
+						{#if exp.stack?.length}
+							<ul class="experience-stack" aria-label="{exp.company} 기술 스택">
+								{#each exp.stack as tech}
+									<li class="experience-stack-item">{tech}</li>
+								{/each}
+							</ul>
+						{/if}
 						{#each exp.achievements as achievement}
 							<div class="achievement-block">
 								<h4 class="achievement-title">{achievement.title}</h4>
@@ -536,20 +641,6 @@
 
 <style>
 	/* ===== 플로팅 컨트롤 ===== */
-	.floating-control {
-		position: fixed;
-		top: var(--space-4);
-		right: var(--space-4);
-		z-index: var(--z-fixed);
-	}
-
-	@media (min-width: 768px) {
-		.floating-control {
-			top: var(--space-6);
-			right: var(--space-6);
-		}
-	}
-
 	@media (min-width: 1024px) {
 		.floating-control {
 			top: var(--space-8);
@@ -591,8 +682,11 @@
 	}
 
 	/* ===== Hero 섹션 ===== */
+	/* Hero는 이름·직함 2줄뿐인 얕은 블록이라 --section-gap(2560px에서 80px)을 쓰면
+	   섹션 간 여백(56+56=112px)보다 커져 페이지 상단이 비어 보인다.
+	   섹션과 같은 리듬을 쓰도록 --section-padding으로 맞춘다. */
 	.hero-section {
-		margin-bottom: var(--section-gap);
+		margin-bottom: var(--section-padding);
 	}
 
 	.hero-layout {
@@ -601,7 +695,9 @@
 		gap: var(--space-6);
 	}
 
-	@media (min-width: 768px) {
+	/* 768~1023px에서는 본문이 화면 폭을 거의 채워, 가로 배치 시 연락처 아이콘이
+	   우측 상단 고정 컨트롤에 가려진다(768px 2개·864px 1개). 여백이 확보되는 1024px부터 가로로 둔다. */
+	@media (min-width: 1024px) {
 		.hero-layout {
 			flex-direction: row;
 			justify-content: space-between;
@@ -633,6 +729,147 @@
 		font-size: 1.125rem;
 		color: var(--color-secondary);
 	}
+
+	/* 현재 역할은 직함과 같은 줄에 덧붙인다. 별도 문단으로 두면 바로 아래 '소개'와 요약이 두 번 반복된다.
+	   구분자는 마크업이 아닌 CSS로 넣어 좌우 간격을 정확히 제어한다 */
+	.hero-role {
+		color: var(--color-muted);
+	}
+
+	.hero-role::before {
+		content: '·';
+		margin: 0 0.45em;
+	}
+
+	/* ===== 스크롤 진행 바 ===== */
+	.scroll-progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		z-index: 50;
+		pointer-events: none;
+	}
+
+	.scroll-progress-bar {
+		height: 100%;
+		background: var(--color-marker);
+	}
+
+	/* ===== 오른쪽 세로 목차 레일 ===== */
+	/* 본문 텍스트 끝과 화면 끝 사이 여백에 놓는다(864px에서 104px).
+	   좁은 폭은 여백이 20px뿐이라 감춘다 - 목차 없이도 문서 이용에 지장이 없다. */
+	.side-nav {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		.side-nav {
+			display: block;
+			position: fixed;
+			right: var(--space-4);
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: var(--z-fixed);
+		}
+	}
+
+	.side-nav-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.side-nav-link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		height: 24px;
+		text-decoration: none;
+	}
+
+	/* 라벨은 기본적으로 감추고 대시만 남겨 시야를 방해하지 않는다.
+	   여백이 좁은 768~1023px에서는 hover/focus 때만 드러낸다. */
+	.side-nav-label {
+		/* absolute로 빼야 레일 박스 폭이 대시 크기로 유지된다.
+		   흐름에 두면 숨긴 상태에서도 폭을 차지해 본문 위를 덮는다. */
+		position: absolute;
+		right: calc(100% + var(--space-2));
+		font-size: 0.75rem;
+		color: var(--color-secondary);
+		white-space: nowrap;
+		opacity: 0;
+		transform: translateX(var(--space-2));
+		transition:
+			opacity var(--duration-fast) var(--ease-out),
+			transform var(--duration-fast) var(--ease-out);
+	}
+
+	.side-nav:hover .side-nav-label,
+	.side-nav:focus-within .side-nav-label {
+		opacity: 1;
+		transform: none;
+	}
+
+	/* 여백이 152px 이상 확보되는 폭부터는 라벨을 항상 노출한다 */
+	@media (min-width: 1024px) {
+		.side-nav-label {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	/* 현재 위치는 색만으로 알리지 않는다. 길이와 두께를 함께 바꾼다 (규칙 9) */
+	.side-nav-dash {
+		width: 14px;
+		height: 1px;
+		background: var(--color-border-hover);
+		flex-shrink: 0;
+		transition:
+			width var(--duration-fast) var(--ease-out),
+			height var(--duration-fast) var(--ease-out),
+			background-color var(--duration-fast) var(--ease-out);
+	}
+
+	.side-nav-link:hover .side-nav-dash {
+		background: var(--color-secondary);
+	}
+
+	.side-nav-link:hover .side-nav-label {
+		color: var(--color-primary);
+	}
+
+	.side-nav-link.active .side-nav-dash {
+		width: 24px;
+		height: 2px;
+		background: var(--color-marker);
+	}
+
+	.side-nav-link.active .side-nav-label {
+		color: var(--color-primary);
+		font-weight: 600;
+	}
+
+	/* 플로팅 컨트롤 (우측 상단) */
+	.floating-control {
+		position: fixed;
+		top: var(--space-4);
+		right: var(--space-4);
+		z-index: var(--z-fixed);
+	}
+
+	@media (min-width: 768px) {
+		.floating-control {
+			top: var(--space-6);
+			right: var(--space-6);
+		}
+	}
+
 
 	.contact-icons {
 		display: flex;
@@ -672,10 +909,10 @@
 	}
 
 	/* ===== 구분선 ===== */
+	/* 화면에서는 섹션 상하 여백(각 48px)만으로 구분이 충분하므로 선을 숨긴다.
+	   여백이 20px로 줄어드는 인쇄에서만 선을 표시한다(@media print). */
 	.section-divider {
-		border: none;
-		border-top: 1px dashed var(--color-border);
-		margin: 0;
+		display: none;
 	}
 
 	/* ===== 콘텐츠 섹션 ===== */
@@ -684,16 +921,25 @@
 		padding-bottom: var(--section-padding);
 	}
 
+	/* 마지막 자식의 margin-bottom이 마진 상쇄로 섹션 밖에 새어나와
+	   구분선 위 여백만 24px 늘어나는 것을 차단한다 (위/아래 대칭 유지) */
+	.section-body > *:last-child {
+		margin-bottom: 0;
+	}
+
 	.section-heading {
-		font-size: 1.125rem;
-		font-weight: 600;
+		/* 목차로 이동했을 때 제목이 상단 바(약 71px) 뒤로 숨지 않도록 여유를 둔다 */
+		scroll-margin-top: var(--space-24);
+		font-size: 1.5rem;
+		font-weight: 700;
+		letter-spacing: -0.01em;
 		color: var(--color-primary);
 		margin-bottom: var(--space-8);
 	}
 
 	@media (min-width: 768px) {
 		.section-heading {
-			font-size: 1.25rem;
+			font-size: 1.625rem;
 			margin-bottom: var(--space-10);
 		}
 	}
@@ -748,8 +994,16 @@
 		/* 경력 아이템 */
 	}
 
+	/* 회사 전환은 성과 전환(24px)보다 큰 경계다. 섹션 > 회사 > 성과 순서를 모든 폭에서 유지한다.
+	   좁은 폭에서는 섹션 간격도 64px까지 줄어들므로 회사 간격을 40px로 낮춰 단계를 보존한다. */
 	.mt-experience {
 		margin-top: var(--space-10);
+	}
+
+	@media (min-width: 768px) {
+		.mt-experience {
+			margin-top: var(--space-16);
+		}
 	}
 
 	.experience-header {
@@ -772,8 +1026,8 @@
 	}
 
 	.experience-company {
-		font-size: 1.125rem;
-		font-weight: 600;
+		font-size: 1.1875rem;
+		font-weight: 700;
 		color: var(--color-primary);
 		margin-bottom: var(--space-1);
 	}
@@ -792,8 +1046,27 @@
 	.experience-description {
 		font-size: 0.9375rem;
 		color: var(--color-secondary);
-		margin-bottom: var(--space-6);
+		margin-bottom: var(--space-4);
 		line-height: 1.6;
+	}
+
+	.experience-stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		list-style: none;
+		padding: 0;
+		margin: 0 0 var(--space-6);
+	}
+
+	.experience-stack-item {
+		font-size: 0.75rem;
+		font-weight: 400;
+		color: var(--color-secondary);
+		background: var(--color-surface);
+		border-radius: var(--space-1);
+		padding: 0.15em 0.55em;
+		white-space: nowrap;
 	}
 
 	.achievement-block {
@@ -805,12 +1078,12 @@
 	}
 
 	.achievement-title {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		font-weight: 600;
 		color: var(--color-primary);
 		margin-bottom: var(--space-3);
 		padding-left: var(--space-3);
-		border-left: 2px solid var(--color-border-hover);
+		border-left: 4px solid var(--color-marker);
 	}
 
 	.achievement-details {
@@ -950,9 +1223,14 @@
 	.opensource-link {
 		display: inline-flex;
 		align-items: center;
-		font-size: 0.8125rem;
+		min-height: 24px;
 		color: var(--color-secondary);
-		text-decoration: none;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.25em;
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.8125rem;
 		transition: color var(--duration-fast) var(--ease-out);
 	}
 
@@ -1072,8 +1350,15 @@
 	}
 
 	.award-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: 24px;
 		color: inherit;
-		text-decoration: none;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-decoration-color: var(--color-border-hover);
+		text-underline-offset: 0.25em;
+		line-height: 1.5;
 		transition: color var(--duration-fast) var(--ease-out);
 	}
 
@@ -1235,6 +1520,13 @@
 			page-break-inside: avoid;
 		}
 
+		.section-divider {
+			display: block;
+			border: none;
+			border-top: 1px solid var(--color-border);
+			margin: 0;
+		}
+
 		.content-section {
 			padding-top: var(--space-5);
 			padding-bottom: var(--space-5);
@@ -1249,7 +1541,7 @@
 		}
 
 		.mt-experience {
-			margin-top: var(--space-6);
+			margin-top: var(--space-8);
 		}
 
 		.experience-description,
@@ -1259,6 +1551,23 @@
 
 		.experience-description {
 			line-height: 1.45;
+			margin-bottom: var(--space-2);
+		}
+
+		.experience-stack {
+			gap: 0.25rem;
+			margin-bottom: var(--space-3);
+		}
+
+		.experience-stack-item {
+			font-size: 0.6875rem;
+			padding: 0;
+			background: transparent;
+			color: var(--color-secondary);
+		}
+
+		.experience-stack-item:not(:last-child)::after {
+			content: ' ·';
 		}
 
 		.opensource-header,

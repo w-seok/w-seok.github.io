@@ -13,11 +13,13 @@ export type Locale = 'ko' | 'en' | 'es';
  * 헤더 섹션 번역
  * @property greeting - 인사말
  * @property title - 직함/타이틀
+ * @property summary - Hero 핵심 요약 (현재 역할·연차·주요 영역)
  * @property subtitle - 부제목/슬로건
  */
 export interface HeaderTranslation {
 	greeting: string;
 	title: string;
+	summary: string;
 	subtitle: string;
 }
 
@@ -50,6 +52,7 @@ export interface SectionTranslation {
  * @property present - 현재 (재직 중)
  * @property toggleTheme - 테마 전환 버튼
  * @property toggleLanguage - 언어 전환 버튼
+ * @property tableOfContents - 섹션 목차 내비게이션 이름
  */
 export interface CommonTranslation {
 	readMore: string;
@@ -57,6 +60,7 @@ export interface CommonTranslation {
 	present: string;
 	toggleTheme: string;
 	toggleLanguage: string;
+	tableOfContents: string;
 }
 
 /**
@@ -85,6 +89,7 @@ export interface AchievementItem {
  * @property position - 직책
  * @property period - 근무 기간
  * @property description - 회사/팀 설명
+ * @property stack - 해당 회사에서 실제 사용한 기술 목록 (선택)
  * @property achievements - 성과 목록
  */
 export interface ExperienceItem {
@@ -92,6 +97,7 @@ export interface ExperienceItem {
 	position: string;
 	period: string;
 	description: string;
+	stack?: string[];
 	achievements: AchievementItem[];
 }
 

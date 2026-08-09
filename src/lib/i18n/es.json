@@ -2,6 +2,7 @@
 	"header": {
 		"greeting": "Hola",
 		"title": "Ingeniero Backend",
+		"summary": "Líder de Application Part en Cupix",
 		"subtitle": "Buscando claridad en un mundo complejo"
 	},
 	"sections": {
@@ -19,7 +20,8 @@
 		"collapse": "Ver menos",
 		"present": "Actualidad",
 		"toggleTheme": "Cambiar tema",
-		"toggleLanguage": "Cambiar idioma"
+		"toggleLanguage": "Cambiar idioma",
+		"tableOfContents": "Índice de secciones"
 	},
 	"resume": {
 		"about": {
@@ -31,53 +33,72 @@
 				"company": "Cupix",
 				"position": "Backend Engineer / Application Part Lead · Backend (Dic 2025–Actualidad, liderazgo de part de 3 personas)",
 				"period": "Nov 2024 – Actualidad",
-				"description": "Empresa global de SaaS de IA espacial que conecta modelos 3D de edificios con capturas 360° en obra para seguir el progreso de construcción y el estado de los activos. Lideré el Application Part de 3 personas dentro del equipo backend de Cupix mientras contribuía directamente en validación de datos SiteInsights, procesamiento de eventos con Kinesis/SQS, preprocesamiento BIM AI, estabilidad operativa Redis/Sidekiq y contratos API/SDK.",
+				"description": "Empresa global de SaaS de IA espacial que conecta modelos 3D de diseño con capturas 360° en obra para seguir el avance de construcción y el estado de los activos. Entre un monolito Rails, microservicios NestJS/Lambda y más de 30 agentes de procesamiento, construí pipelines de procesamiento de archivos grandes, trabajé en la consistencia de datos multirregión y en la infraestructura de desarrollo, y desde diciembre de 2025 lidero un Application Part de 3 personas.",
 				"achievements": [
 					{
-						"title": "Estabilización de Fiabilidad de Datos y Eventos en SiteInsights",
+						"title": "Construcción de un pipeline de procesamiento BIM a gran escala y mejora de su rendimiento",
 						"details": [
-							"Construí una API de validación que clasifica discrepancias entre Elements de modelos 3D y ElementRecords de progreso en duplicados, orphans, phase mismatches, task-state mismatches y negative diffs",
-							"Descompuse 475 discrepancias en un caso real de cliente en 446 task-state mismatches y 29 registros faltantes, haciendo más sistemática la investigación de incidencias",
-							"Reemplacé actualizaciones masivas de ElementRecord con bulkWrite, reduciendo 300 actualizaciones de 300 comandos DB a 1 comando y verificando la ruta con un pool MongoDB limitado",
-							"Agregué partial batch failure, retención DLQ de 14 días, alarma de iterator age de 60 segundos y alarmas de write throughput para mejorar la visibilidad de lag y reintentos en Kinesis"
+							"Construí un nuevo servicio NestJS que analiza modelos BIM 3D con cientos de miles de piezas y genera borradores de clasificación por IA, diseñándolo en tres repositorios incluyendo la infraestructura (Elastic Beanstalk) y la capa de integración con Rails",
+							"Reduje la descarga de geometría de 19m30s a 3m17s en un modelo de 840K objetos, reemplazando hasta 347K peticiones HTTPS individuales por unos 700 mensajes por lotes vía WebSocket, dejando la ruta anterior como recuperación para no afectar la consistencia y verificando igualdad byte a byte por hash",
+							"Convertí una extracción que moría con OOM a 8.058MB en una que termina dentro de un heap de 8GB mediante streaming, y reduje el almacenamiento de 6,4GB a 3GB reestructurando las propiedades con diccionario de claves y compresión",
+							"Medí por qué Aurora rechaza INSERT grandes antes de ejecutarlos y comprobé que la variable de control son los bytes de la sentencia y no el número de filas (15 rechazos en INSERT frente a 1 en DELETE en la misma ejecución, 0,5–1MB frente a ~100B); cambié el batching a un presupuesto de bytes que se reduce a la mitad en cada rechazo",
+							"Analicé un fallo en el que las extracciones quedaban bloqueadas hasta 14 días porque se perdía el propio registro de error, confirmé cuatro causas raíz con logs y mediciones en base de datos, y añadí un proceso que comprueba en la cola si el trabajo sigue vivo para recuperar filas zombis"
 						]
 					},
 					{
-						"title": "Construcción de BIM AI Preprocessing y Category Mapping Draft",
+						"title": "Consistencia de datos multirregión y pipeline de eventos",
 						"details": [
-							"Construí un servicio interno NestJS que extrae decenas a cientos de miles de objetos BIM y los conecta con un artifact Python de IA para generar borradores de category mapping",
-							"Apliqué batches de inserción de 2,500 filas, batches de purge de 10,000 filas, timeouts de lectura y yield del event loop cada 2,048 elementos para reducir locks DB y bloqueo del event loop de Node.js",
-							"Configuré el worker BullMQ con concurrency 1, lock duration de 300 segundos y retry/backoff por etapa para evitar parsing CPU-bound duplicado y picos de memoria superpuestos",
-							"Usé decoradores OpenAPI como fuente única del contrato API y agregué openapi:check, pruebas unit/e2e y harnesses Testcontainers de load/burst para integración frontend y regresión",
-							"Eliminé el uso de admin token en rutas de producción, pasé tokens de usuario con scope de team y agregué una prueba de regresión que falla si se reintroduce admin delegation"
+							"Investigué y recuperé 124 incidencias de inconsistencia de datos reportadas en las regiones de EE. UU., Australia, Europa, Singapur, Japón y Oriente Medio, identificando causas raíz como una ruta en la que cambiar categoría y área de trabajo a la vez no publicaba el evento de cambio",
+							"Construí una API de validación que descompone las diferencias entre elementos del modelo 3D y registros de obra en duplicados, faltantes, desajustes de fase y diferencias negativas, y fijé un caso real de cliente como test para evitar regresiones",
+							"Agrupé la publicación de eventos en Kinesis por tamaño exacto en bytes al 90% del límite del shard (1MB, 1.000 registros/s) y reintenté solo los registros fallidos; la Lambda consumidora se detiene en el primer fallo para preservar el orden dentro del shard",
+							"Sustituí las actualizaciones masivas por una única llamada bulkWrite y fijé con un test que solo se realiza una llamada"
 						]
 					},
 					{
-						"title": "Construcción de Pipeline Asíncrono de IA para Capture Intelligence",
+						"title": "Infraestructura de desarrollo y liderazgo del Application Part",
 						"details": [
-							"Implementé un flujo asíncrono que envía datos de captura 360° a un agent basado en SQS FIFO y guarda la salida de Python LLM como summaries de capture y spacetime",
-							"Agregué estados queued, processing, done y error con guards de ejecución en Rails backend para que el procesamiento de IA fuera trazable en flujos de producto y logs",
-							"Validé embeddings de 1536 dimensiones antes de persistir para evitar que salidas LLM mal formadas rompieran el indexing dense-vector de Elasticsearch",
-							"Reflejé summary_version, campos summary nullables y schemas de embedding en contratos API y SDK para reducir drift de modelo entre backend, agent y client"
-						]
-					},
-					{
-						"title": "Mejora de Operaciones Redis/Sidekiq y Costo de Ejecución de Pruebas",
-						"details": [
-							"Reemplacé escaneos de cache basados en Redis KEYS por SCAN(count 1000), y apliqué connection pooling, lazy-free delete y separación de Redis dedicado a Sidekiq para reducir el riesgo de bloqueo en cache/jobs",
-							"Agregué lock-wait retry, prevención de retry duplicado y batching de 300 elementos en TaskSyncWorker para estabilizar sincronización background bajo contención",
-							"Introduje test-prof let_it_be, before_all y factory_default, reutilizando setup de factories en más de 135 archivos spec",
-							"Reduje overhead del pipeline de pruebas Rails al evitar costos de arranque de Datadog/Elasticsearch donde correspondía, simplificar formatters RSpec y limitar Rubocop en CI a archivos modificados"
+							"Reduje el pipeline de tests de CI de 49m20s a 11m47s (76%). El profiling identificó como cuello de botella la cascada de creación de datos de test (una sola llamada a fixture provocaba 29 operaciones de base de datos); tras documentar por qué se descartaron tres alternativas, apliqué fixtures ligeros a 57 de 71 archivos",
+							"Añadí una verificación en CI que falla cuando un test supera su presupuesto de tiempo por caso, junto con una regla de análisis estático, para que la suite no vuelva a degradarse en silencio",
+							"Desarrollé en Rust una herramienta interna de automatización de revisión de PR que el equipo backend usa en lugar de un servicio comercial. Medí los patrones de error de la salida de IA sobre 218 informes reales y 860 elementos, e implementé un validador que descarta citas a código inexistente y hallazgos sin evidencia",
+							"Lidero un Application Part de 3 personas: reparto las áreas de responsabilidad, traslado al equipo el contenido de las reuniones de dirección y de ingeniería, y presento los resultados del part cada dos semanas"
 						]
 					}
+				],
+				"stack": [
+					"Ruby on Rails",
+					"NestJS",
+					"TypeScript",
+					"Rust",
+					"MySQL / Aurora",
+					"MongoDB",
+					"Elasticsearch",
+					"Redis",
+					"AWS Kinesis",
+					"SQS",
+					"Lambda",
+					"ECS",
+					"Elastic Beanstalk",
+					"Terraform",
+					"Docker",
+					"Datadog",
+					"BullMQ / Sidekiq"
 				]
 			},
 			{
 				"company": "Tmax Fintech",
 				"position": "Ingeniero Backend",
 				"period": "Feb 2024 – Oct 2024",
-				"description": "Enfocado en optimización de servicios y construcción de infraestructura para mejorar la productividad del desarrollador.",
+				"description": "Estandaricé el entorno de desarrollo y pruebas basado en Tibero del equipo, mientras asumía el desarrollo posterior, la cobertura de tests y el rendimiento de consultas de un back office de seguros mutuos de reparto.",
 				"achievements": [
+					{
+						"title": "Finalización de un back office de seguros retrasado y mejora de sus tests y consultas",
+						"details": [
+							"Me incorporé en la fase final a un back office de seguros mutuos retrasado por falta de personal, desarrollé cuatro funciones de gestión de contratos (cotización, cobro, aprobación de contrato, endoso) y las llevé desde las pruebas de integración hasta el despliegue en QA",
+							"Introduje tests de caracterización (unitarios y e2e) en código heredado sin ninguna cobertura, catalogando primero los escenarios, hasta alcanzar cerca del 70% de cobertura en el área de contratos a mi cargo y establecer una red de seguridad frente a regresiones",
+							"Revisé el plan de ejecución de todas las consultas SQL de mi área con EXPLAIN PLAN y DBMS_XPLAN, y eliminé los N+1 detectados al rastrear consultas repetidas en los listados mediante fetch join y carga por lotes",
+							"Bloqueé las pérdidas de actualización que se producían cuando varios empleados endosaban el mismo contrato a la vez, comparando la versión del contrato (bloqueo optimista), y verifiqué con un test de guardado concurrente que solo un commit tenía éxito y cero actualizaciones se perdían"
+						]
+					},
 					{
 						"title": "Mejora de la Productividad del Desarrollador y Automatización de Pruebas en un Entorno DBMS Cerrado (Tibero)",
 						"details": [
@@ -88,6 +109,16 @@
 							"Publiqué 3 proyectos validados internamente como código abierto, contribuyendo a la expansión del ecosistema de desarrolladores Tibero"
 						]
 					}
+				],
+				"stack": [
+					"Java",
+					"Spring Boot",
+					"Tibero",
+					"Flyway",
+					"JUnit / Testcontainers",
+					"Docker",
+					"JPA",
+					"Azure DevOps"
 				]
 			},
 			{
@@ -127,6 +158,17 @@
 							"Mejoré el estado de generación y el guardado de resultados para que los reintentos tras fallos de APIs externas de IA no quedaran desalineados"
 						]
 					}
+				],
+				"stack": [
+					"Java",
+					"Spring Boot",
+					"MySQL",
+					"Redis",
+					"AWS Lambda@Edge",
+					"CloudFront",
+					"S3",
+					"EC2 / GPU",
+					"Docker"
 				]
 			}
 		],
@@ -134,27 +176,72 @@
 			{
 				"category": "Backend",
 				"items": [
-					{ "name": "Ruby on Rails", "context": "Backend de plataforma SaaS de IA espacial 360°" },
-					{ "name": "Java / Spring Boot", "context": "Servicio de generación de imágenes IA, herramientas open source Tibero" },
-					{ "name": "TypeScript / Node.js", "context": "Desarrollo de Processing Agent y SDK" },
-					{ "name": "Python", "context": "Pipeline de preprocesamiento IA" }
+					{
+						"name": "Ruby on Rails",
+						"context": "Cupix — API principal del SaaS de IA espacial: dominio, máquinas de estado, eventos"
+					},
+					{
+						"name": "NestJS / TypeScript",
+						"context": "Cupix — servicio de procesamiento BIM creado desde cero (56K LOC) y agentes"
+					},
+					{
+						"name": "Java / Spring Boot",
+						"context": "Miridih — generación de imágenes con IA · Tmax — back office de seguros, Tibero"
+					},
+					{
+						"name": "Rust",
+						"context": "Herramienta interna de revisión de PR (67K LOC), en uso por el equipo backend"
+					}
 				]
 			},
 			{
-				"category": "Bases de Datos",
+				"category": "Database / Search",
 				"items": [
-					{ "name": "MySQL / PostgreSQL", "context": "Diseño y operación de RDBMS principal" },
-					{ "name": "MongoDB", "context": "Almacenamiento y consulta de datos espaciales 360°" },
-					{ "name": "Redis", "context": "Caché, bloqueos distribuidos, Pub/Sub" }
+					{
+						"name": "MySQL / Aurora",
+						"context": "Cupix·Miridih — diseño de RDBMS principal, ajuste de escrituras masivas"
+					},
+					{
+						"name": "MongoDB",
+						"context": "Cupix — registros de progreso en obra, procesamiento por lotes con bulkWrite"
+					},
+					{
+						"name": "Tibero",
+						"context": "Tmax — revisión completa de planes de ejecución, dialecto Flyway"
+					},
+					{
+						"name": "Elasticsearch",
+						"context": "Cupix — filtrado por permisos, indexación de capturas y resúmenes"
+					},
+					{
+						"name": "Redis",
+						"context": "Cupix — cola BullMQ, instancia dedicada a Sidekiq, ElastiCache"
+					}
 				]
 			},
 			{
 				"category": "Cloud / DevOps",
 				"items": [
-					{ "name": "AWS", "context": "Arquitectura basada en ECS Fargate, Lambda, SQS, Kinesis" },
-					{ "name": "Terraform", "context": "Infraestructura como código multi-región" },
-					{ "name": "Docker", "context": "Reducción 70% tamaño imagen Tibero (1.5GB → 401MB)" },
-					{ "name": "Datadog", "context": "Sistema de monitorización SLO/APM en 6 regiones" }
+					{
+						"name": "AWS",
+						"context": "Pipelines con Kinesis, SQS, Lambda, ECS, Elastic Beanstalk, S3, CloudFront"
+					},
+					{
+						"name": "Terraform",
+						"context": "Cupix — infraestructura multirregión como código, nuevo stack del servicio BIM"
+					},
+					{
+						"name": "Docker",
+						"context": "Imágenes de agentes; reducción del 70% en la imagen de Tibero (1.5GB → 401MB)"
+					},
+					{
+						"name": "Datadog",
+						"context": "Respuesta a alertas, análisis de causa raíz por logs, diseño de monitores"
+					},
+					{
+						"name": "CI / Testing",
+						"context": "Pipeline de CI reducido 76%; Testcontainers, Vitest, RSpec"
+					}
 				]
 			}
 		],

@@ -2,6 +2,7 @@
 	"header": {
 		"greeting": "Hello",
 		"title": "Backend Engineer",
+		"summary": "Application Part Lead at Cupix",
 		"subtitle": "Pursuing clarity in an intricate world"
 	},
 	"sections": {
@@ -19,7 +20,8 @@
 		"collapse": "Collapse",
 		"present": "Present",
 		"toggleTheme": "Toggle theme",
-		"toggleLanguage": "Change language"
+		"toggleLanguage": "Change language",
+		"tableOfContents": "Table of contents"
 	},
 	"resume": {
 		"about": {
@@ -31,53 +33,72 @@
 				"company": "Cupix",
 				"position": "Backend Engineer / Application Part Lead · Backend (Dec 2025–Present, led 3-person part)",
 				"period": "Nov 2024 – Present",
-				"description": "Global spatial AI SaaS company that connects building 3D design models with on-site 360° capture data to track construction progress and asset status. Led the 3-person Application Part within the Cupix backend team while contributing hands-on to SiteInsights data validation, Kinesis/SQS-based event processing, BIM AI preprocessing, Redis/Sidekiq operational stability, and API/SDK contract alignment.",
+				"description": "Global spatial AI SaaS company that connects building 3D design models with on-site 360° capture data to track construction progress and asset status. Across a Rails monolith, NestJS/Lambda microservices and 30+ processing agents, I built large-file processing pipelines, worked on multi-region data consistency and developer infrastructure, and have led a 3-person Application Part since Dec 2025.",
 				"achievements": [
 					{
-						"title": "Stabilized SiteInsights Data Reliability and Event Processing",
+						"title": "Built a Large-Scale BIM Processing Pipeline and Improved Its Performance",
 						"details": [
-							"Built a validation API that classifies discrepancies between 3D model Elements and field progress ElementRecords into duplicates, orphans, phase mismatches, task-state mismatches, and negative diffs",
-							"Broke down 475 discrepancies in a real customer case into 446 task-state mismatches and 29 missing records, making customer investigations more systematic",
-							"Replaced ElementRecord bulk updates with bulkWrite, reducing 300 updates from 300 DB commands to 1 command and verifying the path under a limited MongoDB connection pool",
-							"Added partial batch failure handling, 14-day DLQ retention, 60-second iterator-age alarms, and write-throughput alarms to improve Kinesis event lag visibility and retry behavior"
+							"Built a new NestJS service that parses BIM 3D models with hundreds of thousands of parts and produces AI classification drafts, designing it across three repositories including the infrastructure (Elastic Beanstalk) and the Rails integration layer",
+							"Cut geometry download from 19m30s to 3m17s on an 840K-object model by replacing up to 347K per-chunk HTTPS requests with roughly 700 WebSocket batch messages, keeping the existing path as the recovery route so the change could not affect correctness, and verifying byte-level equality by hash",
+							"Turned an extraction that died at 8,058MB with OOM into one that completes within an 8GB heap by moving to streaming, and cut storage from 6.4GB to 3GB by restructuring property storage with key dictionaries and compression",
+							"Measured why Aurora rejects large INSERTs before execution and found the control variable is statement bytes rather than row count (15 rejections for INSERT vs 1 for DELETE in the same run, 0.5–1MB vs ~100B), then switched batching to a byte budget that halves on each rejection and retries",
+							"Traced a failure where extractions stayed locked for up to 14 days because the failure record itself was lost, confirmed four root causes from logs and database measurements, and added a sweeper that checks job liveness in the queue to reclaim zombie rows"
 						]
 					},
 					{
-						"title": "Built BIM AI Preprocessing and Category Mapping Draft Service",
+						"title": "Multi-Region Data Consistency and Event Pipeline",
 						"details": [
-							"Built a NestJS internal service that extracts tens to hundreds of thousands of BIM objects and connects them to a Python AI artifact for category-mapping draft generation",
-							"Applied 2,500-row insert batches, 10,000-row purge batches, read-query timeouts, and event-loop yielding every 2,048 items to reduce DB lock time and Node.js event-loop blocking",
-							"Configured the BullMQ worker with concurrency 1, a 300-second lock duration, and step-level retry/backoff to avoid duplicate CPU-bound parsing and overlapping memory peaks",
-							"Used OpenAPI decorators as the single source of API contracts and added openapi:check, unit/e2e tests, and Testcontainers load/burst harnesses for frontend integration and regression coverage",
-							"Removed admin-token usage from production paths, passed through team-scoped user tokens, and added a regression test that fails if admin delegation is reintroduced"
+							"Investigated and recovered 124 data inconsistency incidents reported across US, Australia, Europe, Singapore, Japan and Middle East regions, identifying root causes such as a path where changing category and work area together never published the change event",
+							"Built a validation API that breaks down mismatches between 3D model elements and field records into duplicates, missing rows, phase mismatches and negative diffs, and pinned a real customer case as a test to prevent regressions",
+							"Batched Kinesis event publishing by exact byte size at 90% of the shard limit (1MB, 1,000 records/sec) and retried only failed records on partial failure; the consuming Lambda stops at the first failure to preserve in-shard ordering",
+							"Replaced bulk updates with a single bulkWrite call and pinned the one-call behavior with a test"
 						]
 					},
 					{
-						"title": "Built an Asynchronous Capture Intelligence AI Pipeline",
+						"title": "Developer Infrastructure and Application Part Leadership",
 						"details": [
-							"Implemented an asynchronous flow that sends 360° capture data to an SQS FIFO-based agent and stores Python LLM output as capture and spacetime summaries",
-							"Added queued, processing, done, and error states with execution guards in the Rails backend so AI processing status could be tracked in product flows and logs",
-							"Validated 1536-dimensional embedding shape before persistence to prevent malformed LLM output from breaking Elasticsearch dense-vector indexing",
-							"Reflected summary_version, nullable summary fields, and embedding schemas in API and SDK contracts to reduce model drift across backend, agent, and client"
-						]
-					},
-					{
-						"title": "Improved Redis/Sidekiq Operations and Test Execution Cost",
-						"details": [
-							"Replaced Redis KEYS-based cache scans with SCAN(count 1000), and applied Redis connection pooling, lazy-free deletes, and Sidekiq-dedicated Redis separation to reduce cache/job blocking risk",
-							"Added lock-wait retry, duplicate retry prevention, and 300-item batching to TaskSyncWorker to stabilize background synchronization under contention",
-							"Introduced test-prof let_it_be, before_all, and factory_default, reusing factory setup across 135+ spec files",
-							"Reduced Rails test pipeline overhead by skipping Datadog/Elasticsearch test boot costs where appropriate, simplifying RSpec formatter settings, and limiting CI Rubocop to changed files"
+							"Cut the CI test pipeline from 49m20s to 11m47s (76%). Profiling identified the bottleneck as the test data creation cascade (a single fixture call triggered 29 database operations); after documenting why three alternatives were rejected, I applied lightweight fixtures to 57 of 71 files",
+							"Added a CI gate that fails when a test exceeds its per-example time budget, plus a static analysis rule, so the suite cannot silently slow down again",
+							"Built an in-house PR review automation tool in Rust that the backend team uses instead of a commercial service. Measured the error patterns of AI review output across 218 real reports and 860 items, then implemented a validator that filters out citations to code that does not exist and findings with no evidence",
+							"Lead a 3-person Application Part: assign ownership areas, relay leadership and company-wide engineering meetings to the part, and present part results on a biweekly cadence"
 						]
 					}
+				],
+				"stack": [
+					"Ruby on Rails",
+					"NestJS",
+					"TypeScript",
+					"Rust",
+					"MySQL / Aurora",
+					"MongoDB",
+					"Elasticsearch",
+					"Redis",
+					"AWS Kinesis",
+					"SQS",
+					"Lambda",
+					"ECS",
+					"Elastic Beanstalk",
+					"Terraform",
+					"Docker",
+					"Datadog",
+					"BullMQ / Sidekiq"
 				]
 			},
 			{
 				"company": "Tmax Fintech",
 				"position": "Backend Engineer",
 				"period": "Feb 2024 – Oct 2024",
-				"description": "Focused on service optimization and building infrastructure for enhanced developer productivity.",
+				"description": "Standardized the team's Tibero-based development and test environment while taking over follow-up development, test coverage and query performance for a delivery mutual aid insurance back office.",
 				"achievements": [
+					{
+						"title": "Completed a Delayed Insurance Back Office and Improved Its Tests and Queries",
+						"details": [
+							"Joined a delivery mutual aid insurance back office late after it had been delayed by understaffing, built four contract-processing features (quotation, payment, contract approval, endorsement), and carried them through integration testing to QA deployment",
+							"Introduced characterization tests (unit and e2e) to inherited code that had zero test coverage by cataloging scenarios first, reaching roughly 70% coverage in the contract-processing area I owned and establishing a regression safety net",
+							"Reviewed the execution plan of every SQL statement my area issued using EXPLAIN PLAN and DBMS_XPLAN, and removed N+1 queries found by tracing repeated queries in list endpoints using fetch join and batch loading",
+							"Blocked lost updates that occurred when several staff endorsed the same contract concurrently by comparing contract versions (optimistic locking), verified with a concurrent-save test that exactly one commit succeeded and zero updates were lost"
+						]
+					},
 					{
 						"title": "Improved Developer Productivity and Test Automation in a Closed DBMS Environment (Tibero)",
 						"details": [
@@ -88,6 +109,16 @@
 							"Released 3 internally validated projects as open source, contributing to the expansion of Tibero developer ecosystem"
 						]
 					}
+				],
+				"stack": [
+					"Java",
+					"Spring Boot",
+					"Tibero",
+					"Flyway",
+					"JUnit / Testcontainers",
+					"Docker",
+					"JPA",
+					"Azure DevOps"
 				]
 			},
 			{
@@ -127,6 +158,17 @@
 							"Improved generation state and result persistence so retries after external AI API failures do not drift"
 						]
 					}
+				],
+				"stack": [
+					"Java",
+					"Spring Boot",
+					"MySQL",
+					"Redis",
+					"AWS Lambda@Edge",
+					"CloudFront",
+					"S3",
+					"EC2 / GPU",
+					"Docker"
 				]
 			}
 		],
@@ -134,27 +176,72 @@
 			{
 				"category": "Backend",
 				"items": [
-					{ "name": "Ruby on Rails", "context": "360° spatial AI SaaS platform backend" },
-					{ "name": "Java / Spring Boot", "context": "AI image generation service, Tibero open source tools" },
-					{ "name": "TypeScript / Node.js", "context": "Processing Agent, SDK development" },
-					{ "name": "Python", "context": "AI preprocessing pipeline" }
+					{
+						"name": "Ruby on Rails",
+						"context": "Cupix — main API for spatial AI SaaS: domain models, state machines, event publishing"
+					},
+					{
+						"name": "NestJS / TypeScript",
+						"context": "Cupix — built a BIM processing service from scratch (56K LOC) and processing agents"
+					},
+					{
+						"name": "Java / Spring Boot",
+						"context": "Miridih — AI image generation service · Tmax — insurance back office, Tibero tooling"
+					},
+					{
+						"name": "Rust",
+						"context": "Built an in-house PR review automation tool (67K LOC), adopted by the backend team"
+					}
 				]
 			},
 			{
-				"category": "Database",
+				"category": "Database / Search",
 				"items": [
-					{ "name": "MySQL / PostgreSQL", "context": "Primary RDBMS design and operations" },
-					{ "name": "MongoDB", "context": "360° spatial data storage and retrieval" },
-					{ "name": "Redis", "context": "Caching, distributed locks, Pub/Sub" }
+					{
+						"name": "MySQL / Aurora",
+						"context": "Cupix·Miridih — primary RDBMS design, bulk write tuning"
+					},
+					{
+						"name": "MongoDB",
+						"context": "Cupix — field progress records, bulkWrite batching"
+					},
+					{
+						"name": "Tibero",
+						"context": "Tmax — full execution plan review, Flyway dialect development"
+					},
+					{
+						"name": "Elasticsearch",
+						"context": "Cupix — permission filtering, capture and summary indexing"
+					},
+					{
+						"name": "Redis",
+						"context": "Cupix — BullMQ job queue, dedicated Sidekiq instance, ElastiCache"
+					}
 				]
 			},
 			{
 				"category": "Cloud / DevOps",
 				"items": [
-					{ "name": "AWS", "context": "ECS Fargate, Lambda, SQS, Kinesis-based architecture" },
-					{ "name": "Terraform", "context": "Multi-region infrastructure as code" },
-					{ "name": "Docker", "context": "Tibero image 70% size reduction (1.5GB → 401MB)" },
-					{ "name": "Datadog", "context": "6-region SLO/APM monitoring system" }
+					{
+						"name": "AWS",
+						"context": "Pipelines on Kinesis, SQS, Lambda, ECS, Elastic Beanstalk, S3, CloudFront"
+					},
+					{
+						"name": "Terraform",
+						"context": "Cupix — multi-region infrastructure as code, new BIM service stack"
+					},
+					{
+						"name": "Docker",
+						"context": "Agent images; reduced Tibero image size by 70% (1.5GB → 401MB)"
+					},
+					{
+						"name": "Datadog",
+						"context": "Incident alert response, log-based root cause analysis, monitor design"
+					},
+					{
+						"name": "CI / Testing",
+						"context": "Cut CI pipeline by 76%; Testcontainers, Vitest, RSpec automation"
+					}
 				]
 			}
 		],

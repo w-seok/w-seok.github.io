@@ -50,7 +50,12 @@
 		/* ===== Semantic Tokens - Light Mode ===== */
 		--color-primary: var(--gray-900);
 		--color-secondary: var(--gray-700);
-		--color-muted: var(--gray-500);
+		--color-muted: #656f7d; /* 소형 텍스트 4.5:1 충족: 흰 배경 5.09, gray-50 카드 4.87 */
+		/* 성과 막대 전용. accent(파랑=클릭 가능)와 색을 분리해 비대화형임을 유지한다.
+		   명도 52%의 파스텔 민트. 흰 배경 대비는 2.11:1로 3:1에 못 미치지만,
+		   성과 제목이 이미 굵고 어두워 막대 없이도 내용 이해가 가능한 장식 요소라
+		   WCAG 1.4.11 대상이 아니다. 낮아진 대비는 폭 4px로 보정한다. */
+		--color-marker: #3fc98a;
 		--color-accent: #0064ff;
 		--color-accent-hover: #0052d9;
 		--color-background: #ffffff;
@@ -129,9 +134,10 @@
 	/* ===== Dark Mode ===== */
 	:root.dark {
 		--color-primary: #f1f5f9;
-		--color-secondary: #94a3b8;
-		--color-muted: #64748b;
-		--color-accent: #60a5fa;
+		--color-secondary: #a0aec0; /* gray-800 카드 위 4.87:1 (기존 #94a3b8은 4.29로 미달) */
+		--color-muted: #a0aec0; /* 기존 #64748b은 카드 위 2.31:1로 크게 미달 */
+		--color-accent: #7ab3fb; /* gray-800 카드 위 5.06:1 (기존 #60a5fa는 4.32로 미달) */
+		--color-marker: #6ee7b7; /* 다크에서도 같은 파스텔 톤을 유지 */
 		--color-accent-hover: #93c5fd;
 		--color-background: var(--gray-900);
 		--color-surface: var(--gray-800);

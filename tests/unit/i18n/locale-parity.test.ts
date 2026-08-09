@@ -156,11 +156,6 @@ describe('로케일 구조 일치', () => {
 		expect(koData.resume.about.summary).not.toContain('Firehose');
 		expect(koData.resume.about.summary).not.toContain('로컬 테스트 DB 환경');
 		expect(koData.resume.about.summary).not.toContain('폐쇄적인 DBMS 환경');
-		expect(JSON.stringify(koData.resume.experience)).toContain(
-			'Rails test pipeline 실행 시간을 약 1시간에서 17분으로 단축'
-		);
-		expect(JSON.stringify(koData.resume.experience)).toContain('test-prof 기반 fixture 재사용');
-		expect(JSON.stringify(koData.resume.experience)).toContain('외부 의존성 boot overhead 정리');
 
 		expect(enData.resume.about.summary).toContain('Cupix');
 		expect(enData.resume.about.summary).toContain('Java/Spring');
@@ -221,7 +216,7 @@ describe('로케일 구조 일치', () => {
 		expect(esData.resume.about.summary).not.toContain('entorno DBMS cerrado');
 	});
 
-	it('Cupix 경력이 파트 리드 기간과 리딩 범위를 설명함', () => {
+	it('Cupix 경력이 파트 리드 범위와 대표 성과를 설명함', () => {
 		const cupix = koData.resume.experience.find((exp) => exp.company === 'Cupix');
 		expect(cupix).toBeDefined();
 		if (!cupix) {
@@ -234,11 +229,22 @@ describe('로케일 구조 일치', () => {
 		expect(cupix.position).toContain('3명 파트 리딩');
 		expect(cupix.description).toContain('건물 3D 설계 모델과 현장 360° 캡처 데이터');
 		expect(cupix.description).toContain('글로벌 공간 AI SaaS 기업');
-		expect(cupix.description).toContain('Cupix 백엔드 팀 내 3명 규모 Application Part');
-		expect(cupix.description).toContain('실무 개발과 함께 리딩');
-		expect(cupix.description).not.toBe(
-			'건물 3D 설계 모델과 현장 360° 캡처 데이터를 연결해 시공 진행률과 자산 상태를 추적하는 글로벌 공간 AI SaaS 기업입니다. SiteInsights 데이터 검증, Kinesis/SQS 기반 이벤트 처리, BIM AI 전처리, Redis/Sidekiq 운영 안정화, API/SDK 계약 정리를 담당했습니다.'
-		);
+		expect(cupix.description).toContain('3명 규모 Application Part를 리딩');
+
+		const details = JSON.stringify(cupix.achievements);
+		expect(cupix.achievements).toHaveLength(3);
+		expect(details).toContain('19분 30초에서 3분 17초');
+		expect(details).toContain('8,058MB');
+		expect(details).toContain('6.4GB에서 3GB');
+		expect(details).toContain('49분 20초에서 11분 47초로 76% 단축');
+		expect(details).toContain('DB 연산 29개');
+		expect(details).toContain('124건');
+		expect(details).toContain('218건·항목 860개');
+		// 근거 없는 옛 수치는 다시 들어오지 않아야 함
+		expect(details).not.toContain('약 1시간에서 17분');
+		expect(details).not.toContain('300개에서 1개');
+		expect(details).not.toContain('1536차원');
+		expect(details).not.toContain('475건');
 	});
 
 	it('Miridih 경력이 GPU와 CDN 비용 절감 기준을 설명함', () => {
@@ -329,13 +335,17 @@ describe('로케일 구조 일치', () => {
 		}
 
 		expect(tmax.description).toContain('핀테크 서비스 개발 조직');
-		expect(tmax.description).toContain('Tibero 기반 개발·테스트 환경을 표준화');
-		expect(tmax.description).toContain('로컬 테스트 DB');
-		expect(tmax.description).toContain('CI 통합 테스트');
-		expect(tmax.description).toContain('Flyway 마이그레이션');
+		expect(tmax.description).toContain('배달서비스공제조합 공제보험 백오피스');
+		expect(tmax.description).toContain('Tibero 기반 개발·테스트 환경도 표준화');
 		expect(tmax.description).not.toContain('서비스 최적화 및 개발 생산성 향상');
 
 		const details = JSON.stringify(tmax.achievements);
+		expect(tmax.achievements).toHaveLength(2);
+		expect(details).toContain('QA 배포까지 완료');
+		expect(details).toContain('커버리지 0%');
+		expect(details).toContain('약 70%');
+		expect(details).toContain('갱신 유실');
+		expect(details).toContain('커밋 1건·유실 0건');
 		expect(details).toContain('Tibero Docker/TestContainer를 구축');
 		expect(details).toContain('CI 파이프라인에 통합해 DB 의존 테스트를 자동화');
 		expect(details).toContain('Tibero 전용 dialect');
