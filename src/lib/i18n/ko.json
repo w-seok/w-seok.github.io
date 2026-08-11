@@ -65,23 +65,14 @@
 					}
 				],
 				"stack": [
-					"Ruby on Rails",
-					"NestJS",
-					"TypeScript",
+					"Ruby on Rails 7.2",
+					"NestJS 11",
+					"TypeScript 5.8",
 					"Rust",
-					"MySQL / Aurora",
-					"MongoDB",
-					"Elasticsearch",
-					"Redis",
-					"AWS Kinesis",
-					"SQS",
-					"Lambda",
-					"ECS",
-					"Elastic Beanstalk",
-					"Terraform",
-					"Docker",
-					"Datadog",
-					"BullMQ / Sidekiq"
+					"Aurora MySQL 8.0",
+					"MongoDB 7.0",
+					"AWS",
+					"Terraform"
 				]
 			},
 			{
@@ -111,14 +102,9 @@
 					}
 				],
 				"stack": [
-					"Java",
-					"Spring Boot",
-					"Tibero",
-					"Flyway",
-					"JUnit / Testcontainers",
-					"Docker",
-					"JPA",
-					"Azure DevOps"
+					"Java 17",
+					"Spring Boot 3.0",
+					"Tibero"
 				]
 			},
 			{
@@ -160,15 +146,10 @@
 					}
 				],
 				"stack": [
-					"Java",
-					"Spring Boot",
-					"MySQL",
-					"Redis",
-					"AWS Lambda@Edge",
-					"CloudFront",
-					"S3",
-					"EC2 / GPU",
-					"Docker"
+					"Java 17",
+					"Spring Boot 3.0",
+					"PostgreSQL 15",
+					"AWS"
 				]
 			}
 		],
@@ -199,7 +180,11 @@
 				"items": [
 					{
 						"name": "MySQL / Aurora",
-						"context": "Cupix·Miridih — 메인 RDBMS 설계, 대용량 배치 쓰기 튜닝"
+						"context": "Cupix — 메인 RDBMS 설계, 대용량 배치 쓰기 튜닝"
+					},
+					{
+						"name": "PostgreSQL",
+						"context": "Miridih — AI 이미지 생성 서비스 메인 RDBMS"
 					},
 					{
 						"name": "MongoDB",

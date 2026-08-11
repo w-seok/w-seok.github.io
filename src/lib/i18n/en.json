@@ -65,23 +65,14 @@
 					}
 				],
 				"stack": [
-					"Ruby on Rails",
-					"NestJS",
-					"TypeScript",
+					"Ruby on Rails 7.2",
+					"NestJS 11",
+					"TypeScript 5.8",
 					"Rust",
-					"MySQL / Aurora",
-					"MongoDB",
-					"Elasticsearch",
-					"Redis",
-					"AWS Kinesis",
-					"SQS",
-					"Lambda",
-					"ECS",
-					"Elastic Beanstalk",
-					"Terraform",
-					"Docker",
-					"Datadog",
-					"BullMQ / Sidekiq"
+					"Aurora MySQL 8.0",
+					"MongoDB 7.0",
+					"AWS",
+					"Terraform"
 				]
 			},
 			{
@@ -111,14 +102,9 @@
 					}
 				],
 				"stack": [
-					"Java",
-					"Spring Boot",
-					"Tibero",
-					"Flyway",
-					"JUnit / Testcontainers",
-					"Docker",
-					"JPA",
-					"Azure DevOps"
+					"Java 17",
+					"Spring Boot 3.0",
+					"Tibero"
 				]
 			},
 			{
@@ -160,15 +146,10 @@
 					}
 				],
 				"stack": [
-					"Java",
-					"Spring Boot",
-					"MySQL",
-					"Redis",
-					"AWS Lambda@Edge",
-					"CloudFront",
-					"S3",
-					"EC2 / GPU",
-					"Docker"
+					"Java 17",
+					"Spring Boot 3.0",
+					"PostgreSQL 15",
+					"AWS"
 				]
 			}
 		],
@@ -199,7 +180,11 @@
 				"items": [
 					{
 						"name": "MySQL / Aurora",
-						"context": "Cupix·Miridih — primary RDBMS design, bulk write tuning"
+						"context": "Cupix - primary RDBMS design, bulk write tuning"
+					},
+					{
+						"name": "PostgreSQL",
+						"context": "Miridih - primary RDBMS for the AI image generation service"
 					},
 					{
 						"name": "MongoDB",
