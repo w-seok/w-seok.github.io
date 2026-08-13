@@ -14,12 +14,14 @@ export type Locale = 'ko' | 'en' | 'es';
  * @property greeting - 인사말
  * @property title - 직함/타이틀
  * @property summary - Hero 핵심 요약 (현재 역할·연차·주요 영역)
+ * @property photoAlt - 프로필 사진 대체 텍스트
  * @property subtitle - 부제목/슬로건
  */
 export interface HeaderTranslation {
 	greeting: string;
 	title: string;
 	summary: string;
+	photoAlt: string;
 	subtitle: string;
 }
 

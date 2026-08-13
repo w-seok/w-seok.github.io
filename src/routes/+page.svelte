@@ -6,6 +6,7 @@
 
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
+	import { base } from '$app/paths';
 	import { locale, t, type Locale } from '$lib/i18n';
 	import type { SectionTranslation } from '$lib/i18n/types';
 	import { theme } from '$lib/stores/theme';
@@ -269,14 +270,25 @@
 		<!-- Hero/Header 섹션 -->
 		<section class="hero-section" aria-labelledby="hero-heading" bind:this={sections[0]}>
 			<div class="hero-layout">
-				<!-- 왼쪽: 이름 + 타이틀 -->
-				<div class="page-enter stagger-1">
+				<!-- 왼쪽: 사진 + 이름 + 타이틀 -->
+				<div class="hero-identity page-enter stagger-1">
+					<img
+						class="hero-photo no-print"
+						src="{base}/profile.webp"
+						alt={$t.header.photoAlt}
+						width="96"
+						height="96"
+						loading="eager"
+						decoding="async"
+					/>
+					<div>
 					<h1 id="hero-heading" class="hero-name">
 						{getName($locale)}
 					</h1>
 					<p class="hero-title">
 						{$t.header.title}<span class="hero-role">{$t.header.summary}</span>
 					</p>
+					</div>
 				</div>
 
 				<!-- 오른쪽: 연락처 (아이콘 통일) -->
@@ -703,6 +715,43 @@
 			justify-content: space-between;
 			align-items: flex-start;
 			gap: var(--space-8);
+		}
+	}
+
+	/* 사진은 이름과 한 블록으로 묶는다. 떨어뜨리면 '장식 이미지'로 인식되어 무시된다(NN/g) */
+	/* 사진 열과 텍스트 열이 분리되어 보이도록 간격을 사진 크기의 25~29%로 둔다.
+	   16px(14%)에서는 두 열이 붙어 하나의 덩어리로 읽혔다. */
+	.hero-identity {
+		display: flex;
+		align-items: center;
+		gap: var(--space-5);
+	}
+
+	@media (min-width: 768px) {
+		.hero-identity {
+			gap: var(--space-8);
+		}
+	}
+
+	/* 사진은 화면에만 노출한다.
+	   인쇄물은 제출용 CV가 되는데, 미국 EEOC·캐나다 OHRC 가이던스는 고용주가 사진을
+	   수집하지 않도록 권고하고 주요 ATS(Greenhouse)는 이력서의 사진을 블러 처리한다.
+	   즉 인쇄본에 사진을 남기면 얻는 것 없이 편향 리스크만 생긴다. (no-print 클래스로 숨김) */
+	/* 크기 근거: 얼굴 인식 하한 72px(얼굴 실크기 ~41px) 위, 이름과 시각 무게가 역전되는
+	   144px(면적비 0.83) 아래. 소스 256px이라 레티나에서 128px까지 선명하다. */
+	.hero-photo {
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+		object-fit: cover;
+		flex-shrink: 0;
+		background: var(--color-surface);
+	}
+
+	@media (min-width: 768px) {
+		.hero-photo {
+			width: 112px;
+			height: 112px;
 		}
 	}
 
