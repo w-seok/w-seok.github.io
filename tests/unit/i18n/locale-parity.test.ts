@@ -115,10 +115,16 @@ describe('로케일 구조 일치', () => {
 		expect(koData.resume.about.summary).toContain('1억 건 이상');
 		expect(koData.resume.about.summary).toContain('스냅샷·이벤트');
 		expect(koData.resume.about.summary).toContain('여러 시스템이 맞물린 문제일수록');
-		expect(koData.resume.about.summary).toContain('빠른 수정만으로는 같은 문제가 반복');
+		expect(koData.resume.about.summary).toContain('급하게 고치면 같은 문제가 다시 생긴다');
 		expect(koData.resume.about.summary).toContain('원인을 끝까지 확인');
-		expect(koData.resume.about.summary).toContain('팀이 실행할 수 있는 개선');
+		expect(koData.resume.about.summary).toContain('팀이 바로 적용할 수 있는 방법까지 정리하는');
 		expect(koData.resume.about.summary).toContain('백엔드 개발자로 일하고자 합니다');
+
+		// 현재 하는 일(Cupix)이 과거 이력(Java/Spring)보다 먼저 나와야 한다
+		const paragraphs = koData.resume.about.summary.split('\n\n');
+		expect(paragraphs).toHaveLength(4);
+		expect(paragraphs[1]).toContain('현재는 Cupix');
+		expect(paragraphs[2]).toContain('그 전에는');
 		expect(koData.resume.about.summary).not.toContain('100만+');
 		expect(koData.resume.about.summary).not.toContain('월 100만건 이상 요청 처리');
 		expect(koData.resume.about.summary).not.toContain('2천만건 이상');

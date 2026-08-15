@@ -23,9 +23,9 @@
 	const SECTION_IDS: (keyof SectionTranslation)[] = [
 		'about',
 		'experience',
-		'skills',
 		'opensource',
 		'activities',
+		'skills',
 		'awards',
 		'certificates',
 		'education'
@@ -426,42 +426,11 @@
 		<!-- 구분선 -->
 		<hr class="section-divider" />
 
-		<!-- Skills 섹션 -->
-		<section
-			class="content-section animate-on-scroll"
-			aria-labelledby="skills-heading"
-			bind:this={sections[3]}
-		>
-			<h2 id="skills-heading" class="section-heading">
-				{$t.sections.skills}
-			</h2>
-			<div class="section-body">
-				{#each $t.resume.skills as category}
-					<div class="skill-category">
-						<h3 class="skill-category-title">{category.category}</h3>
-						<div class="skill-tags">
-							{#each category.items as skill}
-								<div class="skill-tag">
-									<span class="skill-tag-name">{skill.name}</span>
-									{#if skill.context}
-										<span class="skill-tag-context">{skill.context}</span>
-									{/if}
-								</div>
-							{/each}
-						</div>
-					</div>
-				{/each}
-			</div>
-		</section>
-
-		<!-- 구분선 -->
-		<hr class="section-divider" />
-
 		<!-- Opensource 섹션 -->
 		<section
 			class="content-section animate-on-scroll"
 			aria-labelledby="opensource-heading"
-			bind:this={sections[4]}
+			bind:this={sections[3]}
 		>
 			<h2 id="opensource-heading" class="section-heading">
 				{$t.sections.opensource}
@@ -516,7 +485,7 @@
 		<section
 			class="content-section animate-on-scroll"
 			aria-labelledby="activities-heading"
-			bind:this={sections[5]}
+			bind:this={sections[4]}
 		>
 			<h2 id="activities-heading" class="section-heading">
 				{$t.sections.activities}
@@ -538,6 +507,37 @@
 							{/each}
 						</ul>
 					</article>
+				{/each}
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Skills 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="skills-heading"
+			bind:this={sections[5]}
+		>
+			<h2 id="skills-heading" class="section-heading">
+				{$t.sections.skills}
+			</h2>
+			<div class="section-body">
+				{#each $t.resume.skills as category}
+					<div class="skill-category">
+						<h3 class="skill-category-title">{category.category}</h3>
+						<div class="skill-tags">
+							{#each category.items as skill}
+								<div class="skill-tag">
+									<span class="skill-tag-name">{skill.name}</span>
+									{#if skill.context}
+										<span class="skill-tag-context">{skill.context}</span>
+									{/if}
+								</div>
+							{/each}
+						</div>
+					</div>
 				{/each}
 			</div>
 		</section>
@@ -1026,7 +1026,7 @@
 		position: relative;
 		padding-left: var(--space-5);
 		margin-bottom: var(--space-2);
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
 	}
@@ -1075,14 +1075,14 @@
 	}
 
 	.experience-company {
-		font-size: 1.1875rem;
+		font-size: 1.125rem;
 		font-weight: 700;
 		color: var(--color-primary);
 		margin-bottom: var(--space-1);
 	}
 
 	.experience-position {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 	}
 
@@ -1093,7 +1093,7 @@
 	}
 
 	.experience-description {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 		margin-bottom: var(--space-4);
 		line-height: 1.6;
@@ -1145,7 +1145,7 @@
 		position: relative;
 		padding-left: var(--space-5);
 		margin-bottom: var(--space-2);
-		font-size: 0.875rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
 	}
@@ -1192,7 +1192,7 @@
 	}
 
 	.skill-tag-name {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		font-weight: 600;
 		color: var(--color-primary);
 	}
@@ -1235,7 +1235,7 @@
 	}
 
 	.opensource-description {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
 		margin-bottom: var(--space-4);
@@ -1279,7 +1279,7 @@
 		text-underline-offset: 0.25em;
 		display: inline-flex;
 		align-items: center;
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		transition: color var(--duration-fast) var(--ease-out);
 	}
 
@@ -1329,7 +1329,7 @@
 	}
 
 	.activity-description {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
 		margin-bottom: var(--space-4);
@@ -1392,7 +1392,7 @@
 	}
 
 	.award-name {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		font-weight: 600;
 		color: var(--color-primary);
 		line-height: 1.4;
@@ -1416,13 +1416,13 @@
 	}
 
 	.award-date {
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		color: var(--color-muted);
 		white-space: nowrap;
 	}
 
 	.award-org {
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		color: var(--color-secondary);
 		margin-bottom: var(--space-1);
 	}
@@ -1453,20 +1453,20 @@
 	}
 
 	.certificate-name {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		font-weight: 600;
 		color: var(--color-primary);
 		margin-bottom: var(--space-2);
 	}
 
 	.certificate-issuer {
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		color: var(--color-secondary);
 		margin-bottom: var(--space-1);
 	}
 
 	.certificate-date {
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		color: var(--color-muted);
 	}
 
@@ -1498,7 +1498,7 @@
 	}
 
 	.education-degree {
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		color: var(--color-secondary);
 	}
 
