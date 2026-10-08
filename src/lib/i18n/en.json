@@ -1,7 +1,7 @@
 {
 	"header": {
 		"greeting": "Hello",
-		"title": "Backend Engineer",
+		"title": "Software Engineer",
 		"summary": "Application Part Lead at Cupix",
 		"photoAlt": "Leo Shin profile photo",
 		"subtitle": "Pursuing clarity in an intricate world"
@@ -232,6 +232,30 @@
 			}
 		],
 		"opensource": [
+			{
+				"name": "Hindsight (vectorize-io)",
+				"period": "Sep 2026 – Present",
+				"description": "Open-source long-term memory engine for AI agents. I run it myself as a shared memory server for multiple AI coding agents, and contribute by analyzing the root causes of the problems I run into.",
+				"contributions": [
+					"Fixed a GPU memory leak in the Apple Silicon reranker: clearing the MLX cache after each batch stopped memory from growing to 42.7GB",
+					"Analyzed negative metric durations caused by system clock adjustments: proposed measuring elapsed time with a monotonic clock",
+					"Proposed a compatibility fix for a deprecated sentence-transformers 5.4+ API"
+				],
+				"links": [
+					{
+						"label": "GitHub",
+						"url": "https://github.com/vectorize-io/hindsight"
+					},
+					{
+						"label": "PR",
+						"url": "https://github.com/vectorize-io/hindsight/pulls?q=is%3Apr+author%3Aw-seok"
+					},
+					{
+						"label": "Issues",
+						"url": "https://github.com/vectorize-io/hindsight/issues?q=is%3Aissue+author%3Aw-seok"
+					}
+				]
+			},
 			{
 				"name": "Tibero Support Organization",
 				"period": "May 2024 – Present",

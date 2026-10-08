@@ -80,6 +80,12 @@ describe('로케일 구조 일치', () => {
 		expect(arrayLengths(esData)).toEqual(koLengths);
 	});
 
+	it('Hero 직함이 Software Engineer로 표시됨', () => {
+		expect(koData.header.title).toBe('Software Engineer');
+		expect(enData.header.title).toBe('Software Engineer');
+		expect(esData.header.title).toBe('Ingeniero de Software');
+	});
+
 	it('소개글이 백엔드 문제 해결 방식과 대표 성과를 설명함', () => {
 		expect(koData.resume.about.summary.split('\n\n')).toHaveLength(4);
 		expect(koData.resume.about.summary.split('\n\n')[0]).toBe(
@@ -294,6 +300,28 @@ describe('로케일 구조 일치', () => {
 
 		expect(education.period).toContain('2017.03 ~ 2023.02');
 		expect(education.period).toContain('병역: 군 복무 완료 (2018 ~ 2019)');
+	});
+
+	it('Hindsight 오픈소스 기여가 최신순 첫 항목이며 본인 PR·Issue 목록으로 연결됨', () => {
+		const repo = 'https://github.com/vectorize-io/hindsight';
+		for (const data of [koData, enData, esData]) {
+			const [hindsight] = data.resume.opensource;
+			expect(hindsight.name).toBe('Hindsight (vectorize-io)');
+			expect(hindsight.contributions).toHaveLength(3);
+			// 목록 링크는 작성자 필터가 걸려 있어야 본인 기여만 보인다
+			expect(hindsight.links).toEqual([
+				{ label: 'GitHub', url: repo },
+				{ label: 'PR', url: `${repo}/pulls?q=is%3Apr+author%3Aw-seok` },
+				{ label: 'Issues', url: `${repo}/issues?q=is%3Aissue+author%3Aw-seok` }
+			]);
+		}
+
+		expect(koData.resume.opensource[0].period).toBe('2026.09 ~');
+
+		// 대표 수치(누수 규모)를 각 언어의 소수점 표기로 담는다
+		expect(JSON.stringify(koData.resume.opensource[0])).toContain('42.7GB까지 늘던 메모리');
+		expect(JSON.stringify(enData.resume.opensource[0])).toContain('growing to 42.7GB');
+		expect(JSON.stringify(esData.resume.opensource[0])).toContain('creciera hasta 42,7GB');
 	});
 
 	it('Tibero 오픈소스 기여가 테스트·마이그레이션 도구 공개로 설명됨', () => {

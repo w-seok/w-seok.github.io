@@ -1,7 +1,7 @@
 {
 	"header": {
 		"greeting": "안녕하세요",
-		"title": "Backend Engineer",
+		"title": "Software Engineer",
 		"summary": "Cupix Application Part Lead",
 		"photoAlt": "신원석 프로필 사진",
 		"subtitle": "복잡한 세계에서 명료함을 추구합니다"
@@ -232,6 +232,30 @@
 			}
 		],
 		"opensource": [
+			{
+				"name": "Hindsight (vectorize-io)",
+				"period": "2026.09 ~",
+				"description": "AI agent를 위한 오픈소스 장기 메모리 엔진입니다. 여러 AI coding agent의 공용 메모리 서버로 직접 운영하며, 마주친 문제의 원인을 분석해 기여하고 있습니다.",
+				"contributions": [
+					"Apple Silicon reranker의 GPU 메모리 누수 수정: 배치마다 MLX 캐시를 비워 42.7GB까지 늘던 메모리 문제 해결",
+					"시스템 시계 보정 시 지표가 음수로 기록되는 문제 분석: 경과 시간 측정을 단조 시계로 전환하는 수정안 제시",
+					"sentence-transformers 5.4+ deprecated API 호환성 수정안 제시"
+				],
+				"links": [
+					{
+						"label": "GitHub",
+						"url": "https://github.com/vectorize-io/hindsight"
+					},
+					{
+						"label": "PR",
+						"url": "https://github.com/vectorize-io/hindsight/pulls?q=is%3Apr+author%3Aw-seok"
+					},
+					{
+						"label": "Issues",
+						"url": "https://github.com/vectorize-io/hindsight/issues?q=is%3Aissue+author%3Aw-seok"
+					}
+				]
+			},
 			{
 				"name": "Tibero Support Organization",
 				"period": "2024.05 ~",
