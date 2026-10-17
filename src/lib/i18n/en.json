@@ -3,7 +3,7 @@
 		"greeting": "Hello",
 		"title": "Software Engineer",
 		"summary": "Application Part Lead at Cupix",
-		"photoAlt": "Leo Shin profile photo",
+		"photoAlt": "Wonseok Shin profile photo",
 		"subtitle": "Pursuing clarity in an intricate world"
 	},
 	"sections": {
@@ -26,42 +26,48 @@
 	},
 	"resume": {
 		"about": {
-			"summary": "I am Shin Wonseok, a fourth-year Backend Engineer who tries to understand the essence of a problem and the whole flow before jumping into implementation.\n\nAt Cupix, I design and improve the backend architecture that connects construction-site video data with BIM files containing building design information to track progress. I reworked the data pipeline so that 20M+ field data records and 100M+ snapshots and events stay consistent across 6+ regions.\n\nBefore that, I started backend development with Java/Spring services, building a system that handled 1M+ monthly AI image generation requests, and built a Flyway-based migration and test automation setup tailored to Tibero DBMS so the workflow stayed repeatable in a constrained environment.\n\nWorking through problems where multiple systems interact taught me that preventing the same issue from recurring matters more than fixing it quickly. In that process, I learned that the more complex the problem is, the more important it is to organize evidence calmly, keep discussions from becoming unproductive, and connect the work to solutions the team can act on right away. I want to work as a Backend Engineer who traces root causes to the end and turns them into improvements the team can execute.",
+			"summary": "Hello. I'm Wonseok Shin, a fourth-year software engineer who has repeatedly worked on processing large volumes of data quickly and keeping data consistent as it moves through multiple systems. The domains differed — AI image generation, fintech, and spatial AI SaaS — but the problems I took on were mostly about processing performance and data consistency.\n\nAt Cupix, I am building a product that connects construction-site video data with BIM files containing building design information to track construction progress, and I own the work from feature spec review to data model, event flow, and API design. I cut the time to extract data from large BIM files with 1M+ objects from tens of minutes to a few minutes. I reworked the data pipeline so that 20M+ field data records and 100M+ snapshots and events stay consistent across 6+ regions.\n\nBefore that, I scaled an AI image generation service from a prototype to a production system handling 300K+ monthly requests while reducing GPU and CDN costs. At a fintech service, I introduced tests to inherited code that had none and raised coverage to about 70%, and in a Tibero environment with few DB tools, I automated local and CI test databases and released them as three open-source projects.\n\nI believe the more systems a problem spans, the more likely a quick fix brings the same problem back. I want to work as an engineer who traces root causes to the end and turns them into solutions the team can apply right away.",
 			"highlights": []
 		},
 		"experience": [
 			{
 				"company": "Cupix",
-				"position": "Backend Engineer / Application Part Lead · Backend (Dec 2025–Present, led 3-person part)",
+				"position": "Backend Engineer / Application Part Lead · Backend",
 				"period": "Nov 2024 – Present",
-				"description": "Global spatial AI SaaS company that connects building 3D design models with on-site 360° capture data to track construction progress and asset status. Across a Rails monolith, NestJS/Lambda microservices and 30+ processing agents, I built large-file processing pipelines, worked on multi-region data consistency and developer infrastructure, and have led a 3-person Application Part since Dec 2025.",
+				"description": "A global spatial AI SaaS company that links 3D building design models (BIM) with 360° site captures to track construction progress and asset status. I work across a Rails monolith, NestJS and Lambda services, and 30+ processing agents.",
 				"achievements": [
 					{
-						"title": "Built a Large-Scale BIM Processing Pipeline and Improved Its Performance",
+						"title": "BimAI (AI classification of BIM components)",
 						"details": [
-							"Built a new NestJS service that parses BIM 3D models with hundreds of thousands of parts and produces AI classification drafts, designing it across three repositories including the infrastructure (Elastic Beanstalk) and the Rails integration layer",
-							"Cut geometry download from 19m30s to 3m17s on an 840K-object model by replacing up to 347K per-chunk HTTPS requests with roughly 700 WebSocket batch messages, keeping the existing path as the recovery route so the change could not affect correctness, and verifying byte-level equality by hash",
-							"Turned an extraction that died at 8,058MB with OOM into one that completes within an 8GB heap by moving to streaming, and cut storage from 6.4GB to 3GB by restructuring property storage with key dictionaries and compression",
-							"Measured why Aurora rejects large INSERTs before execution and found the control variable is statement bytes rather than row count (15 rejections for INSERT vs 1 for DELETE in the same run, 0.5–1MB vs ~100B), then switched batching to a byte budget that halves on each rejection and retries",
-							"Traced a failure where extractions stayed locked for up to 14 days because the failure record itself was lost, confirmed four root causes from logs and database measurements, and added a sweeper that checks job liveness in the queue to reclaim zombie rows"
+							"Built and launched in 6 regions a NestJS service where AI suggests classifications for BIM components, replacing manual classification of hundreds of thousands of components in the browser",
+							"Detected intermittent OOM failures in large BIM extraction via a Datadog dashboard I had set up, mitigated them with a scale-up, then reworked extraction so large models finish in about 10 minutes",
+							"Cut 3D geometry download time from about 20 minutes to 3 by redesigning the legacy one-request-per-file download with parallel requests and WebSocket batching",
+							"Cut peak memory by about 70% by writing extracted objects to disk sequentially instead of holding them all in memory, and isolated extraction in a separate process to keep the API responsive"
 						]
 					},
 					{
-						"title": "Multi-Region Data Consistency and Event Pipeline",
+						"title": "SiteInsights (construction progress analytics)",
 						"details": [
-							"Investigated and recovered 124 data inconsistency incidents reported across US, Australia, Europe, Singapore, Japan and Middle East regions, identifying root causes such as a path where changing category and work area together never published the change event",
-							"Built a validation API that breaks down mismatches between 3D model elements and field records into duplicates, missing rows, phase mismatches and negative diffs, and pinned a real customer case as a test to prevent regressions",
-							"Batched Kinesis event publishing by exact byte size at 90% of the shard limit (1MB, 1,000 records/sec) and retried only failed records on partial failure; the consuming Lambda stops at the first failure to preserve in-shard ordering",
-							"Replaced bulk updates with a single bulkWrite call and pinned the one-call behavior with a test"
+							"Designed a Kinesis event pipeline that keeps events in order per customer project, with a delivery worker and version guards, replacing 12 Lambda paths where events arrived out of order",
+							"Wrote a production-verified behavior spec from BIM registration to progress judgment, and built on it a MySQL/MongoDB consistency check API and a 120+ widget Datadog dashboard",
+							"Traced captures missing from analysis with six months of production data; added a reprocessing queue as a stopgap, then fixed the root cause by computing per capture instead of per date"
 						]
 					},
 					{
-						"title": "Developer Infrastructure and Application Part Leadership",
+						"title": "Operations and incident response",
 						"details": [
-							"Cut the CI test pipeline from 49m20s to 11m47s (76%). Profiling identified the bottleneck as the test data creation cascade (a single fixture call triggered 29 database operations); after documenting why three alternatives were rejected, I applied lightweight fixtures to 57 of 71 files",
-							"Added a CI gate that fails when a test exceeds its per-example time budget, plus a static analysis rule, so the suite cannot silently slow down again",
-							"Built an in-house PR review automation tool in Rust that the backend team uses instead of a commercial service. Measured the error patterns of AI review output across 218 real reports and 860 items, then implemented a validator that filters out citations to code that does not exist and findings with no evidence",
-							"Lead a 3-person Application Part: assign ownership areas, relay leadership and company-wide engineering meetings to the part, and present part results on a biweekly cadence"
+							"Responded to a DB load spike by tracing a legacy path where one event fanned out into a flood of jobs, and fixed it with debouncing and a single UPDATE",
+							"Analyzed an incident where old instances queried a dropped column during a rolling deploy, and set a rule to split column removal across two deploys to prevent recurrence",
+							"Restored about 40,000 BIM components deleted by a customer upload mistake, using a recovery procedure with per-store completion criteria and pre-run checks"
+						]
+					},
+					{
+						"title": "Application Part leadership",
+						"details": [
+							"Led a 4-person part, owning quarterly goals and performance reviews; 99% of the 530+ items shipped during that period needed no rework after release",
+							"When review became the bottleneck after AI adoption, brought into the team review process an AI review that reads the diff, commits, and product specs and filters out unsupported comments",
+							"Built a knowledge setup where merged changes flow into per-service docs automatically, so AI coding tools also work from current context",
+							"Cut CI for the Rails monolith, which runs the full test suite before every deploy, from 49 to 12 minutes (76%) by slimming legacy factories that triggered dozens of DB writes per test record"
 						]
 					}
 				],
@@ -69,7 +75,7 @@
 					"Ruby on Rails 7.2",
 					"NestJS 11",
 					"TypeScript 5.8",
-					"Rust",
+					"Go 1.26",
 					"Aurora MySQL 8.0",
 					"MongoDB 7.0",
 					"AWS",
@@ -83,22 +89,21 @@
 				"description": "Standardized the team's Tibero-based development and test environment while taking over follow-up development, test coverage and query performance for a delivery mutual aid insurance back office.",
 				"achievements": [
 					{
-						"title": "Completed a Delayed Insurance Back Office and Improved Its Tests and Queries",
+						"title": "Insurance back office",
 						"details": [
-							"Joined a delivery mutual aid insurance back office late after it had been delayed by understaffing, built four contract-processing features (quotation, payment, contract approval, endorsement), and carried them through integration testing to QA deployment",
-							"Introduced characterization tests (unit and e2e) to inherited code that had zero test coverage by cataloging scenarios first, reaching roughly 70% coverage in the contract-processing area I owned and establishing a regression safety net",
-							"Reviewed the execution plan of every SQL statement my area issued using EXPLAIN PLAN and DBMS_XPLAN, and removed N+1 queries found by tracing repeated queries in list endpoints using fetch join and batch loading",
-							"Blocked lost updates that occurred when several staff endorsed the same contract concurrently by comparing contract versions (optimistic locking), verified with a concurrent-save test that exactly one commit succeeded and zero updates were lost"
+							"Joined a delayed back-office project for insurance staff late and delivered four contract features (quotation, payment, contract approval, endorsement) through QA",
+							"Introduced scenario-based characterization tests to untested inherited code, raising coverage in my area from 0% to about 70% as a regression safety net",
+							"Cut the first load of a ~5M-row contract list from 3.6s to 0.7s, and repeat loads of the same page to 0.2s with Redis and ETag",
+							"Reviewed execution plans for all SQL in my area and removed N+1 queries in list views with fetch joins and batch loading",
+							"Prevented lost updates when multiple staff endorsed the same contract with optimistic locking, verified by concurrent-save tests with zero lost updates"
 						]
 					},
 					{
-						"title": "Improved Developer Productivity and Test Automation in a Closed DBMS Environment (Tibero)",
+						"title": "Tibero development environment",
 						"details": [
-							"Developed Tibero Docker/TestContainer, eliminating per-developer local test DB setup overhead and reducing team-wide environment configuration costs",
-							"Achieved 70% Docker image size reduction (1.5GB → 401MB) by applying zstd compression algorithm and removing unnecessary files",
-							"Integrated Tibero TestContainer into CI/CD pipelines, automating database-dependent tests and ensuring consistent test environments",
-							"Analyzed Flyway core logic and developed Tibero-specific dialect for automated DDL version control, streamlining schema deployment process",
-							"Released 3 internally validated projects as open source, contributing to the expansion of Tibero developer ecosystem"
+							"Automated local and CI test databases with a Tibero Docker image and a Testcontainers module, released as three open-source projects after internal validation",
+							"Built a Tibero dialect for Flyway, which had no Tibero support, automating DDL versioning and schema deployment",
+							"Shrank the Tibero Docker image by 70% (1.5GB to 401MB) with zstd compression and file cleanup"
 						]
 					}
 				],
@@ -112,37 +117,21 @@
 				"company": "Miridih",
 				"position": "Backend Engineer",
 				"period": "May 2023 – Jan 2024",
-				"description": "Expanded MiriCanvas AI Drawing backend into production, from external AI model integrations to 1M+ monthly image generation requests and GPU/CDN cost optimization.",
+				"description": "Expanded MiriCanvas AI Drawing backend into production, from external AI model integrations to 300K+ monthly image generation requests and GPU/CDN cost optimization.",
 				"achievements": [
 					{
-						"title": "Built AI Image Generation Service Backend from Scratch",
+						"title": "MiriCanvas AI Drawing",
 						"details": [
-							"Scaled from early prototype to production system handling 1M+ monthly image generation requests reliably",
-							"Designed asynchronous processing pipeline integrating external AI model APIs (OpenAI, Stability AI)"
+							"Scaled a prototype into a production system handling 300K+ image generation requests per month, with an asynchronous generation pipeline integrating OpenAI and Stability AI",
+							"Made generation idempotent with request-level identifiers so each request runs once across user retries, job reruns, and retries after external AI API failures"
 						]
 					},
 					{
-						"title": "Saved About $185 per Month per Instance through GPU Infrastructure Downsizing",
+						"title": "Infrastructure cost reduction",
 						"details": [
-							"Implemented request classification logic by characteristics (resolution, model) to optimize GPU resource utilization",
-							"Applied instance downsizing (g5.2xlarge → g5.xlarge) based on workload analysis",
-							"Reduced spot instance setup time by 40% (25min → 15min) through AMI optimization and prewarming strategy"
-						]
-					},
-					{
-						"title": "Reduced CDN Costs 80%+ with Lambda@Edge Real-time Image Transformation",
-						"details": [
-							"Implemented Lambda function for real-time PNG → WebP conversion at CloudFront origin response",
-							"Achieved 75% average file size reduction through image format conversion, reducing CDN transfer costs by 80%+",
-							"Designed architecture enabling gradual migration without modifying existing S3 storage"
-						]
-					},
-					{
-						"title": "Stabilized Concurrency and Retries in AI Image Generation Pipeline",
-						"details": [
-							"Reviewed paths where user retries or job reruns could process the same generation request twice",
-							"Organized job execution and result persistence around a generation request identifier so they run once",
-							"Improved generation state and result persistence so retries after external AI API failures do not drift"
+							"Analyzed GPU usage by resolution and model, then moved over-provisioned instances from g5.2xlarge to g5.xlarge, cutting GPU cost by 20% (about $185 per instance per month)",
+							"Cut GPU server setup time from 25 to 15 minutes by streamlining the spot instance AMI and model prewarming",
+							"Converted PNG to WebP in real time at the CloudFront response stage with Lambda@Edge, reducing average file size by 75% and CDN cost by about $450 per month without changing S3 storage"
 						]
 					}
 				],
@@ -156,77 +145,77 @@
 		],
 		"skills": [
 			{
-				"category": "Backend",
+				"category": "Languages & Frameworks",
 				"items": [
 					{
 						"name": "Ruby on Rails",
-						"context": "Cupix — main API for spatial AI SaaS: domain models, state machines, event publishing"
+						"context": "Domain models, state machines, events in the main API"
 					},
 					{
 						"name": "NestJS / TypeScript",
-						"context": "Cupix — built a BIM processing service from scratch (56K LOC) and processing agents"
+						"context": "New BIM AI classification service; agents and Lambdas"
 					},
 					{
 						"name": "Java / Spring Boot",
-						"context": "Miridih — AI image generation service · Tmax — insurance back office, Tibero tooling"
+						"context": "AI image pipeline, back-office APIs, Tibero test tools"
 					},
 					{
-						"name": "Rust",
-						"context": "Built an in-house PR review automation tool (67K LOC), adopted by the backend team"
+						"name": "Go",
+						"context": "Team PR review automation tool; AI output validator"
 					}
 				]
 			},
 			{
-				"category": "Database / Search",
+				"category": "Data",
 				"items": [
 					{
 						"name": "MySQL / Aurora",
-						"context": "Cupix - primary RDBMS design, bulk write tuning"
+						"context": "Primary RDBMS; handled Aurora rejecting large INSERTs"
 					},
 					{
 						"name": "PostgreSQL",
-						"context": "Miridih - primary RDBMS for the AI image generation service"
+						"context": "Main DB for AI image service; pgvector semantic search"
 					},
 					{
 						"name": "MongoDB",
-						"context": "Cupix — field progress records, bulkWrite batching"
+						"context": "Progress aggregate store; bulkWrite, consistency checks"
 					},
 					{
 						"name": "Tibero",
-						"context": "Tmax — full execution plan review, Flyway dialect development"
+						"context": "Built Flyway and Testcontainers support; Docker images"
 					},
 					{
 						"name": "Elasticsearch",
-						"context": "Cupix — permission filtering, capture and summary indexing"
+						"context": "Permission-filtered search, deep pagination, indexing"
 					},
 					{
 						"name": "Redis",
-						"context": "Cupix — BullMQ job queue, dedicated Sidekiq instance, ElastiCache"
+						"context": "BullMQ and Sidekiq job queues, event outbox, caching"
 					}
 				]
 			},
 			{
-				"category": "Cloud / DevOps",
+				"category": "Infrastructure & Tools",
 				"items": [
 					{
 						"name": "AWS",
-						"context": "Pipelines on Kinesis, SQS, Lambda, ECS, Elastic Beanstalk, S3, CloudFront"
+						"context": "Kinesis · SQS · Lambda pipelines; ECS services"
 					},
 					{
 						"name": "Terraform",
-						"context": "Cupix — multi-region infrastructure as code, new BIM service stack"
+						"context": "Multi-region IaC; infrastructure for new services"
 					},
 					{
 						"name": "Docker",
-						"context": "Agent images; reduced Tibero image size by 70% (1.5GB → 401MB)"
+						"context": "GPU/ARM agent images; Testcontainers test setups"
 					},
 					{
 						"name": "Datadog",
-						"context": "Incident alert response, log-based root cause analysis, monitor design"
+						"context": "Alert response, log-based root cause analysis, monitors"
 					},
 					{
 						"name": "CI / Testing",
-						"context": "Cut CI pipeline by 76%; Testcontainers, Vitest, RSpec automation"
+						"context": "Cut CI time 76%; Testcontainers · RSpec · Vitest"
 					}
 				]
 			}
@@ -238,8 +227,8 @@
 				"description": "Open-source long-term memory engine for AI agents. I run it myself as a shared memory server for multiple AI coding agents, and contribute by analyzing the root causes of the problems I run into.",
 				"contributions": [
 					"Fixed a GPU memory leak in the Apple Silicon reranker: clearing the MLX cache after each batch stopped memory from growing to 42.7GB",
-					"Analyzed negative metric durations caused by system clock adjustments: proposed measuring elapsed time with a monotonic clock",
-					"Proposed a compatibility fix for a deprecated sentence-transformers 5.4+ API"
+					"Analyzed and reported negative metric durations caused by system clock adjustments, and contributed to the fix",
+					"Reported a deprecated sentence-transformers 5.4+ API call and contributed to the fix"
 				],
 				"links": [
 					{
@@ -248,7 +237,7 @@
 					},
 					{
 						"label": "PR",
-						"url": "https://github.com/vectorize-io/hindsight/pulls?q=is%3Apr+author%3Aw-seok"
+						"url": "https://github.com/vectorize-io/hindsight/pulls?q=is%3Apr+is%3Amerged+involves%3Aw-seok"
 					},
 					{
 						"label": "Issues",

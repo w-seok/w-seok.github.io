@@ -212,11 +212,16 @@
 
 	/* ===== 스크롤 애니메이션 ===== */
 	.animate-on-scroll {
-		opacity: 0;
-		transform: translateY(16px);
 		transition:
 			opacity 0.4s var(--ease-out),
 			transform 0.4s var(--ease-out);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.js-enabled .animate-on-scroll:not(.visible) {
+			opacity: 0;
+			transform: translateY(16px);
+		}
 	}
 
 	.animate-on-scroll.visible {

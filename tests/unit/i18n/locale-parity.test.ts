@@ -86,45 +86,39 @@ describe('로케일 구조 일치', () => {
 		expect(esData.header.title).toBe('Ingeniero de Software');
 	});
 
-	it('소개글이 백엔드 문제 해결 방식과 대표 성과를 설명함', () => {
+	it('소개글이 반복해 푼 문제 축과 대표 성과를 설명함', () => {
 		expect(koData.resume.about.summary.split('\n\n')).toHaveLength(4);
 		expect(koData.resume.about.summary.split('\n\n')[0]).toBe(
-			'안녕하세요. AI 이미지 생성, 핀테크, 공간 AI SaaS 분야에서 서비스를 개발해 온 4년 차 Backend Engineer 신원석입니다. 요구사항과 데이터 흐름이 서비스마다 달라 대량 요청 처리, DBMS 제약을 고려한 마이그레이션, 멀티 리전 데이터 동기화 등 다양한 기술 과제를 해결해 왔습니다.'
+			'안녕하세요. 대용량 데이터를 빠르게 처리하고, 여러 시스템을 거쳐도 데이터가 어긋나지 않게 만드는 일을 반복해 온 4년 차 소프트웨어 엔지니어 신원석입니다. AI 이미지 생성, 핀테크, 공간 AI SaaS로 도메인은 달랐지만, 맡아 온 문제는 대부분 처리 성능과 데이터 정합성이었습니다.'
 		);
-		expect(koData.resume.about.summary).toContain('AI 이미지 생성');
-		expect(koData.resume.about.summary).toContain('핀테크');
-		expect(koData.resume.about.summary).toContain('공간 AI SaaS');
-		expect(koData.resume.about.summary).toContain('요구사항과 데이터 흐름이 서비스마다 달라');
-		expect(koData.resume.about.summary).toContain('대량 요청 처리');
-		expect(koData.resume.about.summary).toContain('DBMS 제약을 고려한 마이그레이션');
-		expect(koData.resume.about.summary).toContain('멀티 리전 데이터 동기화');
-		expect(koData.resume.about.summary).toContain('다양한 기술 과제를 해결해 왔습니다');
-		expect(koData.resume.about.summary).toContain('4년 차 Backend Engineer 신원석');
+		// 도메인 나열보다 반복해 푼 문제 축(처리 성능 · 데이터 정합성)이 먼저 읽혀야 한다
+		expect(koData.resume.about.summary).toContain('4년 차 소프트웨어 엔지니어 신원석');
+		expect(koData.resume.about.summary).toContain('처리 성능과 데이터 정합성');
+		expect(koData.resume.about.summary).not.toContain('Backend Engineer 신원석');
 		expect(koData.resume.about.summary).toContain('Cupix');
-		expect(koData.resume.about.summary).toContain('Java/Spring');
-		expect(koData.resume.about.summary).toContain('Tibero DBMS');
-		expect(koData.resume.about.summary).toContain('Flyway');
-		expect(koData.resume.about.summary).toContain('반복 가능한 개발·검증 흐름');
 		expect(koData.resume.about.summary).toContain('건설 현장의 영상 데이터와');
 		expect(koData.resume.about.summary).toContain('건축 설계 정보가 담긴 BIM 파일');
 		expect(koData.resume.about.summary).not.toContain('건축 설계 정보를 담은 BIM 파일');
-		expect(koData.resume.about.summary).toContain('BIM 파일');
 		expect(koData.resume.about.summary).toContain('공정률');
-		expect(koData.resume.about.summary).toContain('백엔드 구조');
-		expect(koData.resume.about.summary).toContain('설계·개선하고 있습니다');
-		expect(koData.resume.about.summary).toContain('6개 이상 리전에서');
-		expect(koData.resume.about.summary).toContain('일관되게 반영');
 		expect(koData.resume.about.summary).toContain(
-			'월 100만 건 이상의 AI 이미지 생성 요청을 처리하는 시스템'
+			'기능 스펙 검토부터 데이터 모델 · 이벤트 흐름 · API 설계까지'
 		);
+		expect(koData.resume.about.summary).toContain('수십 분에서 수 분으로');
+		expect(koData.resume.about.summary).toContain('6개 이상 리전에 걸친');
 		expect(koData.resume.about.summary).toContain('2천만 건 이상');
 		expect(koData.resume.about.summary).toContain('1억 건 이상');
 		expect(koData.resume.about.summary).toContain('스냅샷·이벤트');
+		expect(koData.resume.about.summary).toContain('어긋나지 않도록');
+		expect(koData.resume.about.summary).toContain('월 30만 건 이상의 요청');
+		expect(koData.resume.about.summary).not.toContain('월 100만 건');
+		expect(koData.resume.about.summary).toContain('Tibero');
+		expect(koData.resume.about.summary).toContain('3개 오픈소스');
 		expect(koData.resume.about.summary).toContain('여러 시스템이 맞물린 문제일수록');
 		expect(koData.resume.about.summary).toContain('급하게 고치면 같은 문제가 다시 생긴다');
 		expect(koData.resume.about.summary).toContain('원인을 끝까지 확인');
 		expect(koData.resume.about.summary).toContain('팀이 바로 적용할 수 있는 방법까지 정리하는');
-		expect(koData.resume.about.summary).toContain('백엔드 개발자로 일하고자 합니다');
+		expect(koData.resume.about.summary).toContain('엔지니어로 일하고자 합니다');
+		expect(koData.resume.about.summary).not.toContain('백엔드 개발자');
 
 		// 현재 하는 일(Cupix)이 과거 이력(Java/Spring)보다 먼저 나와야 한다
 		const paragraphs = koData.resume.about.summary.split('\n\n');
@@ -169,18 +163,22 @@ describe('로케일 구조 일치', () => {
 		expect(koData.resume.about.summary).not.toContain('로컬 테스트 DB 환경');
 		expect(koData.resume.about.summary).not.toContain('폐쇄적인 DBMS 환경');
 
+		expect(enData.resume.about.summary.split('\n\n')).toHaveLength(4);
+		expect(enData.resume.about.summary).toContain('fourth-year software engineer');
+		// 영어권 순서(이름 성)로 쓰고, 푸터 표기(Wonseok Shin)와 맞춘다
+		expect(enData.resume.about.summary).toContain("I'm Wonseok Shin");
+		expect(enData.resume.about.summary).not.toContain('Shin Wonseok');
+		expect(enData.resume.about.summary).toContain('processing performance and data consistency');
+		expect(enData.resume.about.summary).not.toContain('Backend Engineer');
 		expect(enData.resume.about.summary).toContain('Cupix');
-		expect(enData.resume.about.summary).toContain('Java/Spring');
-		expect(enData.resume.about.summary).toContain('Tibero DBMS');
-		expect(enData.resume.about.summary).toContain('Flyway');
 		expect(enData.resume.about.summary).toContain('construction-site video data');
 		expect(enData.resume.about.summary).toContain('BIM files');
 		expect(enData.resume.about.summary).toContain('6+ regions');
 		expect(enData.resume.about.summary).toContain('20M+');
 		expect(enData.resume.about.summary).toContain('100M+');
-		expect(enData.resume.about.summary).toContain('preventing the same issue from recurring');
-		expect(enData.resume.about.summary).toContain('organize evidence calmly');
-		expect(enData.resume.about.summary).toContain('solutions the team can act on right away');
+		expect(enData.resume.about.summary).toContain('300K+ monthly requests');
+		expect(enData.resume.about.summary).not.toContain('1M+ monthly');
+		expect(enData.resume.about.summary).toContain('solutions the team can apply right away');
 		expect(enData.resume.about.summary).toContain('root causes to the end');
 		expect(enData.resume.about.summary).not.toContain(
 			'most problems I worked on started not from the feature itself'
@@ -197,21 +195,25 @@ describe('로케일 구조 일치', () => {
 		expect(enData.resume.about.summary).not.toContain('local test database environment');
 		expect(enData.resume.about.summary).not.toContain('closed DBMS environment');
 
+		expect(esData.resume.about.summary.split('\n\n')).toHaveLength(4);
+		expect(esData.resume.about.summary).toContain('ingeniero de software');
+		expect(esData.resume.about.summary).toContain('Soy Wonseok Shin');
+		expect(esData.resume.about.summary).not.toContain('Shin Wonseok');
+		expect(esData.resume.about.summary).toContain(
+			'rendimiento de procesamiento y consistencia de datos'
+		);
+		expect(esData.resume.about.summary).not.toContain('Backend Engineer');
 		expect(esData.resume.about.summary).toContain('Cupix');
-		expect(esData.resume.about.summary).toContain('Java/Spring');
-		expect(esData.resume.about.summary).toContain('Tibero DBMS');
-		expect(esData.resume.about.summary).toContain('Flyway');
 		expect(esData.resume.about.summary).toContain('video de obras de construcción');
 		expect(esData.resume.about.summary).toContain('archivos BIM');
 		expect(esData.resume.about.summary).toContain('6+ regiones');
 		expect(esData.resume.about.summary).toContain('20M+');
 		expect(esData.resume.about.summary).toContain('100M+');
-		expect(esData.resume.about.summary).toContain('evitar que el mismo problema se repita');
-		expect(esData.resume.about.summary).toContain('ordenar la evidencia con calma');
+		expect(esData.resume.about.summary).toContain('más de 300K solicitudes mensuales');
 		expect(esData.resume.about.summary).toContain(
-			'soluciones que el equipo pueda ejecutar de inmediato'
+			'soluciones que el equipo pueda aplicar de inmediato'
 		);
-		expect(esData.resume.about.summary).toContain('seguir las causas hasta el final');
+		expect(esData.resume.about.summary).toContain('sigue las causas hasta el final');
 		expect(esData.resume.about.summary).not.toContain(
 			'la mayoría de los problemas que abordé no empezaban en la función en sí'
 		);
@@ -228,67 +230,93 @@ describe('로케일 구조 일치', () => {
 		expect(esData.resume.about.summary).not.toContain('entorno DBMS cerrado');
 	});
 
-	it('Cupix 경력이 파트 리드 범위와 대표 성과를 설명함', () => {
+	it('기술 스택이 직군을 한정하지 않는 영어 분류와 기술별 쓰임으로 구성됨', () => {
+		for (const data of [koData, enData, esData]) {
+			expect(data.resume.skills.map((cat) => cat.category)).toEqual([
+				'Languages & Frameworks',
+				'Data',
+				'Infrastructure & Tools'
+			]);
+			const contexts = data.resume.skills.flatMap((cat) => cat.items.map((item) => item.context));
+			// 회사별 연결은 경력 칩이 맡으므로 설명에 회사 이름을 붙이지 않는다
+			for (const company of ['Cupix', 'Miridih', 'Tmax']) {
+				expect(contexts.join('\n')).not.toContain(company);
+			}
+			expect(contexts.join('\n')).not.toContain('LOC');
+			// PR 리뷰 도구는 Go 로 이전했다 — 기술 스택 · 경력 칩 · 성과 문장 모두 같아야 한다
+			expect(JSON.stringify(data.resume)).not.toContain('Rust');
+			expect(data.resume.skills[0].items.map((item) => item.name)).toContain('Go');
+			expect(data.resume.experience[0].stack).toContain('Go 1.26');
+		}
+		const tibero = koData.resume.skills
+			.flatMap((cat) => cat.items)
+			.find((item) => item.name === 'Tibero');
+		// 어느 DB 에서나 하는 일(N+1 제거)이 아니라 Tibero 라서 한 일을 적는다
+		expect(tibero?.context).toBe('Flyway · Testcontainers 지원 직접 개발, Docker 이미지 공개');
+	});
+
+	it('Cupix 경력이 제품 단위 블록과 해결 중심 문장으로 구성됨', () => {
 		const cupix = koData.resume.experience.find((exp) => exp.company === 'Cupix');
 		expect(cupix).toBeDefined();
 		if (!cupix) {
 			throw new Error('Cupix 경력 항목이 필요함');
 		}
 
-		expect(cupix.position).toContain('Backend Engineer');
-		expect(cupix.position).toContain('Application Part Lead · Backend');
-		expect(cupix.position).toContain('2025.12 ~');
-		expect(cupix.position).toContain('3명 파트 리딩');
-		expect(cupix.description).toContain('건물 3D 설계 모델과 현장 360° 캡처 데이터');
+		expect(cupix.position).toBe('Backend Engineer / Application Part Lead · Backend');
 		expect(cupix.description).toContain('글로벌 공간 AI SaaS 기업');
-		expect(cupix.description).toContain('3명 규모 Application Part를 리딩');
+		// 소제목은 추상 명사 짝이 아니라 제품 · 프로젝트 이름으로 쓴다
+		expect(cupix.achievements.map((ach) => ach.title)).toEqual([
+			'BimAI (BIM 부품 AI 분류 서비스)',
+			'SiteInsights (시공 진척 분석 서비스)',
+			'운영 및 장애 대응',
+			'Application Part 리딩'
+		]);
 
-		const details = JSON.stringify(cupix.achievements);
-		expect(cupix.achievements).toHaveLength(3);
-		expect(details).toContain('19분 30초에서 3분 17초');
-		expect(details).toContain('8,058MB');
-		expect(details).toContain('6.4GB에서 3GB');
-		expect(details).toContain('49분 20초에서 11분 47초로 76% 단축');
-		expect(details).toContain('DB 연산 29개');
-		expect(details).toContain('124건');
-		expect(details).toContain('218건·항목 860개');
-		// 근거 없는 옛 수치는 다시 들어오지 않아야 함
-		expect(details).not.toContain('약 1시간에서 17분');
-		expect(details).not.toContain('300개에서 1개');
-		expect(details).not.toContain('1536차원');
-		expect(details).not.toContain('475건');
+		const details = cupix.achievements.flatMap((ach) => ach.details);
+		const text = details.join('\n');
+		expect(text).toContain('scale up으로 임시 조치한 뒤');
+		expect(text).toContain('약 20분에서 3분으로 단축');
+		expect(text).toContain('99%가 출시 후 재작업 없이 마무리');
+		expect(text).toContain('49분에서 12분으로 76% 단축');
+		// 장애는 팀 대응 · 레거시 개선으로 쓰고 심각도 수치는 넣지 않는다
+		for (const severity of ['550배', '919건', '41,271']) {
+			expect(text).not.toContain(severity);
+		}
+		// 내부 용어와 기록상 부분 숫자는 쓰지 않는다
+		for (const internal of ['facility', 'test:core', '475건', '이식']) {
+			expect(text).not.toContain(internal);
+		}
+		// 문장 안 em dash · 띄어 쓴 가운뎃점 · 분석으로 끝나는 문장 · 구어체 끝맺음을 막는다
+		for (const detail of details) {
+			expect(detail).not.toMatch(/—| · /);
+			for (const sentence of detail.split(/(?<=\.)\s+/)) {
+				expect(sentence.replace(/[.)]+$/, '')).not.toMatch(/(확인|제시|제안|검토|임|음|함)$/);
+			}
+		}
 	});
 
-	it('Miridih 경력이 GPU와 CDN 비용 절감 기준을 설명함', () => {
+	it('Miridih 경력이 확장 · 멱등 처리 · 비용 절감 근거를 설명함', () => {
 		const miridih = koData.resume.experience.find((exp) => exp.company === 'Miridih');
 		expect(miridih).toBeDefined();
 		if (!miridih) {
 			throw new Error('Miridih 경력 항목이 필요함');
 		}
 
-		const details = JSON.stringify(miridih.achievements);
-		expect(miridih.description).toContain('외부 AI 모델 연동부터');
-		expect(miridih.description).toContain('월 100만 건 이상 이미지 생성 요청 처리');
-		expect(miridih.description).toContain('GPU·CDN 비용 최적화');
-		expect(miridih.description).toContain('운영 환경으로 확장');
-		expect(details).toContain('GPU 인프라 다운사이징으로 월 약 $185/대 절감');
-		expect(details).toContain('월 GPU 인프라 비용을 20%(인스턴스 1대당 월 약 $185) 절감');
-		expect(details).toContain('월 약 5TB 규모의 CDN egress 비용을 월 약 $450 절감');
-		expect(details).toContain('AI 이미지 생성 비동기 파이프라인의 동시성·재시도 안정화');
-		expect(details).toContain(
-			'사용자 재시도나 job 재실행으로 같은 생성 요청이 두 번 처리될 수 있는 구간 점검'
-		);
-		expect(details).toContain(
-			'생성 요청 단위 식별자를 기준으로 job 실행과 결과 저장이 한 번만 이어지도록 정리'
-		);
-		expect(details).toContain(
-			'외부 AI API 호출 실패 후 재시도되는 경우에도 생성 상태와 저장 결과가 어긋나지 않도록 개선'
-		);
-		expect(details).not.toContain('DALL·E 3 통합으로 일일 이미지 생성 요청량 40% 증가 달성');
-		expect(details).not.toContain('Redis 분산 락');
-		expect(details).not.toContain('AutoIncrement PK');
-		expect(details).not.toContain('어드민 서버 동시성');
-		expect(details).not.toContain('인프라 비용 최적화로 월간 비용 20% 절감');
+		expect(miridih.description).toContain('월 30만 건 이상 이미지 생성 요청 처리');
+		expect(JSON.stringify(miridih)).not.toContain('100만');
+		expect(miridih.achievements.map((ach) => ach.title)).toEqual([
+			'미리캔버스 AI 드로잉',
+			'인프라 비용 절감'
+		]);
+		const text = miridih.achievements.flatMap((ach) => ach.details).join('\n');
+		expect(text).toContain('멱등 처리로 차단');
+		expect(text).toContain('GPU 비용 20% 절감(대당 월 약 $185)');
+		expect(text).toContain('25분에서 15분으로 단축');
+		// 75% 가 감소인지 수준인지 모호하지 않게 쓴다
+		expect(text).toContain('평균 파일 크기를 75% 줄이고');
+		expect(text).toContain('Lambda@Edge');
+		expect(text).not.toContain('DALL·E 3 통합으로 일일 이미지 생성 요청량 40% 증가 달성');
+		expect(text).not.toContain('Redis 분산 락');
 	});
 
 	it('학력 기간이 병역으로 인한 재학 기간 오해를 줄임', () => {
@@ -308,10 +336,10 @@ describe('로케일 구조 일치', () => {
 			const [hindsight] = data.resume.opensource;
 			expect(hindsight.name).toBe('Hindsight (vectorize-io)');
 			expect(hindsight.contributions).toHaveLength(3);
-			// 목록 링크는 작성자 필터가 걸려 있어야 본인 기여만 보인다
+			// PR 은 메인테이너가 올린 반영 PR 까지 보이도록 merge + involves, Issue 는 작성자 필터로 본인 기여만 보인다
 			expect(hindsight.links).toEqual([
 				{ label: 'GitHub', url: repo },
-				{ label: 'PR', url: `${repo}/pulls?q=is%3Apr+author%3Aw-seok` },
+				{ label: 'PR', url: `${repo}/pulls?q=is%3Apr+is%3Amerged+involves%3Aw-seok` },
 				{ label: 'Issues', url: `${repo}/issues?q=is%3Aissue+author%3Aw-seok` }
 			]);
 		}
@@ -361,29 +389,42 @@ describe('로케일 구조 일치', () => {
 		expect(contents).not.toContain('번역 품질 향상');
 	});
 
-	it('Tmax Fintech 경력이 Tibero 개발·테스트 환경 표준화 성과를 설명함', () => {
+	it('Tmax Fintech 경력이 백오피스 완결 · 성능 · Tibero 환경 성과를 설명함', () => {
 		const tmax = koData.resume.experience.find((exp) => exp.company === 'Tmax Fintech');
 		expect(tmax).toBeDefined();
 		if (!tmax) {
 			throw new Error('Tmax Fintech 경력 항목이 필요함');
 		}
 
-		expect(tmax.description).toContain('핀테크 서비스 개발 조직');
 		expect(tmax.description).toContain('배달서비스공제조합 공제보험 백오피스');
 		expect(tmax.description).toContain('Tibero 기반 개발·테스트 환경도 표준화');
-		expect(tmax.description).not.toContain('서비스 최적화 및 개발 생산성 향상');
+		expect(tmax.achievements.map((ach) => ach.title)).toEqual([
+			'공제보험 백오피스',
+			'Tibero 개발 환경'
+		]);
+		const text = tmax.achievements.flatMap((ach) => ach.details).join('\n');
+		expect(text).toContain('가입설계, 수납, 계약 승인, 배서');
+		expect(text).toContain('커버리지를 0%에서 약 70%로');
+		expect(text).toContain('3.6초에서 0.7초로');
+		expect(text).toContain('동시 저장 테스트로 유실 0건 검증');
+		expect(text).toContain('3개 오픈소스로 공개');
+		expect(text).toContain('1.5GB에서 401MB로 70% 경량화');
+		expect(text).not.toContain('줄임');
+	});
 
-		const details = JSON.stringify(tmax.achievements);
-		expect(tmax.achievements).toHaveLength(2);
-		expect(details).toContain('QA 배포까지 완료');
-		expect(details).toContain('커버리지 0%');
-		expect(details).toContain('약 70%');
-		expect(details).toContain('갱신 유실');
-		expect(details).toContain('커밋 1건·유실 0건');
-		expect(details).toContain('Tibero Docker/TestContainer를 구축');
-		expect(details).toContain('CI 파이프라인에 통합해 DB 의존 테스트를 자동화');
-		expect(details).toContain('Tibero 전용 dialect');
-		expect(details).toContain('1.5GB에서 401MB');
-		expect(details).toContain('3개 오픈소스 프로젝트');
+	it('경력 번역이 ko 와 같은 블록 구조를 갖고 같은 문체 규칙을 지킴', () => {
+		for (const data of [enData, esData]) {
+			const titles = data.resume.experience.map((exp) => exp.achievements.length);
+			expect(titles).toEqual(koData.resume.experience.map((exp) => exp.achievements.length));
+			const text = JSON.stringify(data.resume.experience);
+			expect(text).not.toMatch(/—/);
+			expect(text).not.toContain('facility');
+		}
+		expect(enData.resume.experience[0].achievements[0].title).toBe(
+			'BimAI (AI classification of BIM components)'
+		);
+		expect(esData.resume.experience[0].achievements[1].title).toBe(
+			'SiteInsights (análisis del avance de obra)'
+		);
 	});
 });

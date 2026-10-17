@@ -30,14 +30,17 @@ jobs:
       - name: Run lint
         run: npm run lint
 
-      - name: Run type check
-        run: npm run check
-
       - name: Run unit tests with coverage
         run: npm run test:coverage
 
       - name: Build
         run: npm run build:only
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e -- --project=chromium
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

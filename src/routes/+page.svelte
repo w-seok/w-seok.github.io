@@ -13,6 +13,8 @@
 
 	let sections: HTMLElement[] = $state([]);
 	let isLangMenuOpen = $state(false);
+	let isLangMenuHovered = false;
+	let isMounted = $state(false);
 	let scrollProgress = $state(0);
 	let activeSection = $state<keyof SectionTranslation>('about');
 
@@ -24,12 +26,27 @@
 		'about',
 		'experience',
 		'opensource',
-		'activities',
 		'skills',
+		'activities',
 		'awards',
 		'certificates',
 		'education'
 	];
+
+	/**
+	 * 학력 기간 문자열을 날짜와 부가 설명으로 나눈다
+	 * @description 기간 자리에는 날짜만 두고, ' · ' 뒤의 부가 설명(예: 병역)은 아래 줄에 따로 표시한다.
+	 *   날짜와 성격이 다른 정보가 날짜 열에 섞이면 오른쪽 열이 긴 문장이 되기 때문이다.
+	 * @param period - 번역 데이터의 기간 문자열
+	 * @returns date 는 날짜 부분, note 는 부가 설명(없으면 빈 문자열)
+	 * @example
+	 * splitPeriod('2017.03 ~ 2023.02 · 병역: 군 복무 완료 (2018 ~ 2019)')
+	 * // { date: '2017.03 ~ 2023.02', note: '병역: 군 복무 완료 (2018 ~ 2019)' }
+	 */
+	function splitPeriod(period: string) {
+		const [date, ...rest] = period.split(' · ');
+		return { date, note: rest.join(' · ') };
+	}
 
 	/** 문서 끝 판정 여유 - 브라우저마다 소수점 오차가 있어 완전히 0이 되지 않는다 */
 	const SCROLL_END_TOLERANCE_PX = 4;
@@ -78,7 +95,7 @@
 	 * 언어에 따른 이름 반환
 	 */
 	function getName(currentLocale: Locale): string {
-		return currentLocale === 'ko' ? '신원석' : 'Leo Shin';
+		return currentLocale === 'ko' ? '신원석' : 'Wonseok Shin';
 	}
 
 	/**
@@ -130,6 +147,7 @@
 		window.addEventListener('scroll', updateScrollState, { passive: true });
 		window.addEventListener('resize', updateScrollState);
 		updateScrollState();
+		isMounted = true;
 
 		return () => {
 			observer.disconnect();
@@ -144,7 +162,11 @@
 	<title>{getName($locale)} | {$t.header.title}</title>
 </svelte:head>
 
-<div class="min-h-screen bg-background text-primary" class:dark={$theme === 'dark'}>
+<div
+	class="min-h-screen bg-background text-primary"
+	class:dark={$theme === 'dark'}
+	class:js-enabled={isMounted}
+>
 	<!-- 스크롤 진행 바: 문서 길이를 암시한다 -->
 	<div class="scroll-progress no-print" aria-hidden="true">
 		<div class="scroll-progress-bar" style="width: {scrollProgress}%"></div>
@@ -175,13 +197,25 @@
 		<!-- 언어 선택 드롭다운 (hover + click for mobile) -->
 		<div
 			class="relative lang-menu-container"
-			onmouseenter={() => (isLangMenuOpen = true)}
-			onmouseleave={() => (isLangMenuOpen = false)}
+			onpointerenter={(event) => {
+				if (event.pointerType === 'mouse') {
+					isLangMenuHovered = true;
+					isLangMenuOpen = true;
+				}
+			}}
+			onpointerleave={(event) => {
+				if (event.pointerType === 'mouse') {
+					isLangMenuHovered = false;
+					isLangMenuOpen = false;
+				}
+			}}
 			role="presentation"
 		>
 			<button
 				class="btn-icon"
-				onclick={() => (isLangMenuOpen = !isLangMenuOpen)}
+				onclick={(event) => {
+					isLangMenuOpen = event.detail > 0 && isLangMenuHovered ? true : !isLangMenuOpen;
+				}}
 				aria-label={$t.common.toggleLanguage}
 				aria-expanded={isLangMenuOpen}
 				aria-haspopup="true"
@@ -481,44 +515,11 @@
 		<!-- 구분선 -->
 		<hr class="section-divider" />
 
-		<!-- Activities 섹션 -->
-		<section
-			class="content-section animate-on-scroll"
-			aria-labelledby="activities-heading"
-			bind:this={sections[4]}
-		>
-			<h2 id="activities-heading" class="section-heading">
-				{$t.sections.activities}
-			</h2>
-			<div class="section-body">
-				{#each $t.resume.activities as activity}
-					<article class="activity-item">
-						<div class="activity-header">
-							<div>
-								<h3 class="activity-name">{activity.name}</h3>
-								<p class="activity-org">{activity.organization}</p>
-							</div>
-							<span class="activity-period">{activity.period}</span>
-						</div>
-						<p class="activity-description">{activity.description}</p>
-						<ul class="activity-highlights">
-							{#each activity.highlights as highlight}
-								<li class="activity-highlight">{highlight}</li>
-							{/each}
-						</ul>
-					</article>
-				{/each}
-			</div>
-		</section>
-
-		<!-- 구분선 -->
-		<hr class="section-divider" />
-
 		<!-- Skills 섹션 -->
 		<section
 			class="content-section animate-on-scroll"
 			aria-labelledby="skills-heading"
-			bind:this={sections[5]}
+			bind:this={sections[4]}
 		>
 			<h2 id="skills-heading" class="section-heading">
 				{$t.sections.skills}
@@ -538,6 +539,36 @@
 							{/each}
 						</div>
 					</div>
+				{/each}
+			</div>
+		</section>
+
+		<!-- 구분선 -->
+		<hr class="section-divider" />
+
+		<!-- Activities 섹션 -->
+		<section
+			class="content-section animate-on-scroll"
+			aria-labelledby="activities-heading"
+			bind:this={sections[5]}
+		>
+			<h2 id="activities-heading" class="section-heading">
+				{$t.sections.activities}
+			</h2>
+			<div class="section-body">
+				{#each $t.resume.activities as activity}
+					<article class="activity-item">
+						<div class="activity-header">
+							<h3 class="activity-name">{activity.name} · {activity.organization}</h3>
+							<span class="activity-period">{activity.period}</span>
+						</div>
+						<p class="activity-description">{activity.description}</p>
+						<ul class="activity-highlights">
+							{#each activity.highlights as highlight}
+								<li class="activity-highlight">{highlight}</li>
+							{/each}
+						</ul>
+					</article>
 				{/each}
 			</div>
 		</section>
@@ -617,18 +648,16 @@
 			</h2>
 			<div class="section-body">
 				{#each $t.resume.education as edu}
+					{@const period = splitPeriod(edu.period)}
 					<article class="education-item">
 						<div class="education-header">
-							<div>
-								<h3 class="education-institution">{edu.institution}</h3>
-								<p class="education-degree">
-									{edu.degree} · {edu.major}
-								</p>
-							</div>
-							<span class="education-period">{edu.period}</span>
+							<h3 class="education-title">
+								<span class="education-institution">{edu.institution}</span> · {edu.degree} · {edu.major}{edu.gpa ? ` · GPA ${edu.gpa}` : ''}
+							</h3>
+							<span class="education-period">{period.date}</span>
 						</div>
-						{#if edu.gpa}
-							<p class="education-gpa">GPA: {edu.gpa}</p>
+						{#if period.note}
+							<p class="education-note">{period.note}</p>
 						{/if}
 						{#if edu.courses && edu.courses.length > 0}
 							<div class="education-courses">
@@ -993,10 +1022,6 @@
 		}
 	}
 
-	.section-body {
-		/* 본문 컨테이너 */
-	}
-
 	.body-text {
 		font-size: 1rem;
 		color: var(--color-secondary);
@@ -1039,10 +1064,6 @@
 	}
 
 	/* ===== Experience 섹션 ===== */
-	.experience-item {
-		/* 경력 아이템 */
-	}
-
 	/* 회사 전환은 성과 전환(24px)보다 큰 경계다. 섹션 > 회사 > 성과 순서를 모든 폭에서 유지한다.
 	   좁은 폭에서는 섹션 간격도 64px까지 줄어들므로 회사 간격을 40px로 낮춰 단계를 보존한다. */
 	.mt-experience {
@@ -1052,6 +1073,18 @@
 	@media (min-width: 768px) {
 		.mt-experience {
 			margin-top: var(--space-16);
+		}
+	}
+
+	/* 회사 단위가 성과 블록과 구별되도록 회사마다 위쪽 선을 긋고, 회사 사이는 성과 사이보다 넓게 둔다 */
+	.experience-item {
+		border-top: 2px solid var(--color-primary);
+		padding-top: var(--space-4);
+	}
+
+	@media (min-width: 768px) {
+		.experience-item.mt-experience {
+			margin-top: 5.5rem;
 		}
 	}
 
@@ -1066,24 +1099,22 @@
 		.experience-header {
 			flex-direction: row;
 			justify-content: space-between;
-			align-items: flex-start;
+			align-items: baseline;
 		}
 	}
 
-	.experience-company-info {
-		/* 회사 정보 */
-	}
-
 	.experience-company {
-		font-size: 1.125rem;
+		font-size: 1.5rem;
 		font-weight: 700;
 		color: var(--color-primary);
+		letter-spacing: -0.01em;
 		margin-bottom: var(--space-1);
 	}
 
 	.experience-position {
 		font-size: 1rem;
-		color: var(--color-secondary);
+		font-weight: 600;
+		color: var(--color-primary);
 	}
 
 	.experience-period {
@@ -1119,7 +1150,7 @@
 	}
 
 	.achievement-block {
-		margin-bottom: var(--space-6);
+		margin-bottom: 2.25rem;
 	}
 
 	.achievement-block:last-child {
@@ -1127,12 +1158,10 @@
 	}
 
 	.achievement-title {
-		font-size: 1rem;
+		font-size: 1.0625rem;
 		font-weight: 600;
 		color: var(--color-primary);
-		margin-bottom: var(--space-3);
-		padding-left: var(--space-3);
-		border-left: 4px solid var(--color-marker);
+		margin-bottom: 0.625rem;
 	}
 
 	.achievement-details {
@@ -1144,14 +1173,15 @@
 	.achievement-detail {
 		position: relative;
 		padding-left: var(--space-5);
-		margin-bottom: var(--space-2);
+		margin-bottom: var(--space-3);
 		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
+		text-wrap: pretty;
 	}
 
 	.achievement-detail::before {
-		content: '–';
+		content: '•';
 		position: absolute;
 		left: var(--space-2);
 		color: var(--color-muted);
@@ -1204,41 +1234,41 @@
 	}
 
 	/* ===== Opensource 섹션 ===== */
-	.opensource-item {
-		/* 오픈소스 아이템 */
-	}
-
+	/* 활동 섹션과 항목 구조(이름 · 기간 · 설명 · bullet)가 같으므로 크기와 간격을 맞춘다 */
 	.opensource-header {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-1);
-		margin-bottom: var(--space-3);
+		margin-bottom: var(--space-2);
 	}
 
 	@media (min-width: 640px) {
 		.opensource-header {
 			flex-direction: row;
 			justify-content: space-between;
-			align-items: center;
+			align-items: baseline;
+			gap: var(--space-4);
 		}
 	}
 
 	.opensource-name {
-		font-size: 1rem;
+		font-size: 1.125rem;
 		font-weight: 600;
 		color: var(--color-primary);
+		line-height: 1.4;
 	}
 
 	.opensource-period {
 		font-size: 0.875rem;
 		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
 	.opensource-description {
 		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
-		margin-bottom: var(--space-4);
+		margin-bottom: var(--space-3);
 	}
 
 	.opensource-contributions {
@@ -1250,8 +1280,8 @@
 	.contribution-item {
 		position: relative;
 		padding-left: var(--space-5);
-		margin-bottom: var(--space-2);
-		font-size: 0.875rem;
+		margin-bottom: var(--space-3);
+		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
 	}
@@ -1292,47 +1322,40 @@
 	}
 
 	/* ===== Activities 섹션 ===== */
-	.activity-item {
-		/* 활동 아이템 */
-	}
-
 	.activity-header {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-2);
-		margin-bottom: var(--space-3);
+		gap: var(--space-1);
+		margin-bottom: var(--space-2);
 	}
 
 	@media (min-width: 640px) {
 		.activity-header {
 			flex-direction: row;
 			justify-content: space-between;
-			align-items: flex-start;
+			align-items: baseline;
+			gap: var(--space-4);
 		}
 	}
 
 	.activity-name {
-		font-size: 1rem;
+		font-size: 1.125rem;
 		font-weight: 600;
 		color: var(--color-primary);
-		margin-bottom: var(--space-1);
-	}
-
-	.activity-org {
-		font-size: 0.875rem;
-		color: var(--color-secondary);
+		line-height: 1.4;
 	}
 
 	.activity-period {
 		font-size: 0.875rem;
 		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
 	.activity-description {
 		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
-		margin-bottom: var(--space-4);
+		margin-bottom: var(--space-3);
 	}
 
 	.activity-highlights {
@@ -1344,8 +1367,8 @@
 	.activity-highlight {
 		position: relative;
 		padding-left: var(--space-5);
-		margin-bottom: var(--space-2);
-		font-size: 0.875rem;
+		margin-bottom: var(--space-3);
+		font-size: 1rem;
 		color: var(--color-secondary);
 		line-height: 1.6;
 	}
@@ -1471,49 +1494,50 @@
 	}
 
 	/* ===== Education 섹션 ===== */
-	.education-item {
-		/* 학력 아이템 */
-	}
-
+	/* 한 건뿐이라 카드 대신 한 줄 요약으로 두고, 날짜 열에는 날짜만 둔다 */
 	.education-header {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-2);
-		margin-bottom: var(--space-3);
+		gap: var(--space-1);
+		padding-bottom: var(--space-3);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	@media (min-width: 640px) {
 		.education-header {
 			flex-direction: row;
 			justify-content: space-between;
-			align-items: flex-start;
+			align-items: baseline;
+			gap: var(--space-4);
 		}
 	}
 
-	.education-institution {
+	.education-title {
 		font-size: 1rem;
-		font-weight: 600;
-		color: var(--color-primary);
-		margin-bottom: var(--space-1);
+		font-weight: 400;
+		color: var(--color-secondary);
+		line-height: 1.6;
 	}
 
-	.education-degree {
-		font-size: 1rem;
-		color: var(--color-secondary);
+	.education-institution {
+		font-weight: 600;
+		color: var(--color-primary);
 	}
 
 	.education-period {
 		font-size: 0.875rem;
 		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
-	.education-gpa {
+	.education-note {
+		margin-top: var(--space-2);
 		font-size: 0.875rem;
-		color: var(--color-secondary);
-		margin-bottom: var(--space-3);
+		color: var(--color-muted);
 	}
 
 	.education-courses {
+		margin-top: var(--space-3);
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-2);

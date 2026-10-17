@@ -56,10 +56,11 @@
   },
   "css": {
     "formatter": {
+      "enabled": false,
       "quoteStyle": "single"
     }
   },
   "files": {
-    "includes": ["src/**/*.ts", "tests/**/*.ts", "*.ts", "*.js", "*.json"]
+    "includes": ["src/**/*.ts", "src/**/*.css", "tests/**/*.ts", "*.ts", "*.js", "*.json"]
   }
 }

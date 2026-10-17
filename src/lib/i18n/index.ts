@@ -92,6 +92,7 @@ function updateHtmlLang(locale: Locale): void {
  */
 function createLocaleStore() {
 	const initialLocale = getStoredLocale();
+	updateHtmlLang(initialLocale);
 	const { subscribe, set } = writable<Locale>(initialLocale);
 
 	return {

@@ -4,7 +4,7 @@
  */
 
 import { get } from 'svelte/store';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { DEFAULT_LOCALE, isValidLocale, type Locale, locale, SUPPORTED_LOCALES, t } from '$i18n';
 
 describe('i18n', () => {
@@ -169,21 +169,42 @@ describe('i18n', () => {
 	});
 
 	describe('저장된 locale 복원', () => {
-		it('localStorage에 저장된 locale이 있으면 사용함', () => {
-			localStorage.setItem('locale', 'es');
-
-			// 새로운 store 인스턴스가 필요하지만, 현재 구조상 불가능
-			// 대신 cycle을 통해 es에서 시작하는지 간접 검증
-			// 이 테스트는 실제로는 store가 싱글톤이라 완전한 검증 불가
-			// 통합 테스트에서 검증 필요
-			expect(localStorage.getItem('locale')).toBe('es');
+		afterEach(() => {
+			vi.restoreAllMocks();
+			vi.unstubAllGlobals();
+			vi.resetModules();
 		});
 
-		it('유효하지 않은 저장값은 무시함', () => {
-			localStorage.setItem('locale', 'invalid');
-			// 새 store 생성 시 DEFAULT_LOCALE 또는 브라우저 언어 사용해야 함
-			// 현재 싱글톤 구조상 직접 테스트 어려움
-			expect(isValidLocale('invalid')).toBe(false);
+		it.each([
+			{ stored: 'es', browser: 'en-US', expected: 'es', heading: 'Sobre mí' },
+			{ stored: null, browser: 'es-ES', expected: 'es', heading: 'Sobre mí' },
+			{ stored: 'invalid', browser: 'en-US', expected: 'en', heading: 'About' },
+			{ stored: null, browser: 'fr-FR', expected: 'ko', heading: '소개' }
+		])('$stored 저장값과 $browser 환경에서 $expected로 초기화함', async (scenario) => {
+			localStorage.clear();
+			if (scenario.stored !== null) localStorage.setItem('locale', scenario.stored);
+			vi.spyOn(navigator, 'language', 'get').mockReturnValue(scenario.browser);
+			document.documentElement.lang = 'ko';
+			vi.resetModules();
+			const restored = await import('$i18n');
+
+			expect(get(restored.locale)).toBe(scenario.expected);
+			expect(get(restored.t).sections.about).toBe(scenario.heading);
+			expect(document.documentElement.lang).toBe(scenario.expected);
+		});
+
+		it('SSR에서는 브라우저 API 없이 기본 언어와 번역을 제공함', async () => {
+			vi.stubGlobal('window', undefined);
+			vi.resetModules();
+			const server = await import('$i18n');
+
+			expect(get(server.locale)).toBe('ko');
+			expect(get(server.t).sections.about).toBe('소개');
+			server.locale.set('en');
+			server.locale.cycle();
+			expect(get(server.locale)).toBe('es');
+			expect(get(server.t).sections.about).toBe('Sobre mí');
+			expect(document.documentElement.lang).toBe('ko');
 		});
 	});
 });
