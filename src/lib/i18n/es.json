@@ -64,7 +64,7 @@
 					{
 						"title": "Liderazgo de Application Part",
 						"details": [
-							"Lideré un equipo de 4 personas a cargo de los objetivos trimestrales y las evaluaciones de desempeño; el 99% de los más de 530 trabajos lanzados en ese periodo no requirió retrabajo",
+							"Lideré un equipo de 4 personas a cargo de los objetivos trimestrales y las evaluaciones de desempeño; el 98% de los más de 530 trabajos lanzados en ese periodo no requirió retrabajo",
 							"Cuando la revisión pasó a ser el cuello de botella tras adoptar la IA, incorporé al equipo una revisión con IA que lee diff, commits y especificaciones y descarta comentarios sin fundamento",
 							"Creé una estructura de conocimiento que refleja los cambios fusionados en la documentación de cada servicio, para que la IA que escribe código también use contexto actualizado",
 							"Reduje de 49 a 12 minutos (76%) el CI del monolito Rails, que ejecuta todas las pruebas antes de cada despliegue, aligerando factories heredadas que encadenaban decenas de escrituras en BD"

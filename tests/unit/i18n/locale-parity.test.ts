@@ -276,7 +276,7 @@ describe('로케일 구조 일치', () => {
 		const text = details.join('\n');
 		expect(text).toContain('scale up으로 임시 조치한 뒤');
 		expect(text).toContain('약 20분에서 3분으로 단축');
-		expect(text).toContain('99%가 출시 후 재작업 없이 마무리');
+		expect(text).toContain('98%가 출시 후 재작업 없이 마무리');
 		expect(text).toContain('49분에서 12분으로 76% 단축');
 		// 장애는 팀 대응 · 레거시 개선으로 쓰고 심각도 수치는 넣지 않는다
 		for (const severity of ['550배', '919건', '41,271']) {

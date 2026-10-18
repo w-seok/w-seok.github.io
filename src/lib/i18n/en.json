@@ -64,7 +64,7 @@
 					{
 						"title": "Application Part leadership",
 						"details": [
-							"Led a 4-person part, owning quarterly goals and performance reviews; 99% of the 530+ items shipped during that period needed no rework after release",
+							"Led a 4-person part, owning quarterly goals and performance reviews; 98% of the 530+ items shipped during that period needed no rework after release",
 							"When review became the bottleneck after AI adoption, brought into the team review process an AI review that reads the diff, commits, and product specs and filters out unsupported comments",
 							"Built a knowledge setup where merged changes flow into per-service docs automatically, so AI coding tools also work from current context",
 							"Cut CI for the Rails monolith, which runs the full test suite before every deploy, from 49 to 12 minutes (76%) by slimming legacy factories that triggered dozens of DB writes per test record"
